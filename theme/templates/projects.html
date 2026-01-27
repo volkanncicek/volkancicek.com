@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Projects - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <h1 class="page-title">Projects</h1>
+    <p class="page-description">Things I'm building, experimenting with, or have completed.</p>
+</header>
+
+{% if PROJECTS %}
+<section class="projects-page">
+    <div class="projects-grid">
+        {% for project in PROJECTS %}
+        <a href="{{ project.url }}" class="project-card" target="_blank" rel="noopener">
+            <div class="project-header">
+                <span class="project-name">{{ project.name }}</span>
+                <span class="project-status status-{{ project.status }}">{{ project.status }}</span>
+            </div>
+            <p class="project-description">{{ project.description }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% else %}
+<p>No projects yet. Check back soon!</p>
+{% endif %}
+{% endblock %}

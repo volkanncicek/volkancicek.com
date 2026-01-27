@@ -1,0 +1,14 @@
+# Pelican static site generator
+pelican[markdown]>=4.11.0
+
+# Optional: Typography enhancements
+typogrify>=2.0.7
+
+# Optional: Live reload during development
+livereload>=2.6.3
+
+# Build automation
+invoke>=2.2.0
+
+# GitHub Pages deployment (if needed)
+ghp-import>=2.1.0

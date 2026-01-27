@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Archive - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<header class="page-header">
+    <h1 class="page-title">Archive</h1>
+</header>
+
+<section class="archive">
+    {% for article in articles %}
+    <article class="post-item">
+        <a href="{{ SITEURL }}/{{ article.url }}" class="post-link">
+            <span class="post-date">{{ article.date.strftime('%Y-%m-%d') }}</span>
+            <span class="post-title">{{ article.title }}</span>
+        </a>
+    </article>
+    {% endfor %}
+</section>
+{% endblock %}
