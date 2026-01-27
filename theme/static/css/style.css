@@ -13,6 +13,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   scroll-behavior: smooth;
+  background-color: #fafafa;
 }
 
 body {
@@ -519,6 +520,10 @@ footer {
    DARK MODE
    ======================================== */
 @media (prefers-color-scheme: dark) {
+  html {
+    background-color: #0a0a0a;
+  }
+
   body {
     color: #e5e5e5;
     background-color: #0a0a0a;
