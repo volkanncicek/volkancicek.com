@@ -839,3 +839,43 @@ footer {
 .highlight .vi { color: #f8f8f2 } /* Name.Variable.Instance */
 .highlight .vm { color: #f8f8f2 } /* Name.Variable.Magic */
 .highlight .il { color: #ae81ff } /* Literal.Number.Integer.Long */
+
+/* 404 Error Page */
+.error-page {
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.error-page h1 {
+    font-size: 6rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1;
+}
+
+.error-page .error-message {
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    margin: 1rem 0;
+}
+
+.error-page .error-description {
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.error-page .back-home {
+    display: inline-block;
+    color: var(--text-primary);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--text-muted);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.error-page .back-home:hover {
+    background: var(--text-primary);
+    color: var(--background-primary);
+}

@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block title %}Page Not Found - {{ SITENAME }}{% endblock %}
+
+{% block content %}
+<div class="error-page">
+    <h1>404</h1>
+    <p class="error-message">Page not found</p>
+    <p class="error-description">The page you're looking for doesn't exist or has been moved.</p>
+    <a href="{{ SITEURL }}/" class="back-home">← Back to Home</a>
+</div>
+{% endblock %}

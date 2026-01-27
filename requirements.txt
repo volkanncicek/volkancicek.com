@@ -10,5 +10,5 @@ livereload>=2.6.3
 # Build automation
 invoke>=2.2.0
 
-# GitHub Pages deployment (if needed)
-ghp-import>=2.1.0
+# SEO - Sitemap generation
+pelican-sitemap>=1.1.0

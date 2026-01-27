@@ -25,6 +25,7 @@ INTRO_TEXT = "Senior Data Scientist with a Mathematics background. I work at the
 STATIC_PATHS = ['images', 'extra']
 EXTRA_PATH_METADATA = {
     'extra/cv.pdf': {'path': 'cv.pdf'},
+    'extra/robots.txt': {'path': 'robots.txt'},
 }
 
 # Manifesto - Ana sayfada görünecek kişisel manifesto (şimdilik kapalı)
@@ -93,3 +94,21 @@ LOAD_CONTENT_CACHE = False
 
 # Uncomment following line if you want document-relative URLs when developing
 RELATIVE_URLS = True
+
+# Plugins
+PLUGINS = ['sitemap']
+
+# Sitemap settings
+SITEMAP = {
+    'format': 'xml',
+    'priorities': {
+        'articles': 0.7,
+        'indexes': 0.5,
+        'pages': 0.8
+    },
+    'changefreqs': {
+        'articles': 'monthly',
+        'indexes': 'daily',
+        'pages': 'monthly'
+    }
+}
