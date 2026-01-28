@@ -48,7 +48,7 @@ EXTRA_PATH_METADATA = {
 PROJECTS = (
     {
         "name": "PyData Archive",
-        "description": "A curated archive of Python data science resources, tutorials, and best practices.",
+        "description": "An archive of PyData conference talks and tutorials. PyData is an educational program of NumFOCUS that provides a forum for the international community of users and developers of data analysis tools.",
         "url": "https://pydataarchive.com",
         "status": "active",
     },
