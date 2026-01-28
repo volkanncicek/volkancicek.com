@@ -33,7 +33,7 @@ class LLMSGenerator:
         lines = [f"# {self.sitename}", ""]
         lines.append(f"> {self.site_description}")
         lines.append("")
-        
+
         if about_content:
             lines.append("## About")
             lines.append(about_content)
@@ -68,7 +68,7 @@ class LLMSGenerator:
         )
         if not about_page:
             return ""
-        
+
         content = md(about_page.content)
         # Clean up the content - remove excessive newlines
         content = " ".join(content.strip().split())
@@ -77,13 +77,13 @@ class LLMSGenerator:
     def _format_entry(self, item: contents.Content) -> str:
         """Format a page or article entry for the llms.txt file."""
         url = item.url.removesuffix("/")
-        
+
         # Try description, then summary metadata
         description = (
             getattr(item, "description", None) or getattr(item, "summary", None) or ""
         )
         description = str(description).strip()
-        
+
         # Strip HTML tags and convert to plain text
         description = md(description).strip().replace("\n", " ")
 

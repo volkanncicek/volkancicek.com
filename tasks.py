@@ -88,6 +88,7 @@ def preview(c):
     """Build production version of site"""
     pelican_run("-s {settings_publish}".format(**CONFIG))
 
+
 @task
 def livereload(c):
     """Automatically reload browser tab upon file modification."""

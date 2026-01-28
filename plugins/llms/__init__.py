@@ -1,1 +1,1 @@
-from .llms import register
+from .llms import register as register

@@ -1,19 +1,23 @@
-AUTHOR = 'Volkan Çiçek'
-SITENAME = 'Volkan Çiçek'
+from datetime import datetime
+
+AUTHOR = "Volkan Çiçek"
+SITENAME = "Volkan Çiçek"
 SITEURL = ""
-SITE_DESCRIPTION = "Senior Data Scientist specializing in Generative AI, LLMs, and MLOps"
+SITE_DESCRIPTION = (
+    "Senior Data Scientist specializing in Generative AI, LLMs, and MLOps"
+)
 
 PATH = "content"
 OUTPUT_PATH = "output/"
 THEME = "./theme"
 
 # Content paths
-PAGE_PATHS = ['pages']
-ARTICLE_PATHS = ['posts']
+PAGE_PATHS = ["pages"]
+ARTICLE_PATHS = ["posts"]
 
-TIMEZONE = 'Europe/Istanbul'
-DEFAULT_LANG = 'en'
-CURRENT_YEAR = 2026
+TIMEZONE = "Europe/Istanbul"
+DEFAULT_LANG = "en"
+CURRENT_YEAR = datetime.now().year
 
 # Contact
 EMAIL = "volkanciicek@gmail.com"
@@ -22,14 +26,14 @@ EMAIL = "volkanciicek@gmail.com"
 INTRO_TEXT = "Senior Data Scientist with a Mathematics background. I work at the intersection of Generative AI, LLMs, RAG systems, and MLOps — turning complex AI ideas into production-ready solutions."
 
 # Static files (CV, etc.)
-STATIC_PATHS = ['images', 'extra']
+STATIC_PATHS = ["images", "extra"]
 EXTRA_PATH_METADATA = {
-    'extra/cv.pdf': {'path': 'cv.pdf'},
-    'extra/robots.txt': {'path': 'robots.txt'},
-    'extra/favicon.ico': {'path': 'favicon.ico'},
-    'extra/favicon-16x16.png': {'path': 'favicon-16x16.png'},
-    'extra/favicon-32x32.png': {'path': 'favicon-32x32.png'},
-    'extra/apple-touch-icon.png': {'path': 'apple-touch-icon.png'},
+    "extra/cv.pdf": {"path": "cv.pdf"},
+    "extra/robots.txt": {"path": "robots.txt"},
+    "extra/favicon.ico": {"path": "favicon.ico"},
+    "extra/favicon-16x16.png": {"path": "favicon-16x16.png"},
+    "extra/favicon-32x32.png": {"path": "favicon-32x32.png"},
+    "extra/apple-touch-icon.png": {"path": "apple-touch-icon.png"},
 }
 
 # Manifesto - Ana sayfada görünecek kişisel manifesto (şimdilik kapalı)
@@ -58,14 +62,14 @@ PROJECTS = (
 )
 
 # URL settings
-ARTICLE_URL = 'blog/{slug}.html'
-ARTICLE_SAVE_AS = 'blog/{slug}.html'
-PAGE_URL = 'pages/{slug}.html'
-PAGE_SAVE_AS = 'pages/{slug}.html'
+ARTICLE_URL = "blog/{slug}.html"
+ARTICLE_SAVE_AS = "blog/{slug}.html"
+PAGE_URL = "pages/{slug}.html"
+PAGE_SAVE_AS = "pages/{slug}.html"
 
 # Direct templates - projects sayfası için
-DIRECT_TEMPLATES = ['index', 'archives', 'categories', 'tags', 'projects']
-PROJECTS_SAVE_AS = 'projects.html'
+DIRECT_TEMPLATES = ["index", "archives", "categories", "tags", "projects"]
+PROJECTS_SAVE_AS = "projects.html"
 
 # Menu settings
 DISPLAY_PAGES_ON_MENU = True
@@ -103,23 +107,15 @@ LOAD_CONTENT_CACHE = False
 RELATIVE_URLS = True
 
 # Plugins
-PLUGIN_PATHS = ['plugins']
-PLUGINS = ['sitemap', 'plugins.llms']
+PLUGIN_PATHS = ["plugins"]
+PLUGINS = ["sitemap", "plugins.llms"]
 
 # Typography enhancements (smart quotes, etc.)
 TYPOGRIFY = True
 
 # Sitemap settings
 SITEMAP = {
-    'format': 'xml',
-    'priorities': {
-        'articles': 0.7,
-        'indexes': 0.5,
-        'pages': 0.8
-    },
-    'changefreqs': {
-        'articles': 'monthly',
-        'indexes': 'daily',
-        'pages': 'monthly'
-    }
+    "format": "xml",
+    "priorities": {"articles": 0.7, "indexes": 0.5, "pages": 0.8},
+    "changefreqs": {"articles": "monthly", "indexes": "daily", "pages": "monthly"},
 }
