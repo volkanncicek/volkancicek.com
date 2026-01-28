@@ -44,13 +44,17 @@ uv run pelican content -s publishconf.py
 ```
 volkancicek.com/
 ├── content/
-│   ├── extra/          # Static files (robots.txt, cv.pdf)
+│   ├── extra/          # Static files (robots.txt, cv.pdf, favicon.ico)
 │   ├── images/         # Blog images
 │   ├── pages/          # Static pages (about.md)
-│   └── *.md            # Blog posts
+│   └── posts/          # Blog posts (*.md)
+├── plugins/
+│   └── llms/           # LLMs.txt generator plugin
 ├── theme/
-│   ├── static/css/     # Stylesheets
-│   └── templates/      # Jinja2 templates
+│   ├── static/css/     # Stylesheets (with dark mode support)
+│   └── templates/
+│       ├── partials/   # Reusable template parts (head, nav, footer)
+│       └── *.html      # Page templates
 ├── output/             # Generated site (git ignored)
 ├── pelicanconf.py      # Development config
 ├── publishconf.py      # Production config
@@ -61,7 +65,7 @@ volkancicek.com/
 
 ### Blog Posts
 
-Create a new `.md` file in `content/`:
+Create a new `.md` file in `content/posts/`:
 
 ```markdown
 Title: My Post Title

@@ -1,0 +1,14 @@
+<div class="footer-links">
+    {% if EMAIL %}
+    <a href="mailto:{{ EMAIL }}">email</a>
+    {% endif %}
+    {% if SOCIAL %}
+    {% for name, link in SOCIAL %}
+    <a href="{{ link }}" target="_blank" rel="noopener">{{ name|lower }}</a>
+    {% endfor %}
+    {% endif %}
+    {% if FEED_ALL_ATOM %}
+    <a href="{{ SITEURL }}/{{ FEED_ALL_ATOM }}" target="_blank">rss</a>
+    {% endif %}
+</div>
+<p class="copyright">&copy; {{ CURRENT_YEAR|default('2026') }} {{ AUTHOR }}</p>

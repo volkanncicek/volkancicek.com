@@ -1,0 +1,1 @@
+# Pelican plugins package

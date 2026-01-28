@@ -7,7 +7,22 @@
     <h1 class="page-title">Archive</h1>
 </header>
 
+{% if tags %}
+<section class="tags-section">
+    <h2 class="section-title">Tags</h2>
+    <div class="tag-cloud">
+        {% for tag, articles in tags|sort(attribute='0.name') %}
+        <a href="{{ SITEURL }}/{{ tag.url }}" class="tag-pill">
+            <span class="tag-name">{{ tag.name }}</span>
+            <span class="tag-count">{{ articles|count }}</span>
+        </a>
+        {% endfor %}
+    </div>
+</section>
+{% endif %}
+
 <section class="archive">
+    <h2 class="section-title">All Posts</h2>
     {% for article in articles %}
     <article class="post-item">
         <a href="{{ SITEURL }}/{{ article.url }}" class="post-link">

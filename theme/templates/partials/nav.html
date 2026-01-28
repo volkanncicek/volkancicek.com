@@ -1,0 +1,10 @@
+<nav>
+    <a href="{{ SITEURL }}/" class="{% if output_file == 'index.html' %}active{% endif %}">home</a>
+    <a href="{{ SITEURL }}/projects.html" class="{% if output_file == 'projects.html' %}active{% endif %}">projects</a>
+    <a href="{{ SITEURL }}/cv.pdf" target="_blank">cv</a>
+    <a href="{{ SITEURL }}/archives.html" class="{% if output_file == 'archives.html' %}active{% endif %}">archive</a>
+    {% for title, link in MENUITEMS %}
+    <a href="{{ link }}">{{ title }}</a>
+    {% endfor %}
+    <a href="{{ SITEURL }}/pages/about.html" class="{% if page and page.slug == 'about' %}active{% endif %}">about</a>
+</nav>

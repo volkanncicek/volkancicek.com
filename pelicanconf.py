@@ -9,7 +9,7 @@ THEME = "./theme"
 
 # Content paths
 PAGE_PATHS = ['pages']
-ARTICLE_PATHS = ['']
+ARTICLE_PATHS = ['posts']
 
 TIMEZONE = 'Europe/Istanbul'
 DEFAULT_LANG = 'en'
@@ -26,6 +26,7 @@ STATIC_PATHS = ['images', 'extra']
 EXTRA_PATH_METADATA = {
     'extra/cv.pdf': {'path': 'cv.pdf'},
     'extra/robots.txt': {'path': 'robots.txt'},
+    'extra/favicon.ico': {'path': 'favicon.ico'},
 }
 
 # Manifesto - Ana sayfada görünecek kişisel manifesto (şimdilik kapalı)
@@ -82,6 +83,9 @@ SOCIAL = (
     ("Twitter", "https://twitter.com/volkanncicek"),
 )
 
+# Twitter username for meta tags (without @)
+TWITTER_USERNAME = "volkanncicek"
+
 # Sayfa başına makale sayısı
 DEFAULT_PAGINATION = 10
 
@@ -96,7 +100,11 @@ LOAD_CONTENT_CACHE = False
 RELATIVE_URLS = True
 
 # Plugins
-PLUGINS = ['sitemap']
+PLUGIN_PATHS = ['plugins']
+PLUGINS = ['sitemap', 'plugins.llms']
+
+# Typography enhancements (smart quotes, etc.)
+TYPOGRIFY = True
 
 # Sitemap settings
 SITEMAP = {
