@@ -47,18 +47,29 @@ EXTRA_PATH_METADATA = {
 # Projects - Projelerinizi buraya ekleyin
 PROJECTS = (
     {
-        "name": "Project Alpha",
-        "description": "A brief description of what this project does",
-        "url": "https://github.com/volkancicek/project-alpha",
-        "status": "active",  # active, completed, archived
+        "name": "PyData Archive",
+        "description": "A curated archive of Python data science resources, tutorials, and best practices.",
+        "url": "https://pydataarchive.com",
+        "status": "active",
     },
     {
-        "name": "Project Beta",
-        "description": "Another cool project you're working on",
-        "url": "https://github.com/volkancicek/project-beta",
-        "status": "completed",
+        "name": "Voice Dub Studio",
+        "description": "AI-powered voice dubbing and translation platform for video content.",
+        "url": "https://voicedubstudio.com",
+        "status": "active",
     },
-    # Daha fazla proje ekleyin...
+    {
+        "name": "Alcatel Modem API",
+        "description": "Generic Python library and CLI tool for Alcatel LTE modems. Supports multiple Alcatel models with SMS management, network monitoring, and API access.",
+        "url": "https://github.com/volkanncicek/alcatel-modem-api",
+        "status": "active",
+    },
+    {
+        "name": "Input Lock",
+        "description": "A desktop app that temporarily locks your keyboard and mouse input. Perfect for cleaning breaks or preventing accidental input.",
+        "url": "https://github.com/volkanncicek/input-lock",
+        "status": "active",
+    },
 )
 
 # URL settings
