@@ -4,7 +4,7 @@ AUTHOR = "Volkan Çiçek"
 SITENAME = "Volkan Çiçek"
 SITEURL = ""
 SITE_DESCRIPTION = (
-    "Senior Data Scientist specializing in Generative AI, LLMs, and MLOps"
+    "Senior Data Scientist & AI Engineer specializing in Generative AI, LLMs, and MLOps"
 )
 
 PATH = "content"
@@ -23,7 +23,7 @@ CURRENT_YEAR = datetime.now().year
 EMAIL = "volkanciicek@gmail.com"
 
 # Intro text for homepage
-INTRO_TEXT = "Senior Data Scientist with a Mathematics background. I work at the intersection of Generative AI, LLMs, RAG systems, and MLOps — turning complex AI ideas into production-ready solutions."
+INTRO_TEXT = "Senior Data Scientist & AI Engineer with a Mathematics background. I work at the intersection of Generative AI, LLMs, RAG systems, and MLOps — turning complex AI ideas into production-ready solutions."
 
 # Static files (CV, etc.)
 STATIC_PATHS = ["images", "extra"]
