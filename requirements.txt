@@ -13,5 +13,8 @@ invoke>=2.2.0
 # SEO - Sitemap generation
 pelican-sitemap>=1.1.0
 
+# Article prev/next navigation
+pelican-neighbors>=1.3.0
+
 # LLMs.txt plugin - converts HTML to markdown
 markdownify>=0.11.0

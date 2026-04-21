@@ -119,7 +119,7 @@ RELATIVE_URLS = True
 
 # Plugins
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["sitemap", "plugins.llms", "plugins.merlican"]
+PLUGINS = ["sitemap", "neighbors", "plugins.llms", "plugins.merlican"]
 
 MARKDOWN = {
     "extension_configs": {
