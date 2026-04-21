@@ -56,8 +56,12 @@
 {% endif %}
 <meta property="og:site_name" content="{{ SITENAME }}">
 <meta property="og:locale" content="{{ DEFAULT_LANG }}_{{ DEFAULT_LANG|upper }}">
-{% if SITELOGO %}
+{% if article and article.image %}
+<meta property="og:image" content="{{ SITEURL }}/{{ article.image }}">
+{% elif SITELOGO %}
 <meta property="og:image" content="{{ SITEURL }}/{{ SITELOGO }}">
+{% else %}
+<meta property="og:image" content="{{ SITEURL }}/og-image.png">
 {% endif %}
 
 <!-- Twitter Card -->
@@ -79,8 +83,12 @@
 <meta name="twitter:description" content="{{ SITE_DESCRIPTION }}">
 <meta name="twitter:url" content="{{ SITEURL }}/">
 {% endif %}
-{% if SITELOGO %}
+{% if article and article.image %}
+<meta name="twitter:image" content="{{ SITEURL }}/{{ article.image }}">
+{% elif SITELOGO %}
 <meta name="twitter:image" content="{{ SITEURL }}/{{ SITELOGO }}">
+{% else %}
+<meta name="twitter:image" content="{{ SITEURL }}/og-image.png">
 {% endif %}
 
 <!-- Favicon -->

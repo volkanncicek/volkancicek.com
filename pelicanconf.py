@@ -34,6 +34,7 @@ EXTRA_PATH_METADATA = {
     "extra/favicon-16x16.png": {"path": "favicon-16x16.png"},
     "extra/favicon-32x32.png": {"path": "favicon-32x32.png"},
     "extra/apple-touch-icon.png": {"path": "apple-touch-icon.png"},
+    "extra/og-image.png": {"path": "og-image.png"},
 }
 
 # Manifesto - Ana sayfada görünecek kişisel manifesto (şimdilik kapalı)
