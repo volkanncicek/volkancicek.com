@@ -1,7 +1,7 @@
 Title: "Agent" Dediğinizde Ne Kastediyorsunuz?
 Date: 2026-03-10 10:00
 Category: AI
-Tags: yapay-zeka, agent, chatbot, rag, mcp, llm, yazilim-muhendisligi
+Tags: yapay-zeka, agent, chatbot, rag, mcp, llm
 Slug: chatbot-mu-agent-mi
 Summary: "Agent" kelimesi her yerde — ürün sayfalarında, iş ilanlarında, LinkedIn paylaşımlarında. Ama çoğu zaman altına bakınca görünen şey daha akıllı bir chatbot. İkisi arasındaki fark ne, nasıl ayırt edersiniz?
 

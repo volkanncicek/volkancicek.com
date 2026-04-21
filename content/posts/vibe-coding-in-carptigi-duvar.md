@@ -1,7 +1,7 @@
 Title: Vibe Coding'in Çarptığı Duvar
 Date: 2026-04-21 10:00
 Category: AI
-Tags: yapay-zeka, legacy-kod, vibe-coding, teknik-borc, yazilim-muhendisligi
+Tags: yapay-zeka, legacy-kod, vibe-coding, teknik-borc
 Slug: vibe-coding-in-carptigi-duvar
 Summary: Claude Code, Cursor ve GitHub Copilot'u aynı anda açık bırakıp production'da çalışan gerçek bir legacy codebase'e girdim. Vibe coding vaatlerinin nerede çöktüğünü anlatan bir saha notu.
 

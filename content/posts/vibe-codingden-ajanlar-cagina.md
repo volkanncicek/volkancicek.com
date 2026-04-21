@@ -1,7 +1,7 @@
 Title: Vibe Coding'den Ajanlar Çağına: Paradigma mı Değişti, İsim mi?
 Date: 2026-02-10 12:00
 Category: AI
-Tags: yapay-zeka, vibe-coding, agentic-engineering, llm, yazilim-muhendisligi
+Tags: yapay-zeka, vibe-coding, agentic-engineering, llm
 Slug: vibe-codingden-ajanlar-cagina
 Summary: Andrej Karpathy "vibe coding"i tanımladıktan bir yıl sonra yeni bir terim önerdi: "agentic engineering." Yüzeyde sadece bir isim değişikliği gibi görünüyor. Ama altında çok daha köklü bir paradigma kayması var.
 

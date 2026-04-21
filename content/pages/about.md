@@ -3,7 +3,7 @@ Slug: about
 
 # About Me
 
-Hi, I'm **Volkan Çiçek** — a Senior Data Scientist based in Istanbul, Turkey.
+Hi, I'm **Volkan Çiçek** — a Senior Data Scientist & AI Engineer based in Istanbul, Turkey.
 
 I have a Mathematics background and 4+ years of experience designing scalable AI solutions. Currently, I'm pursuing my Master's in Artificial Intelligence at Gebze Technical University.
 
