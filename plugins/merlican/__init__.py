@@ -1,0 +1,1 @@
+from .merlican import register

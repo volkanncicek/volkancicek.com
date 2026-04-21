@@ -119,7 +119,16 @@ RELATIVE_URLS = True
 
 # Plugins
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["sitemap", "plugins.llms"]
+PLUGINS = ["sitemap", "plugins.llms", "plugins.merlican"]
+
+MARKDOWN = {
+    "extension_configs": {
+        "markdown.extensions.codehilite": {"css_class": "highlight"},
+        "markdown.extensions.extra": {},
+        "plugins.merlican.mermaid_markdown": {},
+    },
+    "output_format": "html5",
+}
 
 # Typography enhancements (smart quotes, etc.)
 TYPOGRIFY = True

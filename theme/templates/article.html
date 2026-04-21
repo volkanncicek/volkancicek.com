@@ -39,7 +39,8 @@
     {% endif %}
 </article>
 
-<nav class="article-nav">
+{% if article.prev_article or article.next_article %}
+<nav class="article-nav" aria-label="Article navigation">
     {% if article.prev_article %}
     <a href="{{ SITEURL }}/{{ article.prev_article.url }}" class="prev">
         <span class="nav-label">&larr; Previous</span>
@@ -53,4 +54,5 @@
     </a>
     {% endif %}
 </nav>
+{% endif %}
 {% endblock %}
