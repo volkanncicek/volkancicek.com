@@ -15,7 +15,7 @@ Tam bir yıl sonra, Şubat 2026'da Karpathy [yeni bir çerçeve önerdi](https:/
 
 > *"Geçen hafta sonu yerel kamera analiz dashboard'u için şunu yazdım: 'DGX Spark'ıma giriş yap, SSH anahtarlarını ayarla, vLLM kur, Qwen3-VL'yi indir ve test et, video inference için sunucu endpoint'i ve temel web UI dashboard'u hazırla, servisleri systemd ile kur, kendin için notlar al ve bana markdown raporu yaz.' Ajan yaklaşık 30 dakika boyunca çalıştı, birden fazla sorunla karşılaştı, çözümleri araştırdı, tek tek çözdü, kodu yazdı, test etti, servisleri kurdu ve raporla geri döndü. Ben hiçbir şeye dokunmadım. Bunlar üç ay önce kolayca bir hafta sonu projesi olurdu."*
 
-Ve şunu ekledi: programlama tanınmaz hale geliyor. Bilgisayarlar var olduğundan beri süregelen "editöre kod yazma" çağı sona eriyor. Artık AI ajanlarını başlatıyor, İngilizce görevler veriyor ve çalışmalarını paralel olarak yönetip gözden geçiriyorsunuz.
+Ve şunu ekledi: programlama tanınmaz hale geliyor. Bilgisayarlar var olduğundan beri süregelen "editöre kod yazma" çağı sona eriyor. Artık AI ajanlarını başlatıyor, doğal dilde görevler veriyor ve çalışmalarını paralel olarak yönetip gözden geçiriyorsunuz.
 
 Sadece semantik bir tercih mi bu? Hayır. Ve farkı anlamak için bir adım geri çekilmek gerekiyor.
 
