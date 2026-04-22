@@ -25,7 +25,7 @@ Büyük dil modellerini anlamak için temel bir gerçekle başlayalım: bir LLM'
 
 ChatGPT gibi chatbot'lar bu modellere özel bir eğitim uygulandıktan sonra ortaya çıkar. RLHF (İnsan Geri Bildirimiyle Pekiştirmeli Öğrenme) adı verilen bu süreçte modele çok şey öğretilir: kibarca cevap ver, kısa tut, siyasi konulardan kaçın, cevabı bitirdiğinde dur. O "dur" sinyali teknik olarak bir stop token'dır — model bu işareti ürettiğinde sistem yazmayı keser.
 
-Bu eğitim chatbot deneyimini mümkün kılar: modeli daha güvenli, daha tutarlı, daha kullanışlı yapar. Ama bir tradeoff getirir: çıktı çeşitliliği daralır, model doğru olmak yerine kabul görmek için optimize eder — araştırmacıların "sycophancy" dediği bu eğilim, OpenAI'ın Nisan 2025'te GPT-4o güncellemesini geri çekmek zorunda kalmasına da yol açtı.
+Bu eğitim chatbot deneyimini mümkün kılar: modeli daha güvenli, daha tutarlı, daha kullanışlı yapar. Ama bir tradeoff getirir: çıktı çeşitliliği daralır, model doğru olmak yerine kabul görmek için optimize eder — araştırmacıların "sycophancy" dediği bu eğilim, [OpenAI'ın Nisan 2025'te GPT-4o güncellemesini geri çekmek zorunda kalmasına](https://techcrunch.com/2025/04/29/openai-rolls-back-update-that-made-chatgpt-too-sycophant-y/) da yol açtı.
 
 AI camiasında bu tradeoff'u bazen "lobotomi" olarak nitelendiriyorlar. Modelin ham potansiyeli, "nazik ol", "kısa cevap ver", "emin olmadığında özür dile" gibi baskılarla törpüleniyor. Bir chatbot "Tabii, hemen yapıyorum" diyebilir ama bir kodlama ajanı için bu kibarlık bir yüktür — ajan sadece işi bitirmelidir.
 

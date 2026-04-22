@@ -43,7 +43,7 @@ GitHub Copilot shell çağrılarını görünce "bu güvensiz" diye işaretledi.
 
 Üçü de farklı şekillerde çuvalladı. Ama dikkat edin: *halüsinasyon* değildi bu. Halüsinasyon "tamamen uydurulmuş bilgi" demek. Burada olan farklıydı — üç araç da gerçek ama standart dışı bir sistemi anlayamadı ve cevaplarını kendi training data'sındaki kalıplara göre verdi. Makine öğrenmesinde **selection bias** (seçim önyargısı) olarak bilinen bir sorun bu: model eğitim verisinde baskın olan kalıpları "normal" kabul eder, standart dışı bir yapıyla karşılaşınca onu kendi şablonuna göre yeniden yorumlar. Yani bu sistem için değil, *olması gereken* sistem için çalıştılar.
 
-Ve bu bir detay değil. Copilot'un shell çağrısını "güvensiz" bulup sistemi "düzeltmeye" kalkışmasını hayal edin — yıllardır çalışan ama tuhaf olan o script'i siler, yerine "doğru" bir alternatif koyar ve production çöker. Doğru teşhis, yanlış eylem. Legacy sistemlerde en tehlikeli an AI'ın "şunu düzelteyim" dediği andır. Amazon'un Mart 2026'da yaşadığı altı saatlik kesinti — 6,3 milyon kayıp sipariş — inceleme sürecini atlayan AI destekli bir kod değişikliğine bağlandı. Fonksiyonel görünen, test geçen, ama sistem bağlamını kaçıran bir değişiklik.
+Ve bu bir detay değil. Copilot'un shell çağrısını "güvensiz" bulup sistemi "düzeltmeye" kalkışmasını hayal edin — yıllardır çalışan ama tuhaf olan o script'i siler, yerine "doğru" bir alternatif koyar ve production çöker. Doğru teşhis, yanlış eylem. Legacy sistemlerde en tehlikeli an AI'ın "şunu düzelteyim" dediği andır. [Amazon'un Mart 2026'da yaşadığı altı saatlik kesinti](https://www.digitaltrends.com/computing/ai-code-wreaked-havoc-with-amazon-outage-and-now-the-company-is-making-tight-rules/) — 6,3 milyon kayıp sipariş — inceleme sürecini atlayan AI destekli bir kod değişikliğine bağlandı. Fonksiyonel görünen, test geçen, ama sistem bağlamını kaçıran bir değişiklik.
 
 ## Asıl Sorun Context Window Değil
 
@@ -63,7 +63,7 @@ Kritik altyapı yazılımlarında bu tablo yaygın. Kurumsal yazılım dünyası
 
 Ekiplerin çoğu bu yüzden geliştirici değil itfaiyeci olarak çalışıyor. Yeni özellik eklemek yerine eski metodun beklenmedik yan etkisini bulmak için saatler harcıyorlar. Geçtiğimiz yıl sektörde konuşulmaya başlanan "vibe coding hangover'ı" tam da buydu: kıdemli mühendisler AI üretimi kodla çalışırken yaşadıkları "development hell"i dile getiriyordu. Bu tabloda AI araçları daha hızlı yanlış önerir.
 
-Bu hatalar çoğunlukla "happy path"te gizlenir. AI girdiler temizken, varsayımlar geçerliyken iyi çalışır. Edge case'ler — kullanıcının beklenmedik davranışı, standart dışı veri, sistem yük altındayken — genellikle modelin training data'sında temsil edilmeyen yerlerde kalır. Daha da tehlikelisi "sessiz hata": sistem çalışır, test geçer, ama yanlış sonuç üretir. Araştırmalar production'daki mantık hatalarının %60'ının bu kategoride olduğunu gösteriyor — crash olmadığı için de uzun süre fark edilmez.
+Bu hatalar çoğunlukla "happy path"te gizlenir. AI girdiler temizken, varsayımlar geçerliyken iyi çalışır. Edge case'ler — kullanıcının beklenmedik davranışı, standart dışı veri, sistem yük altındayken — genellikle modelin training data'sında temsil edilmeyen yerlerde kalır. Daha da tehlikelisi "sessiz hata": sistem çalışır, test geçer, ama yanlış sonuç üretir. [Araştırmalar production'daki mantık hatalarının %60'ının bu kategoride olduğunu gösteriyor](https://spectrum.ieee.org/ai-coding-degrades) — crash olmadığı için de uzun süre fark edilmez.
 
 ## Peki AI Ne İşe Yarıyor Burada?
 
