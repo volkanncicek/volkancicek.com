@@ -281,15 +281,15 @@ a:hover {
 }
 
 .prose a {
-  color: inherit;
+  color: var(--text-secondary);
   text-decoration: underline;
-  text-decoration-style: dashed;
   text-decoration-color: var(--border-color-light);
   text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
 }
 
 .prose a:hover {
-  text-decoration-style: solid;
+  color: var(--text-primary);
   text-decoration-color: var(--text-muted);
   opacity: 1;
 }
