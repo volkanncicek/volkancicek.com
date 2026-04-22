@@ -89,7 +89,7 @@ Eğer her adımda siz müdahale ediyorsanız, soru soruyorsanız, yönlendiriyor
 
 Karpathy'nin [Şubat 2026'da paylaştığı deneyim](https://x.com/karpathy/status/2026731645169185220) tam bu: "DGX Spark'ıma giriş yap, SSH anahtarlarını ayarla, vLLM kur..." dedi ve yaklaşık 30 dakika boyunca hiçbir şeye dokunmadı. Sistem kendi başına sorunlarla karşılaştı, çözümleri araştırdı, servisleri kurdu ve markdown raporla döndü. Bu agent davranışıdır.
 
-Aynı testi geçen bireysel ölçekte bir örnek: [OpenClaw](https://openclaw.ai). Peter Steinberger tarafından geliştirilen bu açık kaynaklı kişisel ajan kendi makinenizde çalışır, WhatsApp, Telegram veya Discord üzerinden görev alır. "Uçuşumu check-in yap", "bu e-postayı gönder", "toplantıyı takvime ekle" — sistem siz yokken bunları tamamlar ve raporla döner. Chatbot size "nasıl yapabileceğinizi" anlatır. OpenClaw yapar.
+Aynı testi geçen bireysel ölçekte bir örnek: [OpenClaw](https://openclaw.ai). Avusturyalı geliştirici Peter Steinberger'in Marakeş'teki bir tatilde telefona AI görev göndermek için başlattığı hafta sonu deneyi — bugün açık kaynaklı, kendi makinenizde çalışıyor. WhatsApp veya Telegram üzerinden görev gönderiyorsunuz: "Uçuşumu check-in yap", "bu e-postayı gönder", "toplantıyı takvime ekle" — sistem siz yokken bunları tamamlar ve raporla döner. Chatbot size "nasıl yapabileceğinizi" anlatır. OpenClaw yapar.
 
 ## Her İkisinin de Yeri Var
 
