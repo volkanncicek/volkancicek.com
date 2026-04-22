@@ -68,9 +68,9 @@ Otuz yıl boyunca IDE, yazılım geliştirmenin tartışmasız merkezi oldu. VS 
 
 Agentic engineering bu varsayımı kırıyor. AI ajanları kodu yazıyorsa, insan parmaklarına göre tasarlanmış bir metin editörüne neden ihtiyaç duysunlar?
 
-Sourcegraph'tan Steve Yegge bunu doğrudan ifade etti:
+[Sourcegraph'tan Steve Yegge bunu doğrudan ifade etti](https://steve-yegge.medium.com/the-future-of-coding-agents-e9451a84207c):
 
-> *"Bireysel katkıda bulunan olarak rolüm değişti. Artık araba üretmiyorum, araba üreten işçilerle dolu bir fabrika yönetiyorum."*
+> *"Bireysel katkıda bulunan olarak rolüm değişti. Artık kod yazmıyorum — kod yazan ajanlarla dolu bir fabrika yönetiyorum."*
 
 Bu dönüşüm üç dalgada yaşandı. İlkinde AI, IDE'nin içinde bir eklenti olarak geldi — [GitHub Copilot](https://github.com/features/copilot). IDE hala merkezde, AI bir misafirdi. İkinci dalgada AI terminale taşındı: [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex CLI](https://github.com/openai/codex) ve Gemini CLI gibi araçlar editöre ihtiyaç duymadan çalışabiliyordu. IDE isteğe bağlı hale geldi. Üçüncü dalgada ise ajan altyapıları belirmeye başladı. [Anthropic'in Claude Managed Agents](https://docs.anthropic.com/en/docs/claude-code/overview)'ı (Nisan 2026, public beta) bunun en somut örneği: kendi ajan döngünüzü, araç çalıştırma altyapınızı ve sandbox ortamınızı sıfırdan kurmanıza gerek kalmadan Claude'u özerk ajan olarak çalıştırabileceğiniz yönetilen bir ortam sunuyor. Dosya okuma, komut çalıştırma, web tarama — bunların güvenli yürütme altyapısı hazır geliyor. Microsoft'un [AutoGen Studio](https://github.com/microsoft/autogen)'su ve Langchain'in [LangGraph Studio](https://github.com/langchain-ai/langgraph-studio)'su ise görsel arayüzde multi-agent iş akışı tasarlamayı mümkün kılıyor. Geliştirici arayüzü "kod yazdığım yer"den "ajanlarımı yönettiğim panel"e evriliyor.
 
@@ -80,7 +80,7 @@ IDE yok olmuyor. Ama üretim katmanından doğrulama katmanına dönüşüyor: d
 
 Agentic engineering'in gerçekten ilginç yaptığı şeylerden biri şu: daha az uzmanlık gerektiriyor gibi görünüyor, ama aslında daha fazla gerektiriyor.
 
-Dave Kiss bunu net biçimde ifade etti:
+[Dave Kiss bunu net biçimde ifade etti](https://davekiss.com/blog/agentic-coding/):
 
 > *"LLM'lere güvenen acemiler olumsuz yönde amplify edilir — yanlış çözümlere güvenle inanır hale gelirler. Problemi anlayan uzmanlar ise olumlu yönde amplify edilir."*
 
