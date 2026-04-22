@@ -281,14 +281,16 @@ a:hover {
 }
 
 .prose a {
-  color: var(--link-color);
+  color: inherit;
   text-decoration: underline;
-  text-decoration-color: var(--link-underline);
-  text-underline-offset: 2px;
+  text-decoration-style: dashed;
+  text-decoration-color: var(--border-color-light);
+  text-underline-offset: 3px;
 }
 
 .prose a:hover {
-  text-decoration-color: var(--link-color);
+  text-decoration-style: solid;
+  text-decoration-color: var(--text-muted);
   opacity: 1;
 }
 
