@@ -348,6 +348,8 @@ a {
   display: block;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  border-top: 2px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
 }
 
 .prose th {
@@ -362,10 +364,20 @@ a {
   border-bottom: 2px solid var(--border-color);
 }
 
+.prose th:first-child:empty {
+  background-color: transparent;
+}
+
 .prose td {
   padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
+}
+
+.prose td:first-child {
+  font-weight: 600;
+  color: var(--text-secondary);
+  white-space: nowrap;
 }
 
 .prose tbody tr:last-child td {
