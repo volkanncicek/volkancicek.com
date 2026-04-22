@@ -25,7 +25,7 @@ Büyük dil modellerini anlamak için temel bir gerçekle başlayalım: bir LLM'
 
 ChatGPT gibi chatbot'lar bu modellere özel bir eğitim uygulandıktan sonra ortaya çıkar. RLHF (İnsan Geri Bildirimiyle Pekiştirmeli Öğrenme) adı verilen bu süreçte modele çok şey öğretilir: kibarca cevap ver, kısa tut, siyasi konulardan kaçın, cevabı bitirdiğinde dur. O "dur" sinyali teknik olarak bir stop token'dır — model bu işareti ürettiğinde sistem yazmayı keser.
 
-Bu eğitim chatbot deneyimini mümkün kılar: modeli daha güvenli, daha tutarlı, daha kullanışlı yapar. Ama bir tradeoff getirir: çıktı çeşitliliği daralır, model doğru olmak yerine kabul görmek için optimize eder.
+Bu eğitim chatbot deneyimini mümkün kılar: modeli daha güvenli, daha tutarlı, daha kullanışlı yapar. Ama bir tradeoff getirir: çıktı çeşitliliği daralır, model doğru olmak yerine kabul görmek için optimize eder — araştırmacıların "sycophancy" dediği bu eğilim, OpenAI'ın Nisan 2025'te GPT-4o güncellemesini geri çekmek zorunda kalmasına da yol açtı.
 
 AI camiasında bu tradeoff'u bazen "lobotomi" olarak nitelendiriyorlar. Modelin ham potansiyeli, "nazik ol", "kısa cevap ver", "emin olmadığında özür dile" gibi baskılarla törpüleniyor. Bir chatbot "Tabii, hemen yapıyorum" diyebilir ama bir kodlama ajanı için bu kibarlık bir yüktür — ajan sadece işi bitirmelidir.
 
@@ -96,7 +96,7 @@ Geliştiricinin rolü kod *yazmak*tan kod *yönlendirmek ve doğrulamak*a kayıy
 
 Bu dönüşüm gereken yetkinliği de değiştiriyor. Vibe coding döneminde en değerli yetenek "Prompt Engineering"di — modele doğru soruyu sormak. Agentic engineering'de bu yetenek yerini **System Design** ve **Flow Orchestration** (akış orkestrasyonu)'na bırakıyor. Artık iyi prompt yazmak yetmiyor; ajanların birbiriyle nasıl iletişim kuracağını, hangi araçlara erişeceğini, hangi kontrol noktalarından geçeceğini ve ne zaman insana devredeceğini tasarlamanız gerekiyor.
 
-Araştırmalar bu paradoksu sayılarla da destekliyor. [METR'in Temmuz 2025'te yürüttüğü randomize kontrollü deneyde](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) deneyimli açık kaynak geliştiricileri AI kodlama araçlarıyla çalışırken %19 *daha yavaş* oldu — oysa önceden %24 daha hızlı olacaklarını tahmin etmiş, deneyin ardından da %20 daha hızlı çalıştıklarına inanmışlardı. Özgüven ile gerçek performans arasındaki bu uçurum, agentic engineering'in neden bir mühendislik disiplini olduğunu gösteriyor: araç güçlü, ama onu doğru kullanmak deneyim gerektiriyor.
+Araştırmalar bu paradoksu sayılarla da destekliyor. [METR'in Temmuz 2025'te yürüttüğü randomize kontrollü deneyde](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) deneyimli açık kaynak geliştiricileri büyük, olgun projelerde AI kodlama araçlarıyla çalışırken %19 *daha yavaş* oldu — oysa önceden %24 daha hızlı olacaklarını tahmin etmiş, deneyin ardından da %20 daha hızlı çalıştıklarına inanmışlardı. Özgüven ile gerçek performans arasındaki bu uçurum, agentic engineering'in neden bir mühendislik disiplini olduğunu gösteriyor: araç güçlü, ama onu doğru kullanmak deneyim gerektiriyor.
 
 ## Ne Değişti, Ne Değişmedi
 
