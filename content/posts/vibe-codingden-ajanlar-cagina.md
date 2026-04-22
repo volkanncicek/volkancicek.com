@@ -94,7 +94,7 @@ Araştırmalar bu paradoksu sayılarla da destekliyor. [METR'in Temmuz 2025'te y
 
 ## Ne Değişti, Ne Değişmedi
 
-Vibe coding ölmedi. Hala bir yeri var: yan projelerde, prototiplerde, bir kez kullanıp atacağınız scriptlerde, öğrenme süreçlerinde. Hızlı hareket etmek istediğinizde ve kırılmaktan korkmadığınızda. Ocak 2026'da [Linus Torvalds bile kendi audio projesinin görselleştirme aracını "vibe coding ile yazdığını" README'sine not düştü](https://www.phoronix.com/news/Linus-Torvalds-Vide-Coding) — kavramın ne kadar geniş bir kitleye ulaştığının göstergesi.
+Vibe coding ölmedi. Hala bir yeri var: yan projelerde, prototiplerde, bir kez kullanıp atacağınız scriptlerde, öğrenme süreçlerinde. Hızlı hareket etmek istediğinizde ve kırılmaktan korkmadığınızda. Ocak 2026'da [Linus Torvalds, gitar pedalı yan projesi AudioNoise'un Python görselleştirme aracını Google Antigravity ile vibe coding yaparak yazdığını README'sine not düştü](https://www.phoronix.com/news/Linus-Torvalds-Vide-Coding) — kavramın ne kadar geniş bir kitleye ulaştığının göstergesi.
 
 Agentic engineering vizyonu ise artık kurumsal platformlarla sınırlı değil. [OpenClaw](https://openclaw.ai), kendi makinenizde çalışan açık kaynaklı bir kişisel ajan: WhatsApp, Telegram veya Discord üzerinden görev alıyor; takvim yönetiminden e-posta gönderiminden uçuş check-in'ine kadar gerçek eylemleri siz yokken tamamlıyor. Peter Steinberger tarafından geliştirilen OpenClaw, Karpathy'nin tarif ettiği "hedefe yönelt, çalışmasını izle" modelinin bireysel ölçekteki somut karşılığı.
 
