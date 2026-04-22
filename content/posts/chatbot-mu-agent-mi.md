@@ -3,7 +3,7 @@ Date: 2026-03-10 10:00
 Category: AI
 Tags: yapay-zeka, agent, chatbot, rag, mcp, llm
 Slug: chatbot-mu-agent-mi
-Summary: "Agent" kelimesi her yerde — ürün sayfalarında, iş ilanlarında, LinkedIn paylaşımlarında. Ama çoğu zaman altına bakınca görünen şey daha akıllı bir chatbot. İkisi arasındaki fark ne, nasıl ayırt edersiniz?
+Summary: "Agent" kelimesi her yerde: ürün sayfalarında, iş ilanlarında, LinkedIn paylaşımlarında. Ama çoğu zaman altına bakınca görünen şey daha akıllı bir chatbot. İkisi arasındaki fark ne, nasıl ayırt edersiniz?
 
 Her ürün sayfasında "AI agent" yazıyor. İş ilanları "agentic AI deneyimi" arıyor. Bir startup size "ajanımız var" diyor.
 
@@ -35,7 +35,7 @@ Bunu mümkün kılan üç şey var.
 
 **Hafıza.** Bir adımda öğrendiğini bir sonraki adıma taşır. Bağlam kaybolmaz, çünkü sohbet penceresi değil, görev yönetir.
 
-Anthropic'in tanımı bunu en iyi özetliyor: *"Agents are systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks."* Kendi sürecini kendisi yönetir. Bu kritik.
+Anthropic'in tanımı bunu en iyi özetliyor: *"Agents are systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks."* Kendi sürecini kendisi yönetir; bu ayrım belirleyicidir.
 
 Modern agent sistemleri genellikle üç katmandan oluşur: bir planlama bileşeni (görevi alt adımlara ayıran), bir yürütme katmanı (araçları kullanan) ve bir değerlendirme döngüsü (çıktıyı kontrol eden, gerekirse yönü değiştiren). Bu döngü olmadan sistem ne kadar araçlı olursa olsun agent değildir.
 
@@ -68,20 +68,20 @@ Aşağıdaki spektrum, bu kavramların birbirine nasıl eklendiğini gösteriyor
 ```mermaid
 graph LR
     A[Chatbot] -->|+ Dış Hafıza| B[RAG]
-    B -->|+ Araç Çağrısı| C[FC / MCP]
+    B -->|+ Araç Çağrısı| C[Function Calling / MCP]
     C -->|+ Özerk Döngü| D[Agent]
     D -->|+ Paralel Çalışma| E[Multi-Agent]
 ```
 
 **Agent**, tüm bunların üstüne planlama döngüsü ve özerklik eklenince ortaya çıkar. RAG'ı bilgi kaynağı olarak kullanabilir, function calling ile araçları tetikleyebilir, MCP üzerinden servislere bağlanabilir. Ama agent yapan şey bu araçların toplamı değil — o araçları *kendi kararıyla, bir hedefe doğru, iterasyon yaparak* kullanmasıdır.
 
-**Multi-agent**, bu tablonun bir adım ilerisidir. Merkeze bir **orkestratör** agent oturur — görevi analiz eder, alt görevlere böler ve bunları paralel çalışan özelleşmiş subagent'lara devreder: biri araştırır, biri uygular, biri test eder. Paralel çalışma hem hız sağlar hem de her agent'ın bağlamını ayrı tutarak tek bir context window'a sığmayacak büyük görevlerin üstesinden gelmeyi mümkün kılar. Agentlar arasındaki koordinasyon için MCP ve A2A protokolleri birlikte kullanılır — MCP her agenta araç erişimi sağlar, A2A agentların birbirleriyle konuşmasını standardize eder.
+**Multi-agent**, bu tablonun bir adım ilerisidir. Merkeze bir **orkestratör** agent oturur — görevi analiz eder, alt görevlere böler ve bunları paralel çalışan özelleşmiş subagent'lara devreder: biri araştırır, biri uygular, biri test eder. Paralel çalışma hem hız sağlar hem de her agent'ın bağlamını ayrı tutarak tek bir context window'a sığmayacak büyük görevlerin üstesinden gelmeyi mümkün kılar. Agentlar arasındaki koordinasyon için MCP ve A2A protokolleri birlikte kullanılır — MCP her agenta araç erişimi sağlar, A2A agentların birbirleriyle konuşmasını standartlaştırır.
 
 Ama bir gerçeği gözden kaçırmamak lazım: multi-agent sistemler ciddi maliyet getirir. [Anthropic'in kendi verilerine göre](https://www.anthropic.com/engineering/multi-agent-research-system) tek bir agent normal bir sohbetten yaklaşık 4 kat, multi-agent sistem ise 15 kat daha fazla token tüketir. Dolayısıyla her karmaşık görev multi-agent gerektirmez — doğru araçlarla donatılmış tek bir agent çoğu zaman aynı sonucu çok daha az maliyetle üretir. Multi-agent, yoğun paralelleştirme gerektiren, tek context window'a sığmayan ve çok sayıda bağımsız alt göreve bölünebilen işler için gerçekten anlam taşır.
 
 Bu yazı serisinin [ilk bölümünde](/blog/vibe-codingden-ajanlar-cagina.html) agentic engineering'in tam da bu yapıyı nasıl mümkün kıldığını anlattım.
 
-Kısaca: araç kullanmak agent olmak için gerekli ama yeterli değil. Piyasadaki "agentic" etiketli ürünlerin önemli bir kısmı planlama döngüsünden yoksun — her adımı siz yönetiyorsunuz, model sadece sizi daha az yorarak ilerliyor. Bu chatbot'un evrimi, agent değil.
+Araç kullanmak agent olmak için gerekli, ama yeterli değil. Piyasadaki "agentic" etiketli ürünlerin önemli bir kısmı planlama döngüsünden yoksun — her adımı siz yönetiyorsunuz, model sadece sizi daha az yorarak ilerliyor. Bu chatbot'un evrimi, agent değil.
 
 ## Agent Her Zaman Çalışır mı?
 
@@ -89,7 +89,7 @@ Hayır. Ve bunu söylemek önemli.
 
 Agent sistemleri gerçek dünyada en çok dört noktada başarısız olur: yanlış planlama (görevi doğru parçalayamamak), hatalı araç kullanımı (yanlış API çağrısı ya da yanlış dosyaya yazma), döngüye girme (hedefe ulaşamadan aynı adımları tekrar etme) ve maliyet patlaması (durma koşulu iyi tanımlanmamış bir görevin saatlerce çalışması). Bu riskler chatbot'ta yoktur — çünkü chatbot hareket etmez. Agent hareket ettiği için kırılabilir.
 
-İyi tasarlanmış bir agent sistemi bu riskleri HITL geçitleriyle, araç kısıtlamalarıyla ve net durma koşullarıyla yönetir. "Agent kurdum" demek "agent güvenli çalışıyor" demek değildir.
+İyi tasarlanmış bir agent sistemi bu riskleri insan denetim noktalarıyla, araç kısıtlamalarıyla ve net durma koşullarıyla yönetir. "Agent kurdum" demek "agent güvenli çalışıyor" demek değildir.
 
 ## Pratik Test
 
@@ -115,4 +115,4 @@ Agent olmak bir özellik değil, bir davranış biçimidir. Piyasada "agent" yaz
 
 ---
 
-*Bu yazının daha geniş bağlamını merak ediyorsanız: [Vibe Coding'den Ajanlar Çağına](/blog/vibe-codingden-ajanlar-cagina.html) — paradigma kaymasını ve agentic engineering kavramını anlattım.*
+*Bu yazının daha geniş bağlamını merak ediyorsanız: [Vibe Coding'den Ajanlar Çağına](/blog/vibe-codingden-ajanlar-cagina.html). Paradigma kaymasını ve agentic engineering kavramını anlattım.*
