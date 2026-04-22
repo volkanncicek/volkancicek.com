@@ -20,6 +20,11 @@
   --nav-hover-bg: #f0f0f0;
   --nav-active-bg: #e5e5e5;
   --tag-background: #f0f0f0;
+  --status-active-bg: #dcfce7;
+  --status-active-text: #166534;
+  --status-completed-bg: #dbeafe;
+  --status-completed-text: #1e40af;
+  --focus-ring: #2563a8;
   color-scheme: light dark;
 }
 
@@ -42,6 +47,11 @@
     --nav-hover-bg: #21262d;
     --nav-active-bg: #30363d;
     --tag-background: #21262d;
+    --status-active-bg: #14532d;
+    --status-active-text: #86efac;
+    --status-completed-bg: #1e3a8a;
+    --status-completed-text: #93c5fd;
+    --focus-ring: #6ea8d4;
   }
 }
 
@@ -81,11 +91,13 @@ main {
 a {
   color: inherit;
   text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition: color 0.2s ease;
 }
 
-a:hover {
-  opacity: 0.7;
+:focus-visible {
+  outline: 2px solid var(--focus-ring);
+  outline-offset: 3px;
+  border-radius: 3px;
 }
 
 /* Navigation */
@@ -110,7 +122,6 @@ a:hover {
 .site-nav a:hover {
   color: var(--text-primary);
   background-color: var(--nav-hover-bg);
-  opacity: 1;
 }
 
 .site-nav a.active {
@@ -162,10 +173,6 @@ a:hover {
   padding: 0.5rem 0;
   border-radius: 4px;
   transition: background-color 0.2s ease;
-}
-
-.post-link:hover {
-  opacity: 1;
 }
 
 .post-date {
@@ -221,11 +228,11 @@ a:hover {
 
 .article-meta a {
   color: var(--text-secondary);
+  transition: color 0.2s ease;
 }
 
 .article-meta a:hover {
   color: var(--text-primary);
-  opacity: 1;
 }
 
 .separator {
@@ -290,7 +297,6 @@ a:hover {
   text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  opacity: 1;
 }
 
 .prose img {
@@ -338,17 +344,35 @@ a:hover {
   width: 100%;
   border-collapse: collapse;
   margin: 1.5rem 0;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  display: block;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
-.prose th, .prose td {
-  padding: 0.75rem;
+.prose th {
+  padding: 0.625rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  background-color: var(--background-secondary);
+  border-bottom: 2px solid var(--border-color);
+}
+
+.prose td {
+  padding: 0.75rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
 }
 
-.prose th {
-  font-weight: 600;
+.prose tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.prose tbody tr:hover {
   background-color: var(--background-secondary);
 }
 
@@ -390,6 +414,7 @@ a:hover {
 .nav-title {
   font-weight: 500;
   color: var(--text-primary);
+  transition: color 0.2s ease;
 }
 
 .article-nav a:hover .nav-title {
@@ -408,6 +433,12 @@ a:hover {
 .translations a {
   color: var(--link-color);
   margin-left: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.translations a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 /* Pagination */
@@ -424,6 +455,12 @@ a:hover {
 .pagination a {
   color: var(--link-color);
   font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.pagination a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 .page-info {
@@ -448,11 +485,11 @@ footer {
 .footer-links a {
   color: var(--text-secondary);
   font-size: 0.9rem;
+  transition: color 0.2s ease;
 }
 
 .footer-links a:hover {
   color: var(--text-primary);
-  opacity: 1;
 }
 
 .copyright {
@@ -484,17 +521,17 @@ footer {
   background-color: var(--background-tertiary);
   border-radius: 9999px;
   font-size: 0.875rem;
-  transition: all 0.2s ease;
+  transition: background-color 0.2s ease;
 }
 
 .tag-pill:hover {
   background-color: var(--nav-active-bg);
-  opacity: 1;
 }
 
 .tag-name {
   color: var(--text-secondary);
   font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 .tag-pill:hover .tag-name {
@@ -530,11 +567,11 @@ footer {
   display: inline-flex;
   align-items: center;
   gap: 0.25rem;
+  transition: color 0.2s ease;
 }
 
 .back-link a:hover {
   color: var(--text-primary);
-  opacity: 1;
 }
 
 /* ========================================
@@ -573,13 +610,12 @@ footer {
   background-color: var(--background-primary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  transition: all 0.2s ease;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .project-card:hover {
   border-color: var(--border-color-light);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-  opacity: 1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -608,30 +644,18 @@ footer {
 }
 
 .status-active {
-  background-color: #dcfce7;
-  color: #166534;
+  background-color: var(--status-active-bg);
+  color: var(--status-active-text);
 }
 
 .status-completed {
-  background-color: #dbeafe;
-  color: #1e40af;
+  background-color: var(--status-completed-bg);
+  color: var(--status-completed-text);
 }
 
 .status-archived {
   background-color: var(--background-tertiary);
   color: var(--text-muted);
-}
-
-@media (prefers-color-scheme: dark) {
-  .status-active {
-    background-color: #14532d;
-    color: #86efac;
-  }
-  
-  .status-completed {
-    background-color: #1e3a8a;
-    color: #93c5fd;
-  }
 }
 
 .project-description {
@@ -767,40 +791,40 @@ footer {
 
 /* 404 Error Page */
 .error-page {
-    text-align: center;
-    padding: 4rem 0;
+  text-align: center;
+  padding: 4rem 0;
 }
 
 .error-page h1 {
-    font-size: 6rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 0;
-    line-height: 1;
+  font-size: 6rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1;
 }
 
 .error-page .error-message {
-    font-size: 1.5rem;
-    color: var(--text-secondary);
-    margin: 1rem 0;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  margin: 1rem 0;
 }
 
 .error-page .error-description {
-    color: var(--text-muted);
-    margin-bottom: 2rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
 }
 
 .error-page .back-home {
-    display: inline-block;
-    color: var(--text-primary);
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-    border: 1px solid var(--text-muted);
-    border-radius: 4px;
-    transition: all 0.2s ease;
+  display: inline-block;
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--text-muted);
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 .error-page .back-home:hover {
-    background: var(--text-primary);
-    color: var(--background-primary);
+  background: var(--text-primary);
+  color: var(--background-primary);
 }
