@@ -37,6 +37,8 @@ Bunu mümkün kılan üç şey var.
 
 Anthropic'in tanımı bunu en iyi özetliyor: *"Agents are systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks."* Kendi sürecini kendisi yönetir. Bu kritik.
 
+Modern agent sistemleri genellikle üç katmandan oluşur: bir planlama bileşeni (görevi alt adımlara ayıran), bir yürütme katmanı (araçları kullanan) ve bir değerlendirme döngüsü (çıktıyı kontrol eden, gerekirse yönü değiştiren). Bu döngü olmadan sistem ne kadar araçlı olursa olsun agent değildir.
+
 | | Chatbot | Agent |
 |---|---|---|
 | Kim başlatır? | Her adımda insan | İnsan sadece hedefi verir |
@@ -55,9 +57,11 @@ Chatbot ile agent arasında siyah-beyaz bir çizgi yok. Kavramların çoğu bu i
 
 **Function Calling**, modele dış araç çağırma yeteneği vermektir. Hava durumu API'si, veritabanı sorgusu, takvim entegrasyonu — model "bu işi araçla yapayım" diye karar verir ve çağrıyı yapar. Güçlü bir özellik. Ama şu soruyu sorun: kim yönetiyor? Siz her soruda tetikliyorsanız, sistem hâlâ tepkiseldir. Function calling olan sistem, agent değil — araçlı chatbot'tur.
 
-**[MCP (Model Context Protocol)](https://modelcontextprotocol.io/)**, Anthropic'in 2024'te açık kaynak olarak yayımladığı ve hızla endüstri standardına dönüşen bir protokoldür. OpenAI, Google, Microsoft, Amazon — büyük oyuncuların tamamı benimsedi; [2026 itibarıyla aylık 97 milyonun üzerinde SDK indirmesiyle](https://www.digitalapplied.com/blog/mcp-97-million-downloads-model-context-protocol-mainstream) v2'ye geçti. "AI için USB-C" olarak da tarif ediliyor: farklı araçları ve veri kaynaklarını herhangi bir modele standart bir arayüzle bağlar — dosya sistemi, veritabanı, harici servisler. Ama MCP kendi başına karar vermiyor, planlamıyor. Araç bağlantısını standardize ediyor, agent yapmıyor. "MCP kullanıyoruz" demek "agent'ımız var" demek değildir.
+**[MCP (Model Context Protocol)](https://modelcontextprotocol.io/)**, Anthropic'in 2024'te açık kaynak olarak yayımladığı ve kısa sürede sektör standardına dönüşen bir protokoldür. "AI için USB-C" olarak tarif ediliyor: farklı araçları ve veri kaynaklarını herhangi bir modele standart bir arayüzle bağlar — dosya sistemi, veritabanı, harici servisler. Ama MCP kendi başına karar vermiyor, planlamıyor. Araç bağlantısını standardize ediyor, agent yapmıyor. "MCP kullanıyoruz" demek "agent'ımız var" demek değildir.
 
 **[A2A (Agent-to-Agent Protocol)](https://developers.googleblog.com/en/a2a-a-new-era-of-agent-interoperability/)**, Google'ın Nisan 2025'te duyurduğu ve Temmuz 2025'te Linux Foundation bünyesine taşıdığı açık bir protokoldür. Microsoft, AWS, Salesforce, SAP başta 150'den fazla kuruluş bu yapının ortakları arasında. MCP dikey bağlantı kurar — model ile araçlar arasında. A2A yatay bağlantı kurar — agent ile agent arasında. Bir agent başka bir agenta görev devredebilir, durum paylaşabilir, koordineli ilerleyebilir. Yine de bir protokoldür: agentları birbirinden haberdar eder, ama özerkliği veya planlama döngüsünü kendisi sağlamaz.
+
+Kısaca: MCP bir agent'ı daha yetenekli yapar. A2A ise birden fazla agent'ı birlikte çalışabilir hale getirir.
 
 Aşağıdaki spektrum, bu kavramların birbirine nasıl eklendiğini gösteriyor:
 
@@ -79,6 +83,14 @@ Bu yazı serisinin [ilk bölümünde](/blog/vibe-codingden-ajanlar-cagina.html) 
 
 Kısaca: araç kullanmak agent olmak için gerekli ama yeterli değil. Piyasadaki "agentic" etiketli ürünlerin önemli bir kısmı planlama döngüsünden yoksun — her adımı siz yönetiyorsunuz, model sadece sizi daha az yorarak ilerliyor. Bu chatbot'un evrimi, agent değil.
 
+## Agent Her Zaman Çalışır mı?
+
+Hayır. Ve bunu söylemek önemli.
+
+Agent sistemleri gerçek dünyada en çok dört noktada başarısız olur: yanlış planlama (görevi doğru parçalayamamak), hatalı araç kullanımı (yanlış API çağrısı ya da yanlış dosyaya yazma), döngüye girme (hedefe ulaşamadan aynı adımları tekrar etme) ve maliyet patlaması (durma koşulu iyi tanımlanmamış bir görevin saatlerce çalışması). Bu riskler chatbot'ta yoktur — çünkü chatbot hareket etmez. Agent hareket ettiği için kırılabilir.
+
+İyi tasarlanmış bir agent sistemi bu riskleri HITL geçitleriyle, araç kısıtlamalarıyla ve net durma koşullarıyla yönetir. "Agent kurdum" demek "agent güvenli çalışıyor" demek değildir.
+
 ## Pratik Test
 
 Kullandığınız şeyin gerçekten agent olup olmadığını anlamak için tek bir soru yeterli:
@@ -89,7 +101,7 @@ Eğer her adımda siz müdahale ediyorsanız, soru soruyorsanız, yönlendiriyor
 
 Karpathy'nin [Şubat 2026'da paylaştığı deneyim](https://x.com/karpathy/status/2026731645169185220) tam bu: "DGX Spark'ıma giriş yap, SSH anahtarlarını ayarla, vLLM kur..." dedi ve yaklaşık 30 dakika boyunca hiçbir şeye dokunmadı. Sistem kendi başına sorunlarla karşılaştı, çözümleri araştırdı, servisleri kurdu ve markdown raporla döndü. Bu agent davranışıdır.
 
-Aynı testi geçen bireysel ölçekte bir örnek: [OpenClaw](https://openclaw.ai). Avusturyalı geliştirici Peter Steinberger'in Marakeş'teki bir tatilde telefona AI görev göndermek için başlattığı hafta sonu deneyi — bugün açık kaynaklı, kendi makinenizde çalışıyor. WhatsApp veya Telegram üzerinden görev gönderiyorsunuz: "Uçuşumu check-in yap", "bu e-postayı gönder", "toplantıyı takvime ekle" — sistem siz yokken bunları tamamlar ve raporla döner. Chatbot size "nasıl yapabileceğinizi" anlatır. OpenClaw yapar.
+Aynı testi geçen bireysel ölçekte bir örnek: [OpenClaw](https://openclaw.ai). Açık kaynaklı, kendi makinenizde çalışıyor. WhatsApp veya Telegram üzerinden görev gönderiyorsunuz — sistem siz yokken tamamlıyor ve raporla dönüyor. Chatbot size "nasıl yapabileceğinizi" anlatır. OpenClaw yapar.
 
 ## Her İkisinin de Yeri Var
 
@@ -99,7 +111,7 @@ Sık sorulan sorulara hızlı cevap, destek taleplerini yönlendirme, basit bilg
 
 Ama "çok adımlı bir görevi özerk olarak tamamla, araçlarını kullan, sonucu getir" istiyorsanız chatbot orada duracaktır. Çünkü chatbot size söyler, agent yapar.
 
-Piyasada "agent" yazan her ürün bu ayrımı hak etmiyor. Satın almadan veya entegre etmeden önce pratik testi uygulayın: elinizi çektiğinizde sistem çalışmaya devam ediyor mu? Eğer cevap hayırsa, elinizdeki şeye dürüst bir isim koyun. Chatbot olarak doğru konumlandırılmış iyi bir chatbot, agent olarak yanlış tanıtılmış kötü bir sistemden her zaman daha değerlidir.
+Agent olmak bir özellik değil, bir davranış biçimidir. Piyasada "agent" yazan her ürün bu ayrımı hak etmiyor. Satın almadan veya entegre etmeden önce pratik testi uygulayın: elinizi çektiğinizde sistem çalışmaya devam ediyor mu? Eğer cevap hayırsa, elinizdeki şeye dürüst bir isim koyun. Chatbot olarak doğru konumlandırılmış iyi bir chatbot, agent olarak yanlış tanıtılmış kötü bir sistemden her zaman daha değerlidir.
 
 ---
 
