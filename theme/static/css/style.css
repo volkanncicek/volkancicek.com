@@ -341,42 +341,67 @@ a {
 }
 
 .prose table {
-  min-width: 100%;
-  border-collapse: collapse;
+  width: 100%;
+  min-width: max-content;
+  border-collapse: separate;
+  border-spacing: 0;
   margin: 1.5rem 0;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
   display: block;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  border-top: 2px solid var(--border-color);
-  border-bottom: 1px solid var(--border-color);
+  border: 1px solid var(--border-color);
+  border-radius: 10px;
+  background: linear-gradient(
+    180deg,
+    var(--background-secondary) 0%,
+    var(--background-primary) 3.75rem
+  );
+  box-shadow: inset 0 1px 0 var(--border-color-light);
 }
 
 .prose th {
-  padding: 0.625rem 1rem;
+  padding: 0.75rem 1rem;
   text-align: left;
   font-weight: 600;
   font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: var(--text-muted);
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
   background-color: var(--background-secondary);
-  border-bottom: 2px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color-light);
+  white-space: nowrap;
 }
 
 .prose th:first-child:empty {
-  background-color: transparent;
+  width: 1%;
+  background: linear-gradient(
+    135deg,
+    transparent 0,
+    transparent 48%,
+    var(--border-color) 50%,
+    transparent 52%,
+    transparent 100%
+  );
+  border-right: 1px solid var(--border-color-light);
+  box-shadow: inset -1px 0 0 var(--border-color-light);
 }
 
 .prose td {
-  padding: 0.75rem 1rem;
+  padding: 0.8rem 1rem;
   text-align: left;
   border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  vertical-align: top;
 }
 
 .prose td:first-child {
   font-weight: 600;
   color: var(--text-secondary);
+  background-color: var(--background-secondary);
+  border-right: 1px solid var(--border-color);
+  min-width: 11rem;
   white-space: nowrap;
 }
 
@@ -386,6 +411,26 @@ a {
 
 .prose tbody tr:hover {
   background-color: var(--background-secondary);
+}
+
+.prose tbody tr:hover td:first-child {
+  color: var(--text-primary);
+}
+
+.prose thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.prose thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+.prose tbody tr:last-child td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.prose tbody tr:last-child td:last-child {
+  border-bottom-right-radius: 10px;
 }
 
 .prose hr {
@@ -726,6 +771,20 @@ footer {
   .article-nav .next {
     text-align: left;
     margin-left: 0;
+  }
+
+  .prose table {
+    font-size: 0.84rem;
+    line-height: 1.5;
+  }
+
+  .prose th,
+  .prose td {
+    padding: 0.65rem 0.75rem;
+  }
+
+  .prose td:first-child {
+    min-width: 8.5rem;
   }
 }
 
