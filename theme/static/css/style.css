@@ -12,8 +12,8 @@
   --text-muted: #737373;
   --border-color: #e5e5e5;
   --border-color-light: #d4d4d4;
-  --link-color: #0066cc;
-  --link-underline: #99c2e6;
+  --link-color: #2563a8;
+  --link-underline: #2563a8;
   --code-background: #f5f5f5;
   --code-block-background: #1a1a1a;
   --code-block-text: #e5e5e5;
@@ -34,8 +34,8 @@
     --text-muted: #888888;
     --border-color: #30363d;
     --border-color-light: #484f58;
-    --link-color: #58a6ff;
-    --link-underline: #1f6feb;
+    --link-color: #6ea8d4;
+    --link-underline: #6ea8d4;
     --code-background: #21262d;
     --code-block-background: #161b22;
     --code-block-text: #e6edf3;
@@ -281,16 +281,15 @@ a:hover {
 }
 
 .prose a {
-  color: var(--text-secondary);
-  text-decoration: underline;
-  text-decoration-color: var(--border-color-light);
-  text-underline-offset: 3px;
-  text-decoration-thickness: 1px;
+  color: var(--link-color);
+  text-decoration: none;
 }
 
 .prose a:hover {
-  color: var(--text-primary);
-  text-decoration-color: var(--text-muted);
+  text-decoration: underline;
+  text-decoration-color: var(--link-underline);
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
   opacity: 1;
 }
 
