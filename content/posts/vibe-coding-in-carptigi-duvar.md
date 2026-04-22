@@ -17,7 +17,7 @@ Sonuçlar beklediğimden çok farklıydı. Ama asıl sürpriz araçların başar
 
 LinkedIn'de "vibe coding ile saatte SaaS yazdım" diyen insanları okuduğumda artık itiraz etmiyorum. Greenfield projede, doğru araçla, doğru bağlamda — bu tamamen mümkün. Karpathy'nin önerdiği "sadece ne istediğini söyle, bırak yapsın" yaklaşımı bazı durumlarda gerçekten çalışıyor.
 
-Ama bazı durumlarda çalışmıyor. Ve bu "bazı durumlar" Türkiye'deki yazılımın büyük çoğunluğunu kapsıyor.
+Ama bazı durumlarda çalışmıyor. Ve bu "bazı durumlar" yazılım dünyasının büyük çoğunluğunu kapsıyor.
 
 ## Sistemle Tanışma
 
@@ -41,7 +41,7 @@ Cursor öneriler verdi. Her önerisi "iyi kurulmuş bir sistemde böyle yapardı
 
 GitHub Copilot shell çağrılarını görünce "bu güvensiz" diye işaretledi. Doğru teşhis. Ama alternatif öneremedi, çünkü bu sistemin bağlamında ne kullanılacağını bilemedi.
 
-Üçü de farklı şekillerde çuvalladı. Ama dikkat edin: *halüsinasyon* değildi bu. Halüsinasyon "tamamen uydurulmuş bilgi" demek. Burada olan farklıydı — üç araç da gerçek ama standart dışı bir sistemi anlayamadı ve cevaplarını kendi training data'sındaki kalıplara göre verdi. AI literatüründe buna **Pattern Bias** (kalıp önyargısı) deniyor: model eğitim verisinde baskın olan kalıpları "normal" kabul eder, standart dışı bir yapıyla karşılaşınca onu kendi şablonuna göre yeniden yorumlar. Yani bu sistem için değil, *olması gereken* sistem için çalıştılar.
+Üçü de farklı şekillerde çuvalladı. Ama dikkat edin: *halüsinasyon* değildi bu. Halüsinasyon "tamamen uydurulmuş bilgi" demek. Burada olan farklıydı — üç araç da gerçek ama standart dışı bir sistemi anlayamadı ve cevaplarını kendi training data'sındaki kalıplara göre verdi. Makine öğrenmesinde **selection bias** (seçim önyargısı) olarak bilinen bir sorun bu: model eğitim verisinde baskın olan kalıpları "normal" kabul eder, standart dışı bir yapıyla karşılaşınca onu kendi şablonuna göre yeniden yorumlar. Yani bu sistem için değil, *olması gereken* sistem için çalıştılar.
 
 Ve bu bir detay değil. Copilot'un shell çağrısını "güvensiz" bulup sistemi "düzeltmeye" kalkışmasını hayal edin — yıllardır çalışan ama tuhaf olan o script'i siler, yerine "doğru" bir alternatif koyar ve production çöker. Doğru teşhis, yanlış eylem. Legacy sistemlerde en tehlikeli an AI'ın "şunu düzelteyim" dediği andır.
 
@@ -57,7 +57,7 @@ Daha büyük bir context window bu sorunu çözmez. Sistemi daha fazla görmesi,
 
 ## Bu Yalnız Bir Sistemin Sorunu Değil
 
-Kritik altyapı yazılımlarında bu tablo yaygın. Kurumsal yazılım dünyasında daha da yaygın. Türkiye'deki büyük ölçekli sistemlerin önemli bir kısmı yıllar içinde büyümüş, yamana yamana geliştirilmiş yapılar. İş mantığı sadece kaynak kodda değil — stored procedure'larda, config dosyalarında, bazen de yalnızca birinin kafasında.
+Kritik altyapı yazılımlarında bu tablo yaygın. Kurumsal yazılım dünyasında daha da yaygın. Büyük ölçekli sistemlerin önemli bir kısmı — sektör ve coğrafyadan bağımsız olarak — yıllar içinde büyümüş, yamana yamana geliştirilmiş yapılar. İş mantığı sadece kaynak kodda değil — stored procedure'larda, config dosyalarında, bazen de yalnızca birinin kafasında.
 
 "Ahmet Bey 10 yıldır burada, o sistemi en iyi o biliyor" cümlesini duymuşsunuzdur. Bu "kabile bilgisi" denen şey — dokümante edilmemiş, test edilmemiş, sadece yaşanarak öğrenilmiş kurallar. Yapay zeka bu bilgiyi göremez, çünkü o bilgi hiçbir zaman koda dönüşmemiş.
 
@@ -87,7 +87,7 @@ Bu arkeoloji çalışmasını yaparsanız modernizasyon için bir zemin oluşur.
 
 Vibe coding bir vizyonu doğru tarif ediyor. AI araçları gerçekten güçlü. Ama bu vizyon, altyapısı hazır sistemler için geçerli.
 
-Türkiye'deki yazılımın önemli bir kısmı o altyapıya henüz sahip değil. Bu bir suçlama değil — birikmiş on yılların gerçeği. Kritik sistemler çalışıyor, iş süreçleri yürüyor; ama o sistemi bilen insanlar ayrıldığında ne olacak sorusu yanıtsız kalıyor.
+Yazılım dünyasının büyük çoğunluğu o altyapıya henüz sahip değil. Bu bir suçlama değil — birikmiş on yılların gerçeği. Kritik sistemler çalışıyor, iş süreçleri yürüyor; ama o sistemi bilen insanlar ayrıldığında ne olacak sorusu yanıtsız kalıyor.
 
 Yapay zeka bu durumu kendi kendine çözmez. Ama doğru kullanılırsa o çözümün bir parçası olabilir. Önce anlamak, sonra belgelemek, sonra test etmek, sonra modernize etmek.
 
