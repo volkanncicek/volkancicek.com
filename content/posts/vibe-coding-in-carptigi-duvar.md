@@ -43,7 +43,7 @@ GitHub Copilot shell çağrılarını görünce "bu güvensiz" diye işaretledi.
 
 Üçü de farklı şekillerde çuvalladı. Ama dikkat edin: *halüsinasyon* değildi bu. Halüsinasyon "tamamen uydurulmuş bilgi" demek. Burada olan farklıydı — üç araç da gerçek ama standart dışı bir sistemi anlayamadı ve cevaplarını kendi training data'sındaki kalıplara göre verdi. Makine öğrenmesinde **selection bias** (seçim önyargısı) olarak bilinen bir sorun bu: model eğitim verisinde baskın olan kalıpları "normal" kabul eder, standart dışı bir yapıyla karşılaşınca onu kendi şablonuna göre yeniden yorumlar. Yani bu sistem için değil, *olması gereken* sistem için çalıştılar.
 
-Ve bu bir detay değil. Copilot'un shell çağrısını "güvensiz" bulup sistemi "düzeltmeye" kalkışmasını hayal edin — yıllardır çalışan ama tuhaf olan o script'i siler, yerine "doğru" bir alternatif koyar ve production çöker. Doğru teşhis, yanlış eylem. Legacy sistemlerde en tehlikeli an AI'ın "şunu düzelteyim" dediği andır.
+Ve bu bir detay değil. Copilot'un shell çağrısını "güvensiz" bulup sistemi "düzeltmeye" kalkışmasını hayal edin — yıllardır çalışan ama tuhaf olan o script'i siler, yerine "doğru" bir alternatif koyar ve production çöker. Doğru teşhis, yanlış eylem. Legacy sistemlerde en tehlikeli an AI'ın "şunu düzelteyim" dediği andır. Amazon'un Mart 2026'da yaşadığı altı saatlik kesinti — 6,3 milyon kayıp sipariş — inceleme sürecini atlayan AI destekli bir kod değişikliğine bağlandı. Fonksiyonel görünen, test geçen, ama sistem bağlamını kaçıran bir değişiklik.
 
 ## Asıl Sorun Context Window Değil
 
@@ -53,7 +53,7 @@ AI modelleri milyonlarca açık kaynak kodu üzerinde eğitildi. Bu örneklerin 
 
 Şimdi önüne frontend'den direkt veritabanı çağrısı yapan bir sistem koyun. Model bunu görüyor, ama bu pattern training data'sında ya hiç yok ya da anti-pattern olarak işaretlenmiş. Sonuç: AI "bu bağlamı anlayamıyorum" değil, "bu bağlam var olamaz" moduna giriyor. Ve standart kalıba göre cevap üretiyor.
 
-Daha büyük bir context window bu sorunu çözmez. Sistemi daha fazla görmesi, o sistemin standart dışı olduğu gerçeğini değiştirmiyor.
+Daha büyük bir context window bu sorunu çözmez. Sistemi daha fazla görmesi, o sistemin standart dışı olduğu gerçeğini değiştirmiyor. İkinci bir katman daha var: model stateless çalışır. Her prompt bağımsız bir karardır — önceki adımda ne önerdiğini, neden önerdiğini hatırlamaz. Bu, büyük bir sistemde mimari tutarlılığı insan gözetimi olmadan sağlamanın imkansız olduğu anlamına gelir.
 
 ## Bu Yalnız Bir Sistemin Sorunu Değil
 
@@ -62,6 +62,8 @@ Kritik altyapı yazılımlarında bu tablo yaygın. Kurumsal yazılım dünyası
 "Ahmet Bey 10 yıldır burada, o sistemi en iyi o biliyor" cümlesini duymuşsunuzdur. Bu "kabile bilgisi" denen şey — dokümante edilmemiş, test edilmemiş, sadece yaşanarak öğrenilmiş kurallar. Yapay zeka bu bilgiyi göremez, çünkü o bilgi hiçbir zaman koda dönüşmemiş.
 
 Ekiplerin çoğu bu yüzden geliştirici değil itfaiyeci olarak çalışıyor. Yeni özellik eklemek yerine eski metodun beklenmedik yan etkisini bulmak için saatler harcıyorlar. Geçtiğimiz yıl sektörde konuşulmaya başlanan "vibe coding hangover'ı" tam da buydu: kıdemli mühendisler AI üretimi kodla çalışırken yaşadıkları "development hell"i dile getiriyordu. Bu tabloda AI araçları daha hızlı yanlış önerir.
+
+Bu hatalar çoğunlukla "happy path"te gizlenir. AI girdiler temizken, varsayımlar geçerliyken iyi çalışır. Edge case'ler — kullanıcının beklenmedik davranışı, standart dışı veri, sistem yük altındayken — genellikle modelin training data'sında temsil edilmeyen yerlerde kalır. Daha da tehlikelisi "sessiz hata": sistem çalışır, test geçer, ama yanlış sonuç üretir. Araştırmalar production'daki mantık hatalarının %60'ının bu kategoride olduğunu gösteriyor — crash olmadığı için de uzun süre fark edilmez.
 
 ## Peki AI Ne İşe Yarıyor Burada?
 
@@ -85,7 +87,7 @@ Bu arkeoloji çalışmasını yaparsanız modernizasyon için bir zemin oluşur.
 
 ## Duvar Nerede?
 
-Vibe coding bir vizyonu doğru tarif ediyor. AI araçları gerçekten güçlü. Ama bu vizyon, altyapısı hazır sistemler için geçerli.
+Vibe coding hız problemine çözüm getiriyor — ama karmaşıklık problemine değil. AI araçları gerçekten güçlü, vizyon doğru. Ama bu vizyon, altyapısı hazır sistemler için geçerli.
 
 Yazılım dünyasının büyük çoğunluğu o altyapıya henüz sahip değil. Bu bir suçlama değil — birikmiş on yılların gerçeği. Kritik sistemler çalışıyor, iş süreçleri yürüyor; ama o sistemi bilen insanlar ayrıldığında ne olacak sorusu yanıtsız kalıyor.
 
