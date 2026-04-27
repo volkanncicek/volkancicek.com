@@ -7,7 +7,7 @@ Summary: Andrej Karpathy "vibe coding"i tanımladıktan bir yıl sonra yeni bir 
 
 Şubat 2025'te Andrej Karpathy (OpenAI kurucu ortaklarından, eski Tesla AI direktörü) ["vibe coding"](https://x.com/karpathy/status/1886192184808149383) terimini popülerleştirdi. Fikir basitti: yapay zekaya ne istediğini söyle, kodu yazan o olsun. Kodu okuma. Umursama. Sadece çalışmasını izle.
 
-> *"Sadece vibes'e tamamen teslim ol, üstelleştirmeleri kucakla ve kodun var olduğunu unut. Hata mesajı aldığımda yorum yazmadan yapıştırıyorum, genellikle düzeliyor. Diff'leri artık okumuyorum. Kod olağan anlayışımın ötesine geçti — bu hafta sonu projeleri için fena değil ama oldukça eğlenceli."*
+> *"Sadece vibes'e tamamen teslim ol, üstelleştirmeleri kucakla ve kodun var olduğunu unut. Hata mesajı aldığımda yorum yazmadan yapıştırıyorum, genellikle düzeliyor. Diff'leri artık okumuyorum. Kod olağan anlayışımın ötesine geçti, bu hafta sonu projeleri için fena değil ama oldukça eğlenceli."*
 
 Sektör bu fikri hızla benimsedi. [Cursor](https://www.cursor.com/) [2,3 milyar dolarlık yatırım aldı](https://www.cnbc.com/2025/11/13/cursor-ai-startup-funding-round-valuation.html). [Lovable](https://lovable.dev/) [6,6 milyar dolar değerlemeye ulaştı](https://techcrunch.com/2025/12/18/vibe-coding-startup-lovable-raises-330m-at-a-6-6b-valuation/). [Collins Sözlüğü vibe coding'i 2025'in yılın kelimesi seçti](https://www.cnn.com/2025/11/06/tech/vibe-coding-collins-word-year-scli-intl). [Y Combinator'ın 2025 kış dönemindeki startup'larının %25'inde codebase'in %95'i AI tarafından yazılmıştı.](https://techcrunch.com/2025/03/06/a-quarter-of-startups-in-ycs-current-cohort-have-codebases-that-are-almost-entirely-ai-generated/) [Stack Overflow'un 2025 anketine göre](https://survey.stackoverflow.co/2025/ai) profesyonel geliştiricilerin %84'ü artık AI asistanı kullanıyor ya da kullanmayı planlıyor.
 
@@ -21,9 +21,9 @@ Sadece semantik bir tercih mi bu? Hayır. Ve farkı anlamak için bir adım geri
 
 ## Chatbot'un Gizli Kısıtları
 
-Büyük dil modellerini anlamak için temel bir gerçekle başlayalım: bir LLM'in (büyük dil modeli) çekirdeğinde bir sonraki kelimeyi tahmin etmek yatar. Modern reasoning modelleri buna bir katman ekler — önce gizli bir düşünce zinciri üretir, sonra cevap verir. Ama bu bile tek bir sohbet penceresinin kısıtlarını aşmaz. Doğası gereği durma diye bir kavramı yoktur — tahmin etmeye sonsuza kadar devam eder.
+Büyük dil modellerini anlamak için temel bir gerçekle başlayalım: bir LLM'in (büyük dil modeli) çekirdeğinde bir sonraki kelimeyi tahmin etmek yatar. Modern reasoning modelleri buna bir katman ekler: önce gizli bir düşünce zinciri üretir, sonra cevap verir. Ama bu bile tek bir sohbet penceresinin kısıtlarını aşmaz. Doğası gereği durma diye bir kavramı yoktur; tahmin etmeye sonsuza kadar devam eder.
 
-ChatGPT gibi chatbot'lar bu modellere özel bir eğitim uygulandıktan sonra ortaya çıkar. RLHF (İnsan Geri Bildirimiyle Pekiştirmeli Öğrenme) adı verilen bu süreçte modele çok şey öğretilir: kibarca cevap ver, kısa tut, siyasi konulardan kaçın, cevabı bitirdiğinde dur. O "dur" sinyali teknik olarak bir stop token'dır — model bu işareti ürettiğinde sistem yazmayı keser.
+ChatGPT gibi chatbot'lar bu modellere özel bir eğitim uygulandıktan sonra ortaya çıkar. RLHF (İnsan Geri Bildirimiyle Pekiştirmeli Öğrenme) adı verilen bu süreçte modele çok şey öğretilir: kibarca cevap ver, kısa tut, siyasi konulardan kaçın, cevabı bitirdiğinde dur. O "dur" sinyali teknik olarak bir stop token'dır; model bu işareti ürettiğinde sistem yazmayı keser.
 
 Bu eğitim chatbot deneyimini mümkün kılar: modeli daha güvenli, daha tutarlı, daha kullanışlı yapar. Ama bir tradeoff getirir: çıktı çeşitliliği daralır, model doğru olmak yerine kabul görmek için optimize eder; araştırmacıların "sycophancy" dediği bu eğilim, [OpenAI'ın Nisan 2025'te GPT-4o güncellemesini geri çekmek zorunda kalmasına](https://techcrunch.com/2025/04/29/openai-rolls-back-update-that-made-chatgpt-too-sycophant-y/) da yol açtı.
 
@@ -37,7 +37,7 @@ Yapay zeka araştırmacıları LLM'i bir beyne benzetir. Ama bu beynin çalışa
 
 Chatbot arayüzü bu beyne zorla giydirilmiş geçici bir vücuttur. Konuşma biter, hafıza sıfırlanır. Bir sonraki mesajda model yeniden başlar. Bağlam kısıtlıdır, planlama yoktur, araç entegrasyonu en iyi ihtimalle yüzeyseldir.
 
-Ajanlar bu denklemin değiştiği noktadır. Bir ajan sistemi LLM'e gerçek bir beden verir: uzun süreli hafıza, adım adım planlama, dosya okuma-yazma, kod çalıştırma, arama yapma, başka ajanlarla koordinasyon. Model artık tek bir sohbet penceresine sıkışmış değildir — bir hedef verilir ve o hedefe ulaşana kadar özerk olarak hareket eder.
+Ajanlar bu denklemin değiştiği noktadır. Bir ajan sistemi LLM'e gerçek bir beden verir: uzun süreli hafıza, adım adım planlama, dosya okuma-yazma, kod çalıştırma, arama yapma, başka ajanlarla koordinasyon. Model artık tek bir sohbet penceresine sıkışmış değildir; bir hedef verilir ve o hedefe ulaşana kadar özerk olarak hareket eder.
 
 Bu yüzden "agentic engineering" yalnızca isim değişikliği değil. Modelin nasıl kullanıldığına dair temel bir paradigma kaymasıdır.
 
@@ -45,7 +45,7 @@ Bu yüzden "agentic engineering" yalnızca isim değişikliği değil. Modelin n
 
 Vibe coding'de bir insan vardır ve karşısında tek bir model. İnsan prompt yazar, model kod üretir, insan tekrar yazar. Geri-ileri, konuşma formatında.
 
-Agentic engineering'de bu tablo değişir. Tek bir modelin yerini birden fazla özelleşmiş ajan alır: planlama yapan bir ajan, kodu uygulayan bir ajan, test yazan ve çalıştıran bir ajan, hataları yakalayan bir ajan. Bunlar birbirleriyle iletişim kurar, koordine olur, iterasyon yapar. İnsan mühendis ise stratejik yönü belirler, mimari kararları alır ve kritik noktalarda — production'a merge etme, veritabanı şeması değiştirme, güvenlik sınırları — çıktıyı onaylar. Sektör bu onay mekanizmasını artık standart bir terimle tanımlıyor: **Human-in-the-Loop (HITL)**. Ajanlar özerk koşar, ama ağır kararlar hala insandan geçer. Bu bir darboğaz değil mi? Onay noktalarının sayısı ve ağırlığı göreve göre ayarlandığında hayır; her HITL geçidi bir sürtünme değil, bir kalite filtresidir.
+Agentic engineering'de bu tablo değişir. Tek bir modelin yerini birden fazla özelleşmiş ajan alır: planlama yapan bir ajan, kodu uygulayan bir ajan, test yazan ve çalıştıran bir ajan, hataları yakalayan bir ajan. Bunlar birbirleriyle iletişim kurar, koordine olur, iterasyon yapar. İnsan mühendis ise stratejik yönü belirler, mimari kararları alır ve kritik noktalarda (production'a merge etme, veritabanı şeması değiştirme, güvenlik sınırları gibi) çıktıyı onaylar. Sektör bu onay mekanizmasını artık standart bir terimle tanımlıyor: **Human-in-the-Loop (HITL)**. Ajanlar özerk koşar, ama ağır kararlar hala insandan geçer. Bu bir darboğaz değil mi? Onay noktalarının sayısı ve ağırlığı göreve göre ayarlandığında hayır; her HITL geçidi bir sürtünme değil, bir kalite filtresidir.
 
 | | Vibe Coding | Agentic Engineering |
 |---|---|---|
@@ -60,13 +60,13 @@ Ajanın içinde çalışan döngü genellikle şöyle görünür: görevi analiz
 
 Microsoft Copilot Studio, Salesforce Agentforce, AWS Bedrock AgentCore gibi kurumsal platformlar bu iş akışını bugün zaten etkinleştiriyor. Geliştirme pipeline'larına prompt registry'leri, değerlendirme geçitleri ve AI eylemleri için policy katmanları giriyor.
 
-Açık kaynak dünyasında ise tablo farklı bir boyut kazanıyor. RLHF ile kısıtlanmamış, "ham" modeller üzerine kurulan ajan sistemleri büyük şirketlerin kapalı modellerine alternatif olarak öne çıkıyor. Bu modeller daha az "kibar" ama bazı ajan görevleri için daha az kısıtlı — ve bu bir tercih meselesi haline geliyor.
+Açık kaynak dünyasında ise tablo farklı bir boyut kazanıyor. RLHF ile kısıtlanmamış, "ham" modeller üzerine kurulan ajan sistemleri büyük şirketlerin kapalı modellerine alternatif olarak öne çıkıyor. Bu modeller daha az "kibar" ama bazı ajan görevleri için daha az kısıtlı; bu da bir tercih meselesi haline geliyor.
 
 ## IDE'nin Değişen Rolü
 
 Bu paradigma kaymasının beklenmedik bir yan etkisi var: geliştirme ortamı artık eskisi gibi değil.
 
-Otuz yıl boyunca IDE (entegre geliştirme ortamı), yazılım geliştirmenin tartışmasız merkezi oldu. VS Code, IntelliJ, Visual Studio — bunlar kodun doğduğu kokpitlerdi. Temel varsayım basitti: insanlar kod yazar, araçlar yardım eder.
+Otuz yıl boyunca IDE (entegre geliştirme ortamı), yazılım geliştirmenin tartışmasız merkezi oldu. VS Code, IntelliJ, Visual Studio... Bunlar kodun doğduğu kokpitlerdi. Temel varsayım basitti: insanlar kod yazar, araçlar yardım eder.
 
 Agentic engineering bu varsayımı kırıyor. AI ajanları kodu yazıyorsa, insan parmaklarına göre tasarlanmış bir metin editörüne neden ihtiyaç duysunlar?
 
@@ -74,13 +74,13 @@ Eski Sourcegraph geliştiricisi Steve Yegge, [Ocak 2026'da yazdığı makalede](
 
 Bu dönüşüm üç dalgada yaşandı:
 
-- **Birinci dalga:** AI, IDE'nin içinde bir eklenti olarak geldi — [GitHub Copilot](https://github.com/features/copilot). IDE hala merkezde, AI bir misafirdi.
+- **Birinci dalga:** AI, IDE'nin içinde bir eklenti olarak geldi: [GitHub Copilot](https://github.com/features/copilot). IDE hala merkezde, AI bir misafirdi.
 - **İkinci dalga:** AI terminale taşındı. [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex CLI](https://github.com/openai/codex) ve Gemini CLI editöre ihtiyaç duymadan çalışabiliyordu. IDE isteğe bağlı hale geldi.
 - **Üçüncü dalga:** Ajan altyapıları belirdi. [Anthropic'in Claude Managed Agents](https://docs.anthropic.com/en/docs/claude-code/overview)'ı (Nisan 2026, public beta) kendi döngünüzü ve sandbox ortamınızı sıfırdan kurmanıza gerek kalmadan Claude'u özerk ajan olarak çalıştırabildiğiniz yönetilen bir ortam sunuyor.
 
 Geliştirici arayüzü "kod yazdığım yer"den "ajanlarımı yönettiğim panel"e evriliyor.
 
-IDE yok olmuyor. Ama üretim katmanından doğrulama katmanına dönüşüyor: diff'leri incelediğiniz, ajan çıktısını gözden geçirdiğiniz, hataları ayıkladığınız yer. Geleceğin IDE'si artık sadece bir metin editörü değil — [Cursor](https://www.cursor.com/)'ın agentic modunda ya da [Windsurf](https://windsurf.com/)'te gördüğümüz gibi, ajanlarınızı izlediğiniz bir kontrol kulesi haline geliyor.
+IDE yok olmuyor. Ama üretim katmanından doğrulama katmanına dönüşüyor: diff'leri incelediğiniz, ajan çıktısını gözden geçirdiğiniz, hataları ayıkladığınız yer. Geleceğin IDE'si artık sadece bir metin editörü değil. [Cursor](https://www.cursor.com/)'ın agentic modunda ya da [Windsurf](https://windsurf.com/)'te gördüğümüz gibi, ajanlarınızı izlediğiniz bir kontrol kulesi haline geliyor.
 
 ## Uzmanlık Paradoksu
 
@@ -90,21 +90,21 @@ Dave Kiss, [agentic coding yazısında](https://davekiss.com/blog/agentic-coding
 
 > *"LLM'lere güvenen acemiler olumsuz yönde büyütülür: yanlış çözümlere güvenle inanır hale gelirler. Problemi anlayan uzmanlar ise olumlu yönde büyütülür."*
 
-Bir ajan sistemi on parça kod ürettiğinde dokuzu doğru olabilir. Agentic engineer'ın işi o biri yakalamaktır — ince hatayı, ölçeklenmeyecek yaklaşımı, ilerleyen aylarda bakım kabusu haline gelecek soyutlamayı. Kendi alanınızı on kat daha fazla hacimde çıktıyı doğrulayacak kadar derinden bilmeniz gerekir.
+Bir ajan sistemi on parça kod ürettiğinde dokuzu doğru olabilir. Agentic engineer'ın işi o biri yakalamaktır: ince hatayı, ölçeklenmeyecek yaklaşımı, ilerleyen aylarda bakım kabusu haline gelecek soyutlamayı. Kendi alanınızı on kat daha fazla hacimde çıktıyı doğrulayacak kadar derinden bilmeniz gerekir.
 
 Geliştiricinin rolü kod *yazmak*tan kod *yönlendirmek ve doğrulamak*a kayıyor. Daha sığ değil, daha derin bir anlayış gerektiriyor.
 
-Bu dönüşüm gereken yetkinliği de değiştiriyor. Vibe coding döneminde en değerli yetenek "Prompt Engineering"di — modele doğru soruyu sormak. Agentic engineering'de bu yetenek yerini **System Design** ve **flow orchestration** (akış yönetimi)'ne bırakıyor. Artık iyi prompt yazmak yetmiyor; ajanların birbiriyle nasıl iletişim kuracağını, hangi araçlara erişeceğini, hangi kontrol noktalarından geçeceğini ve ne zaman insana devredeceğini tasarlamanız gerekiyor.
+Bu dönüşüm gereken yetkinliği de değiştiriyor. Vibe coding döneminde en değerli yetenek "Prompt Engineering"di: modele doğru soruyu sormak. Agentic engineering'de bu yetenek yerini **System Design** ve **flow orchestration** (akış yönetimi)'ne bırakıyor. Artık iyi prompt yazmak yetmiyor; ajanların birbiriyle nasıl iletişim kuracağını, hangi araçlara erişeceğini, hangi kontrol noktalarından geçeceğini ve ne zaman insana devredeceğini tasarlamanız gerekiyor.
 
-Araştırmalar bu paradoksu sayılarla da destekliyor. [METR'in Temmuz 2025'te yürüttüğü randomize kontrollü deneyde](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) deneyimli açık kaynak geliştiricileri büyük, olgun projelerde AI kodlama araçlarıyla çalışırken %19 *daha yavaş* oldu — oysa önceden %24 daha hızlı olacaklarını tahmin etmiş, deneyin ardından da %20 daha hızlı çalıştıklarına inanmışlardı. Özgüven ile gerçek performans arasındaki bu uçurum, agentic engineering'in neden bir mühendislik disiplini olduğunu gösteriyor: araç güçlü, ama onu doğru kullanmak deneyim gerektiriyor.
+Araştırmalar bu paradoksu sayılarla da destekliyor. [METR'in Temmuz 2025'te yürüttüğü randomize kontrollü deneyde](https://metr.org/blog/2025-07-10-early-2025-ai-experienced-os-dev-study/) deneyimli açık kaynak geliştiricileri büyük, olgun projelerde AI kodlama araçlarıyla çalışırken %19 *daha yavaş* oldu; oysa önceden %24 daha hızlı olacaklarını tahmin etmiş, deneyin ardından da %20 daha hızlı çalıştıklarına inanmışlardı. Özgüven ile gerçek performans arasındaki bu uçurum, agentic engineering'in neden bir mühendislik disiplini olduğunu gösteriyor: araç güçlü, ama onu doğru kullanmak deneyim gerektiriyor.
 
 ## Ne Değişti, Ne Değişmedi
 
-Vibe coding ölmedi. Hala bir yeri var: yan projelerde, prototiplerde, bir kez kullanıp atacağınız scriptlerde, öğrenme süreçlerinde. Hızlı hareket etmek istediğinizde ve kırılmaktan korkmadığınızda. Ocak 2026'da [Linus Torvalds, gitar pedalı yan projesi AudioNoise'un Python görselleştirme aracını Google Antigravity ile vibe coding yaparak yazdığını README'sine not düştü](https://www.phoronix.com/news/Linus-Torvalds-Vide-Coding) — kavramın ne kadar geniş bir kitleye ulaştığının göstergesi.
+Vibe coding ölmedi. Hala bir yeri var: yan projelerde, prototiplerde, bir kez kullanıp atacağınız scriptlerde, öğrenme süreçlerinde. Hızlı hareket etmek istediğinizde ve kırılmaktan korkmadığınızda. Ocak 2026'da [Linus Torvalds, gitar pedalı yan projesi AudioNoise'un Python görselleştirme aracını Google Antigravity ile vibe coding yaparak yazdığını README'sine not düştü](https://www.phoronix.com/news/Linus-Torvalds-Vide-Coding); kavramın ne kadar geniş bir kitleye ulaştığının göstergesi.
 
-Agentic engineering vizyonu ise artık kurumsal platformlarla sınırlı değil. [OpenClaw](https://openclaw.ai) bunun en çarpıcı örneği: PSPDFKit'i 13 yıl boyunca büyütüp bırakan Avusturyalı geliştirici Peter Steinberger, Marakeş'teki bir tatilde telefonu üzerinden AI'a görev gönderebilmek için küçük bir WhatsApp botu yazdı. O hafta sonu deneyi, bu yazının yazıldığı Nisan 2026 itibarıyla 362.000 GitHub yıldızına ulaştı — Anthropic'in trademark şikayetiyle önce Moltbot, ardından OpenClaw adını aldı, TED sahnelerine çıktı ve Şubat 2026'da Sam Altman onu OpenAI'a davet etti. OpenClaw hâlâ açık kaynak: kendi makinenizde çalışıyor, WhatsApp veya Telegram üzerinden görev alıyor, siz yokken tamamlıyor ve raporla dönüyor.
+Agentic engineering vizyonu ise artık kurumsal platformlarla sınırlı değil. [OpenClaw](https://openclaw.ai) bunun en çarpıcı örneği: PSPDFKit'i 13 yıl boyunca büyütüp bırakan Avusturyalı geliştirici Peter Steinberger, Marakeş'teki bir tatilde telefonu üzerinden AI'a görev gönderebilmek için küçük bir WhatsApp botu yazdı. O hafta sonu deneyi, bu yazının yazıldığı Nisan 2026 itibarıyla 362.000 GitHub yıldızına ulaştı. Anthropic'in trademark şikayetiyle önce Moltbot, ardından OpenClaw adını aldı, TED sahnelerine çıktı ve Şubat 2026'da Sam Altman onu OpenAI'a davet etti. OpenClaw hâlâ açık kaynak: kendi makinenizde çalışıyor, WhatsApp veya Telegram üzerinden görev alıyor, siz yokken tamamlıyor ve raporla dönüyor.
 
-Ama tablonun karanlık tarafı da var. [CodeRabbit'in 470 açık kaynak pull request üzerindeki analizinde](https://www.businesswire.com/news/home/20251217666881/en/CodeRabbits-State-of-AI-vs-Human-Code-Generation-Report-Finds-That-AI-Written-Code-Produces-1.7x-More-Issues-Than-Human-Code) AI ile birlikte yazılan kod, insan yazımına kıyasla 1,7 kat daha fazla sorun içeriyordu; XSS (siteler arası betik saldırısı) güvenlik açıkları 2,74 kat daha yüksek çıktı. [Replit'in AI ajanı bir kullanıcının production veritabanını sildi ve ardından yalan söyledi.](https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/) Bu, bir chatbot'un yapamayacağı bir şey — sadece "beden" verilmiş, yani gerçek araçlara erişimi olan ama yeterli güvenlik bariyeri (guardrail) kurulmamış bir ajanın yapabileceği bir hata. İki daha az görünür risk daha var: halüsinasyon güven açığı (ajan yanlış araç çağırır ama bunu kesinlikle doğruymuş gibi raporlar) ve maliyet patlaması (hatalı tasarlanmış bir döngü saatlerce çalışıp binlerce token yakabilir). Guardrail'lar bu yüzden teknik değil, mimari bir karardır. Bu olaylar vibe coding'in değil, denetimsiz ajan üretiminin sonuçları — agentic engineering'in getirdiği yapı ve HITL mekanizması tam da bu noktada devreye giriyor.
+Ama tablonun karanlık tarafı da var. [CodeRabbit'in 470 açık kaynak pull request üzerindeki analizinde](https://www.businesswire.com/news/home/20251217666881/en/CodeRabbits-State-of-AI-vs-Human-Code-Generation-Report-Finds-That-AI-Written-Code-Produces-1.7x-More-Issues-Than-Human-Code) AI ile birlikte yazılan kod, insan yazımına kıyasla 1,7 kat daha fazla sorun içeriyordu; XSS (siteler arası betik saldırısı) güvenlik açıkları 2,74 kat daha yüksek çıktı. [Replit'in AI ajanı bir kullanıcının production veritabanını sildi ve ardından yalan söyledi.](https://fortune.com/2025/07/23/ai-coding-tool-replit-wiped-database-called-it-a-catastrophic-failure/) Bu, bir chatbot'un yapamayacağı bir şey; sadece "beden" verilmiş, yani gerçek araçlara erişimi olan ama yeterli güvenlik bariyeri (guardrail) kurulmamış bir ajanın yapabileceği bir hata. İki daha az görünür risk daha var: halüsinasyon güven açığı (ajan yanlış araç çağırır ama bunu kesinlikle doğruymuş gibi raporlar) ve maliyet patlaması (hatalı tasarlanmış bir döngü saatlerce çalışıp binlerce token yakabilir). Guardrail'lar bu yüzden teknik değil, mimari bir karardır. Bu olaylar vibe coding'in değil, denetimsiz ajan üretiminin sonuçları. Agentic engineering'in getirdiği yapı ve HITL mekanizması tam da bu noktada devreye giriyor.
 
 Production sistemleri, ekip halinde sürdürülen codebase'ler ve ölçeklenmesi gereken yazılımlar için sektör agentic engineering'e doğru kayıyor. Yapı, denetim ve uzmanlık tekrar ön plana çıkıyor.
 
