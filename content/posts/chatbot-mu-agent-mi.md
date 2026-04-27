@@ -35,9 +35,9 @@ Bunu mümkün kılan üç şey var.
 
 **Hafıza.** Bir adımda öğrendiğini bir sonraki adıma taşır. Bağlam kaybolmaz, çünkü sohbet penceresi değil, görev yönetir.
 
-Anthropic'in tanımı bunu en iyi özetliyor: *"Agents are systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks."* Kendi sürecini kendisi yönetir; bu ayrım belirleyicidir.
+[Anthropic'in tanımı](https://www.anthropic.com/engineering/building-effective-agents) bunu en iyi özetliyor: *"Agents, on the other hand, are systems where LLMs dynamically direct their own processes and tool usage, maintaining control over how they accomplish tasks."* Kendi sürecini kendisi yönetir; bu ayrım belirleyicidir.
 
-Modern agent sistemleri genellikle üç katmandan oluşur: bir planlama bileşeni (görevi alt adımlara ayıran), bir yürütme katmanı (araçları kullanan) ve bir değerlendirme döngüsü (çıktıyı kontrol eden, gerekirse yönü değiştiren). Bu döngü olmadan sistem ne kadar araçlı olursa olsun agent değildir.
+Modern agent sistemleri genellikle üç katmandan oluşur: bir planlama bileşeni (görevi alt adımlara ayıran), bir yürütme katmanı (araçları kullanan) ve bir değerlendirme döngüsü (çıktıyı kontrol eden, gerekirse yönü değiştiren). Bu yapının teorik temelini [ReAct (Yao ve ark., 2022)](https://arxiv.org/abs/2210.03629) ve [Reflexion (Shinn ve ark., 2023)](https://arxiv.org/abs/2303.11366) gibi öncü çalışmalar attı; akıl yürütme ve eylemin iç içe geçtiği bir döngü olmadan sistem ne kadar araçlı olursa olsun agent değildir.
 
 | | Chatbot | Agent |
 |---|---|---|
