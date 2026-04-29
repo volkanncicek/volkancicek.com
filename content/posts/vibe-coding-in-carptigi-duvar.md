@@ -15,7 +15,7 @@ Sonuçlar beklediğimden çok farklıydı. Ama asıl sürpriz araçların başar
 
 Önce şunu söyleyeyim: AI kodlama araçları iyi. Gerçekten iyi. Temiz bir projede, modern bir stack'te, iyi tanımlanmış görevlerle çalışıyorsanız verimlilik artışı tartışmasız. Ben de günlük işlerimde kullanıyorum, faydasını görüyorum.
 
-LinkedIn'de "vibe coding ile saatte SaaS yazdım" diyen insanları okuduğumda artık itiraz etmiyorum. Greenfield projede, doğru araçla, doğru bağlamda bu tamamen mümkün. Karpathy'nin önerdiği "sadece ne istediğini söyle, bırak yapsın" yaklaşımı bazı durumlarda gerçekten çalışıyor.
+LinkedIn'de "vibe coding ile saatte SaaS yazdım" diyen insanları okuduğumda artık itiraz etmiyorum. Greenfield projede, doğru araçla, doğru bağlamda [bu tamamen mümkün](/blog/vibe-codingden-ajanlar-cagina.html). [Karpathy'nin önerdiği](https://x.com/karpathy/status/1886192184808149383) "sadece ne istediğini söyle, bırak yapsın" yaklaşımı bazı durumlarda gerçekten çalışıyor.
 
 Ama bazı durumlarda çalışmıyor. Ve bu "bazı durumlar" yazılım dünyasının büyük çoğunluğunu kapsıyor.
 
@@ -41,7 +41,7 @@ Cursor öneriler verdi. Her önerisi "iyi kurulmuş bir sistemde böyle yapardı
 
 GitHub Copilot shell çağrılarını görünce "bu güvensiz" diye işaretledi. Doğru teşhis. Ama alternatif öneremedi, çünkü bu sistemin bağlamında ne kullanılacağını bilemedi.
 
-Üçü de farklı şekillerde çuvalladı. Ama dikkat edin: *halüsinasyon* değildi bu. Halüsinasyon "tamamen uydurulmuş bilgi" demek. Burada olan farklıydı: üç araç da gerçek ama standart dışı bir sistemi anlayamadı ve cevaplarını kendi training data'sındaki kalıplara göre verdi. Makine öğrenmesinde **selection bias** (seçim yanlılığı) olarak bilinen bir sorun bu: model eğitim verisinde baskın olan kalıpları "normal" kabul eder, standart dışı bir yapıyla karşılaşınca onu kendi şablonuna göre yeniden yorumlar. Yani bu sistem için değil, *olması gereken* sistem için çalıştılar.
+Üçü de farklı şekillerde çuvalladı. Ama dikkat edin: *halüsinasyon* değildi bu. Halüsinasyon "tamamen uydurulmuş bilgi" demek. Burada olan farklıydı: üç araç da gerçek ama standart dışı bir sistemi anlayamadı ve cevaplarını kendi training data'sındaki kalıplara göre verdi. Makine öğrenmesinde [**selection bias** (seçim yanlılığı)](https://en.wikipedia.org/wiki/Selection_bias) olarak bilinen bir sorun bu: model eğitim verisinde baskın olan kalıpları "normal" kabul eder, standart dışı bir yapıyla karşılaşınca onu kendi şablonuna göre yeniden yorumlar. Yani bu sistem için değil, *olması gereken* sistem için çalıştılar.
 
 Copilot'un shell çağrısını "güvensiz" bulup sistemi "düzeltmeye" kalkıştığını hayal edin: yıllardır çalışan ama tuhaf olan o script'i siler, yerine "doğru" bir alternatif koyar ve production çöker. Doğru teşhis, yanlış eylem. Legacy sistemlerde en tehlikeli an AI'ın "şunu düzelteyim" dediği andır. [Amazon'un Mart 2026'da yaşadığı altı saatlik kesinti](https://www.digitaltrends.com/computing/ai-code-wreaked-havoc-with-amazon-outage-and-now-the-company-is-making-tight-rules/) (6,3 milyon kayıp sipariş) inceleme sürecini atlayan AI destekli bir kod değişikliğine bağlandı. Fonksiyonel görünen, test geçen, ama sistem bağlamını kaçıran bir değişiklik.
 
@@ -53,15 +53,15 @@ AI modelleri milyonlarca açık kaynak kodu üzerinde eğitildi. Bu örneklerin 
 
 Şimdi önüne frontend'den direkt veritabanı çağrısı yapan bir sistem koyun. Model bunu görüyor, ama bu pattern training data'sında ya hiç yok ya da anti-pattern olarak işaretlenmiş. Sonuç: AI "bu bağlamı anlayamıyorum" değil, "bu bağlam var olamaz" moduna giriyor. Ve standart kalıba göre cevap üretiyor.
 
-Daha büyük bir context window bu sorunu çözmez. Sistemi daha fazla görmesi, o sistemin standart dışı olduğu gerçeğini değiştirmiyor. İkinci bir katman daha var: model stateless çalışır. Her prompt bağımsız bir karardır; önceki adımda ne önerdiğini, neden önerdiğini hatırlamaz. Bu, büyük bir sistemde mimari tutarlılığı insan gözetimi olmadan sağlamanın imkansız olduğu anlamına gelir.
+Daha büyük bir context window bu sorunu çözmez. Sistemi daha fazla görmesi, o sistemin standart dışı olduğu gerçeğini değiştirmiyor. İkinci bir katman daha var: [model stateless çalışır](https://atlan.com/know/are-llms-stateless/). Her prompt bağımsız bir karardır; önceki adımda ne önerdiğini, neden önerdiğini hatırlamaz. Bu, büyük bir sistemde mimari tutarlılığı insan gözetimi olmadan sağlamanın imkansız olduğu anlamına gelir.
 
 ## Bu Yalnız Bir Sistemin Sorunu Değil
 
 Kritik altyapı yazılımlarında bu tablo yaygın. Kurumsal yazılım dünyasında daha da yaygın. Büyük ölçekli sistemlerin önemli bir kısmı (sektör ve coğrafyadan bağımsız olarak) yıllar içinde büyümüş, yamana yamana geliştirilmiş yapılar. İş mantığı sadece kaynak kodda değil; stored procedure'larda, config dosyalarında, bazen de yalnızca birinin kafasında.
 
-"Ahmet Bey 10 yıldır burada, o sistemi en iyi o biliyor" cümlesini duymuşsunuzdur. Bu "kurumsal hafıza" denen şey: belgelenmemiş, test edilmemiş, sadece yaşanarak öğrenilmiş kurallar. Yapay zeka bu bilgiyi göremez, çünkü o bilgi hiçbir zaman koda dönüşmemiş.
+"Ahmet Bey 10 yıldır burada, o sistemi en iyi o biliyor" cümlesini duymuşsunuzdur. Bu ["kurumsal hafıza"](https://devblogs.microsoft.com/premier-developer/tribal-knowledge-the-anti-devops-culture/) (literatürde *tribal knowledge*) denen şey: belgelenmemiş, test edilmemiş, sadece yaşanarak öğrenilmiş kurallar. Yapay zeka bu bilgiyi göremez, çünkü o bilgi hiçbir zaman koda dönüşmemiş.
 
-Ekiplerin çoğu bu yüzden geliştirici değil itfaiyeci olarak çalışıyor. Yeni özellik eklemek yerine eski metodun beklenmedik yan etkisini bulmak için saatler harcıyorlar. Geçtiğimiz yıl sektörde konuşulmaya başlanan "vibe coding hangover'ı" tam da buydu: kıdemli mühendisler AI üretimi kodla çalışırken yaşadıkları "development hell"i dile getiriyordu. Bu tabloda AI araçları daha hızlı yanlış önerir.
+Ekiplerin çoğu bu yüzden geliştirici değil itfaiyeci olarak çalışıyor. Yeni özellik eklemek yerine eski metodun beklenmedik yan etkisini bulmak için saatler harcıyorlar. Geçtiğimiz yıl sektörde konuşulmaya başlanan ["vibe coding hangover'ı"](https://www.fastcompany.com/91398622/the-vibe-coding-hangover-is-upon-us) tam da buydu: kıdemli mühendisler AI üretimi kodla çalışırken yaşadıkları "development hell"i dile getiriyordu. [Stack Overflow'un 2025 anketi](https://survey.stackoverflow.co/2025/ai/) de aynı tabloyu gösteriyor: geliştiricilerin %66'sının en büyük şikayeti "neredeyse doğru ama tam değil" AI çıktıları, %45'i ise AI üretimi kodu debug etmenin daha çok zaman aldığını söylüyor. Bu tabloda AI araçları daha hızlı yanlış önerir.
 
 Bu hatalar çoğunlukla "happy path"te gizlenir. AI girdiler temizken, varsayımlar geçerliyken iyi çalışır. Edge case'ler (kullanıcının beklenmedik davranışı, standart dışı veri, sistem yük altındayken) genellikle modelin training data'sında temsil edilmeyen yerlerde kalır. Daha da tehlikelisi "sessiz hata": sistem çalışır, test geçer, ama yanlış sonuç üretir. [Araştırmalar production'daki mantık hatalarının %60'ının bu kategoride olduğunu gösteriyor](https://spectrum.ieee.org/ai-coding-degrades). Crash olmadığı için de uzun süre fark edilmez.
 
@@ -81,7 +81,7 @@ AI bu sistemlerde arkeolog gibi çalışabilir. Kodu okuyup ne yaptığını aç
 
 Fark yaratan şey prompt'u nasıl kurduğunuz. "Bu spagetti kodu refactor et" demek yerine: *"Bu fonksiyonun veritabanındaki hangi tabloları etkilediğini listele"* veya *"Bu modülün dış bağımlılıklarını ve çağrıldığı yerleri harita olarak çıkar"* dediğinizde AI bir yapı dayatmak yerine mevcut yapıyı anlamlandırmaya çalışır. Keşif soruları, inşa emirleri değil.
 
-Legacy sistemlerde AI'ın bir diğer güçlü olduğu alan **test yazmaktır**. Kodu tam anlayamasa bile mevcut davranışı belgelemeye yetecek kadar anlayabilir. Eski sisteme hiç dokunmadan etrafına unit test ağı örmesi, modernizasyonun en kritik ilk adımıdır; neyin bozulduğunu ancak o ağ varsa görebilirsiniz. AI test yazmada kod yazmaktan çok daha güvenilirdir: "bunu refactor et" riskli, "bu fonksiyonun mevcut davranışını test et" görece güvenlidir.
+Legacy sistemlerde AI'ın bir diğer güçlü olduğu alan **test yazmaktır**. Kodu tam anlayamasa bile mevcut davranışı belgelemeye yetecek kadar anlayabilir. Eski sisteme hiç dokunmadan etrafına unit test ağı örmesi (Michael Feathers'ın klasikleşmiş [*karakterizasyon testi*](https://en.wikipedia.org/wiki/Characterization_test) yaklaşımı), modernizasyonun en kritik ilk adımıdır; neyin bozulduğunu ancak o ağ varsa görebilirsiniz. AI test yazmada kod yazmaktan çok daha güvenilirdir: "bunu refactor et" riskli, "bu fonksiyonun mevcut davranışını test et" görece güvenlidir.
 
 Bu arkeoloji çalışmasını yaparsanız modernizasyon için bir zemin oluşur. O zemin üzerinde yeni kod yazarken AI gerçekten hız katar. Ama kazı yapmadan doğrudan inşa etmeye çalışırsanız, daha hızlı teknik borç üretirsiniz.
 
