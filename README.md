@@ -109,6 +109,13 @@ uv run pelican content -s publishconf.py
 
 Push to your connected Git repository and Cloudflare Pages will automatically build and deploy.
 
+## Analytics
+
+Privacy-friendly, cookieless web analytics via [GoatCounter](https://www.goatcounter.com/). No cookies, no personal data, no GDPR banner needed.
+
+- Dashboard: [volkancicek.goatcounter.com](https://volkancicek.goatcounter.com/)
+- Configured in `pelicanconf.py` via `GOAT_COUNTER` and injected by `theme/templates/partials/analytics.html`.
+
 ## License
 
 Content © Volkan Çiçek. All rights reserved.
