@@ -111,7 +111,10 @@ Push to your connected Git repository and Cloudflare Pages will automatically bu
 
 ## Analytics
 
-Privacy-friendly, cookieless web analytics via [GoatCounter](https://www.goatcounter.com/). No cookies, no personal data, no GDPR banner needed. Configured in `pelicanconf.py` via `GOAT_COUNTER` and injected by `theme/templates/partials/analytics.html`.
+Privacy-friendly, cookieless web analytics via [GoatCounter](https://www.goatcounter.com/). No cookies, no personal data, no GDPR banner needed.
+
+- Dashboard: [volkancicek.goatcounter.com](https://volkancicek.goatcounter.com/) (private — owner login required)
+- Configured in `pelicanconf.py` via `GOAT_COUNTER` and injected by `theme/templates/partials/analytics.html`.
 
 ## License
 
