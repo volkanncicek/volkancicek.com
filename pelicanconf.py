@@ -134,6 +134,9 @@ MARKDOWN = {
 # Typography enhancements (smart quotes, etc.)
 TYPOGRIFY = True
 
+# Analytics
+GOAT_COUNTER = "volkancicek"
+
 # Sitemap settings
 SITEMAP = {
     "format": "xml",
