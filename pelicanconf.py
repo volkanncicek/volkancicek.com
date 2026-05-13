@@ -105,6 +105,15 @@ SOCIAL = (
 # Twitter username for meta tags (without @)
 TWITTER_USERNAME = "volkanncicek"
 
+# Open Graph locale (e.g. "en_US", "tr_TR")
+OG_LOCALE = "en_US"
+
+# Search engine verification — sadece content="..." kısmındaki string'i koy
+# Google Search Console → Settings → Ownership verification → HTML tag
+GOOGLE_SITE_VERIFICATION = ""
+# Bing Webmaster Tools → Site → Verify Ownership → Meta tag (gerekirse)
+BING_SITE_VERIFICATION = ""
+
 # Sayfa başına makale sayısı
 DEFAULT_PAGINATION = 10
 
