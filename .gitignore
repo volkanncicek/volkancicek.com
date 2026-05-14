@@ -225,3 +225,8 @@ cache/
 
 # Archive folder (reference projects, not part of the site)
 archive/
+
+# Local working notes (Claude Code, agent context, todo)
+AGENTS.md
+CLAUDE.md
+TODO.md

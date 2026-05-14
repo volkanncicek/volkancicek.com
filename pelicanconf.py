@@ -37,14 +37,6 @@ EXTRA_PATH_METADATA = {
     "extra/og-image.png": {"path": "og-image.png"},
 }
 
-# Manifesto - Ana sayfada görünecek kişisel manifesto (şimdilik kapalı)
-# Açmak için MANIFESTO değişkenini aktif edin
-# MANIFESTO = """
-# I believe in building things that matter. Technology should empower people, not exploit them.
-# I write code, break things, learn from failures, and share what I discover along the way.
-# This is my corner of the internet — raw thoughts, projects, and experiments.
-# """
-
 # Projects - Projelerinizi buraya ekleyin
 PROJECTS = (
     {
@@ -82,6 +74,11 @@ PAGE_SAVE_AS = "pages/{slug}.html"
 # Direct templates - projects sayfası için
 DIRECT_TEMPLATES = ["index", "archives", "categories", "tags", "projects"]
 PROJECTS_SAVE_AS = "projects.html"
+
+# Custom template pages (örn. 404)
+TEMPLATE_PAGES = {
+    "404.html": "404.html",
+}
 
 # Menu settings
 DISPLAY_PAGES_ON_MENU = True
