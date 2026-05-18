@@ -49,23 +49,6 @@
         {{ article.content }}
     </div>
 
-    {% if article.series and (article.series.previous or article.series.next) %}
-    <nav class="series-nav" aria-label="Within series">
-        {% if article.series.previous %}
-        <a href="{{ SITEURL }}/{{ article.series.previous.url }}" class="prev">
-            <span class="nav-label">&larr; Previous in series</span>
-            <span class="nav-title">{{ article.series.previous.title }}</span>
-        </a>
-        {% endif %}
-        {% if article.series.next %}
-        <a href="{{ SITEURL }}/{{ article.series.next.url }}" class="next">
-            <span class="nav-label">Next in series &rarr;</span>
-            <span class="nav-title">{{ article.series.next.title }}</span>
-        </a>
-        {% endif %}
-    </nav>
-    {% endif %}
-
     {% if article.translations %}
     <div class="translations">
         <span>Available in:</span>
