@@ -25,10 +25,47 @@
         </div>
     </header>
     
+    {% if article.series %}
+    <aside class="series-banner" aria-label="Series navigation">
+        <div class="series-label">
+            <span class="series-name">{{ article.series.name }}</span>
+            <span class="series-position">{{ article.series.index }} / {{ article.series.all|length }}</span>
+        </div>
+        <ol class="series-list">
+            {% for part in article.series.all %}
+            <li class="{% if part == article %}current{% endif %}">
+                {% if part == article %}
+                <span>{{ part.title }}</span>
+                {% else %}
+                <a href="{{ SITEURL }}/{{ part.url }}">{{ part.title }}</a>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ol>
+    </aside>
+    {% endif %}
+
     <div class="article-content prose">
         {{ article.content }}
     </div>
-    
+
+    {% if article.series and (article.series.previous or article.series.next) %}
+    <nav class="series-nav" aria-label="Within series">
+        {% if article.series.previous %}
+        <a href="{{ SITEURL }}/{{ article.series.previous.url }}" class="prev">
+            <span class="nav-label">&larr; Önceki bölüm</span>
+            <span class="nav-title">{{ article.series.previous.title }}</span>
+        </a>
+        {% endif %}
+        {% if article.series.next %}
+        <a href="{{ SITEURL }}/{{ article.series.next.url }}" class="next">
+            <span class="nav-label">Sonraki bölüm &rarr;</span>
+            <span class="nav-title">{{ article.series.next.title }}</span>
+        </a>
+        {% endif %}
+    </nav>
+    {% endif %}
+
     {% if article.translations %}
     <div class="translations">
         <span>Available in:</span>

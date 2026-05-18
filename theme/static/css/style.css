@@ -405,7 +405,8 @@ a {
 }
 
 /* Article Navigation */
-.article-nav {
+.article-nav,
+.series-nav {
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
@@ -414,14 +415,16 @@ a {
   border-top: 1px solid var(--border-color);
 }
 
-.article-nav a {
+.article-nav a,
+.series-nav a {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   max-width: 45%;
 }
 
-.article-nav .next {
+.article-nav .next,
+.series-nav .next {
   text-align: right;
   margin-left: auto;
 }
@@ -439,7 +442,58 @@ a {
   transition: color 0.2s ease;
 }
 
-.article-nav a:hover .nav-title {
+.article-nav a:hover .nav-title,
+.series-nav a:hover .nav-title {
+  color: var(--link-color);
+}
+
+/* Series banner — shown at top of articles that are part of a series */
+.series-banner {
+  margin: 1.5rem 0 2rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--background-secondary);
+  border-left: 3px solid var(--link-color);
+  border-radius: 4px;
+  font-size: 0.9rem;
+}
+
+.series-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+}
+
+.series-label .series-name {
+  color: var(--text-primary);
+  font-weight: 600;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.9rem;
+}
+
+.series-list {
+  list-style: decimal inside;
+  margin: 0;
+  padding: 0;
+}
+
+.series-list li {
+  padding: 0.15rem 0;
+  color: var(--text-primary);
+}
+
+.series-list li.current {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.series-list a {
   color: var(--link-color);
 }
 

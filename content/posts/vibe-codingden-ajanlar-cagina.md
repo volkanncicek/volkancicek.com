@@ -3,6 +3,7 @@ Date: 2026-02-10 12:00
 Category: AI
 Tags: yapay-zeka, vibe-coding, agentic-engineering, llm
 Slug: vibe-codingden-ajanlar-cagina
+Series: Vibe Coding'den Agentic AI'a
 Summary: Andrej Karpathy "vibe coding"i tanımladıktan bir yıl sonra yeni bir terim önerdi: "agentic engineering." Yüzeyde sadece bir isim değişikliği gibi görünüyor. Ama altında çok daha köklü bir paradigma kayması var.
 
 Şubat 2025'te Andrej Karpathy (OpenAI kurucu ortaklarından, eski Tesla AI direktörü) ["vibe coding"](https://x.com/karpathy/status/1886192184808149383) terimini popülerleştirdi. Fikir basitti: yapay zekaya ne istediğini söyle, kodu yazan o olsun. Kodu okuma. Umursama. Sadece çalışmasını izle.

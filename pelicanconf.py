@@ -65,14 +65,27 @@ PROJECTS = (
     },
 )
 
-# URL settings
-ARTICLE_URL = "blog/{slug}.html"
+# URL settings — extensionless URLs, .html save paths (Cloudflare Pages serves both)
+# Internal links / canonical / sitemap use the URL form that returns 200 directly,
+# avoiding the 308 redirect Cloudflare Pages applies to *.html requests.
+ARTICLE_URL = "blog/{slug}"
 ARTICLE_SAVE_AS = "blog/{slug}.html"
-PAGE_URL = "pages/{slug}.html"
+PAGE_URL = "pages/{slug}"
 PAGE_SAVE_AS = "pages/{slug}.html"
 
-# Direct templates - projects sayfası için
-DIRECT_TEMPLATES = ["index", "archives", "categories", "tags", "projects"]
+# Per-item taxonomy pages disabled — with a small post count they are thin/duplicate
+# content that Google won't index. Re-enable once each tag/category has multiple
+# substantial posts that warrant their own hub page.
+CATEGORY_SAVE_AS = ""
+TAG_SAVE_AS = ""
+AUTHOR_SAVE_AS = ""
+
+# Direct templates — archives kept as the single navigable index; categories/tags
+# cloud pages dropped (they link to the now-disabled per-item pages).
+DIRECT_TEMPLATES = ["index", "archives", "projects"]
+ARCHIVES_URL = "archives"
+ARCHIVES_SAVE_AS = "archives.html"
+PROJECTS_URL = "projects"
 PROJECTS_SAVE_AS = "projects.html"
 
 # Custom template pages (örn. 404)
@@ -126,7 +139,7 @@ RELATIVE_URLS = True
 
 # Plugins
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["sitemap", "neighbors", "plugins.llms", "plugins.merlican"]
+PLUGINS = ["sitemap", "neighbors", "series", "plugins.llms", "plugins.merlican"]
 
 MARKDOWN = {
     "extension_configs": {
@@ -143,9 +156,21 @@ TYPOGRIFY = True
 # Analytics
 GOAT_COUNTER = "volkancicek"
 
-# Sitemap settings
+# Sitemap settings — keep only content URLs (homepage, about page, blog posts).
+# Plugin matches `exclude` regex against path-relative URLs (no leading slash for
+# direct templates) and against obj.url for articles/pages. Nav-only index pages
+# (archives, projects) are reached via internal links from every page — they
+# don't need to be in the sitemap.
 SITEMAP = {
     "format": "xml",
     "priorities": {"articles": 0.7, "indexes": 0.5, "pages": 0.8},
     "changefreqs": {"articles": "monthly", "indexes": "daily", "pages": "monthly"},
+    "exclude": [
+        r"^404\.html$",
+        r"^archives\.html$",
+        r"^projects\.html$",
+        r"^author/",
+        r"^tag/",
+        r"^category/",
+    ],
 }

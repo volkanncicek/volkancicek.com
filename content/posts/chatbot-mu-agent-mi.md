@@ -3,6 +3,7 @@ Date: 2026-03-10 10:00
 Category: AI
 Tags: yapay-zeka, agent, chatbot, rag, mcp, llm
 Slug: chatbot-mu-agent-mi
+Series: Vibe Coding'den Agentic AI'a
 Summary: "Agent" kelimesi her yerde: ürün sayfalarında, iş ilanlarında, LinkedIn paylaşımlarında. Ama çoğu zaman altına bakınca görünen şey daha akıllı bir chatbot. İkisi arasındaki fark ne, nasıl ayırt edersiniz?
 
 Her ürün sayfasında "AI agent" yazıyor. İş ilanları "agentic AI deneyimi" arıyor. Bir startup size "ajanımız var" diyor.

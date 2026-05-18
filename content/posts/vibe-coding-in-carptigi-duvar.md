@@ -3,6 +3,7 @@ Date: 2026-04-21 10:00
 Category: AI
 Tags: yapay-zeka, legacy-kod, vibe-coding
 Slug: vibe-coding-in-carptigi-duvar
+Series: Vibe Coding'den Agentic AI'a
 Summary: Claude Code, Cursor ve GitHub Copilot'u aynı anda açık bırakıp production'da çalışan gerçek bir legacy codebase'e girdim. Vibe coding vaatlerinin nerede çöktüğünü anlatan bir saha notu.
 
 Bir noktada merak ettim: AI araçları gerçekten işe yarıyor mu, yoksa ben sadece temiz projelerde mi kullanıyorum?

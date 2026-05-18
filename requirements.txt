@@ -16,5 +16,8 @@ pelican-sitemap>=1.1.0
 # Article prev/next navigation
 pelican-neighbors>=1.2.0
 
+# Group related articles into series (per-article prev/next within series)
+pelican-series>=3.0.1
+
 # LLMs.txt plugin - converts HTML to markdown
 markdownify>=0.11.0
