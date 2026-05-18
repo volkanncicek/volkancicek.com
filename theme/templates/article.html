@@ -53,13 +53,13 @@
     <nav class="series-nav" aria-label="Within series">
         {% if article.series.previous %}
         <a href="{{ SITEURL }}/{{ article.series.previous.url }}" class="prev">
-            <span class="nav-label">&larr; Önceki bölüm</span>
+            <span class="nav-label">&larr; Previous in series</span>
             <span class="nav-title">{{ article.series.previous.title }}</span>
         </a>
         {% endif %}
         {% if article.series.next %}
         <a href="{{ SITEURL }}/{{ article.series.next.url }}" class="next">
-            <span class="nav-label">Sonraki bölüm &rarr;</span>
+            <span class="nav-label">Next in series &rarr;</span>
             <span class="nav-title">{{ article.series.next.title }}</span>
         </a>
         {% endif %}
@@ -76,7 +76,7 @@
     {% endif %}
 </article>
 
-{% if article.prev_article or article.next_article %}
+{% if not article.series and (article.prev_article or article.next_article) %}
 <nav class="article-nav" aria-label="Article navigation">
     {% if article.prev_article %}
     <a href="{{ SITEURL }}/{{ article.prev_article.url }}" class="prev">
