@@ -405,8 +405,7 @@ a {
 }
 
 /* Article Navigation */
-.article-nav,
-.series-nav {
+.article-nav {
   display: flex;
   justify-content: space-between;
   gap: 1.5rem;
@@ -415,16 +414,14 @@ a {
   border-top: 1px solid var(--border-color);
 }
 
-.article-nav a,
-.series-nav a {
+.article-nav a {
   display: flex;
   flex-direction: column;
   gap: 0.25rem;
   max-width: 45%;
 }
 
-.article-nav .next,
-.series-nav .next {
+.article-nav .next {
   text-align: right;
   margin-left: auto;
 }
@@ -442,8 +439,7 @@ a {
   transition: color 0.2s ease;
 }
 
-.article-nav a:hover .nav-title,
-.series-nav a:hover .nav-title {
+.article-nav a:hover .nav-title {
   color: var(--link-color);
 }
 
