@@ -3,6 +3,10 @@
 <meta name="author" content="{{ AUTHOR }}">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+{% if (category or tag) and not article and not page %}
+<meta name="robots" content="noindex, follow">
+{% endif %}
+
 {% if GOOGLE_SITE_VERIFICATION %}
 <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}">
 {% endif %}

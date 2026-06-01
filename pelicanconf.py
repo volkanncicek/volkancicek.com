@@ -73,11 +73,16 @@ ARTICLE_SAVE_AS = "blog/{slug}.html"
 PAGE_URL = "pages/{slug}"
 PAGE_SAVE_AS = "pages/{slug}.html"
 
-# Per-item taxonomy pages disabled — with a small post count they are thin/duplicate
-# content that Google won't index. Re-enable once each tag/category has multiple
-# substantial posts that warrant their own hub page.
-CATEGORY_SAVE_AS = ""
-TAG_SAVE_AS = ""
+# Tag/category hub pages — generated with extensionless URLs matching the article
+# URL pattern (no .html suffix → no Cloudflare 308 redirect when pills are clicked).
+# These pages get `noindex` via the robots meta tag in head.html (rendered when the
+# page is `category` or `tag`) so Google ignores them while post counts are thin.
+# Re-evaluate once each tag/category has 5+ substantial posts: remove the noindex
+# branch in head.html and the `^tag/`/`^category/` lines in SITEMAP.exclude below.
+CATEGORY_URL = "category/{slug}"
+CATEGORY_SAVE_AS = "category/{slug}.html"
+TAG_URL = "tag/{slug}"
+TAG_SAVE_AS = "tag/{slug}.html"
 AUTHOR_SAVE_AS = ""
 
 # Direct templates — archives kept as the single navigable index; categories/tags
