@@ -80,7 +80,7 @@ graph LR
 
 Ama bir gerçeği gözden kaçırmamak lazım: multi-agent sistemler ciddi maliyet getirir. [Anthropic'in kendi verilerine göre](https://www.anthropic.com/engineering/multi-agent-research-system) tek bir agent normal bir sohbetten yaklaşık 4 kat, multi-agent sistem ise 15 kat daha fazla token tüketir. Dolayısıyla her karmaşık görev multi-agent gerektirmez. Doğru araçlarla donatılmış tek bir agent çoğu zaman aynı sonucu çok daha az maliyetle üretir. Multi-agent, yoğun paralelleştirme gerektiren, tek context window'a sığmayan ve çok sayıda bağımsız alt göreve bölünebilen işler için gerçekten anlam taşır.
 
-Bu yazı serisinin [ilk bölümünde](/blog/vibe-codingden-ajanlar-cagina.html) agentic engineering'in tam da bu yapıyı nasıl mümkün kıldığını anlattım.
+Bu yazı serisinin [ilk bölümünde](/blog/vibe-codingden-ajanlar-cagina) agentic engineering'in tam da bu yapıyı nasıl mümkün kıldığını anlattım.
 
 Araç kullanmak agent olmak için gerekli, ama yeterli değil. Piyasadaki "agentic" etiketli ürünlerin önemli bir kısmı planlama döngüsünden yoksun. Her adımı siz yönetiyorsunuz, model sadece sizi daha az yorarak ilerliyor. Bu chatbot'un evrimi, agent değil.
 
@@ -116,4 +116,4 @@ Agent olmak bir özellik değil, bir davranış biçimidir. Piyasada "agent" yaz
 
 ---
 
-*Bu yazının daha geniş bağlamını merak ediyorsanız: [Vibe Coding'den Ajanlar Çağına](/blog/vibe-codingden-ajanlar-cagina.html). Paradigma kaymasını ve agentic engineering kavramını anlattım.*
+*Bu yazının daha geniş bağlamını merak ediyorsanız: [Vibe Coding'den Ajanlar Çağına](/blog/vibe-codingden-ajanlar-cagina). Paradigma kaymasını ve agentic engineering kavramını anlattım.*

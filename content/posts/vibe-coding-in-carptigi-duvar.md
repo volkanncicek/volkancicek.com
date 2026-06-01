@@ -16,7 +16,7 @@ Sonuçlar beklediğimden çok farklıydı. Ama asıl sürpriz araçların başar
 
 Önce şunu söyleyeyim: AI kodlama araçları iyi. Gerçekten iyi. Temiz bir projede, modern bir stack'te, iyi tanımlanmış görevlerle çalışıyorsanız verimlilik artışı tartışmasız. Ben de günlük işlerimde kullanıyorum, faydasını görüyorum.
 
-LinkedIn'de "vibe coding ile saatte SaaS yazdım" diyen insanları okuduğumda artık itiraz etmiyorum. Greenfield projede, doğru araçla, doğru bağlamda [bu tamamen mümkün](/blog/vibe-codingden-ajanlar-cagina.html). [Karpathy'nin önerdiği](https://x.com/karpathy/status/1886192184808149383) "sadece ne istediğini söyle, bırak yapsın" yaklaşımı bazı durumlarda gerçekten çalışıyor.
+LinkedIn'de "vibe coding ile saatte SaaS yazdım" diyen insanları okuduğumda artık itiraz etmiyorum. Greenfield projede, doğru araçla, doğru bağlamda [bu tamamen mümkün](/blog/vibe-codingden-ajanlar-cagina). [Karpathy'nin önerdiği](https://x.com/karpathy/status/1886192184808149383) "sadece ne istediğini söyle, bırak yapsın" yaklaşımı bazı durumlarda gerçekten çalışıyor.
 
 Ama bazı durumlarda çalışmıyor. Ve bu "bazı durumlar" yazılım dünyasının büyük çoğunluğunu kapsıyor.
 
