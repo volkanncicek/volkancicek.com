@@ -67,11 +67,11 @@ Mimarinin tamamı tek bakışta şöyle:
 ```mermaid
 %%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e8e8f8", "primaryTextColor": "#22223a", "primaryBorderColor": "#7a7a9d", "lineColor": "#8a8a9a", "textColor": "#8a8a9a", "titleColor": "#8a8a9a", "clusterBkg": "transparent", "clusterBorder": "#8a8a9a", "fontSize": "14px"}}}%%
 flowchart TB
-    U["Ekip (tarayıcı)"] --> OW
     IDE["IDE / CLI ajanları<br/>Claude Code · Continue · Copilot"] --> GW
+    U["Ekip (tarayıcı)"] --> OW
     subgraph spark["DGX Spark · 128 GB unified memory"]
-        OW["Open WebUI"] --> OL["Ollama<br/>deneme alanı · model zoo"]
         GW["LiteLLM Gateway<br/>auth · kişi bazlı takip · protokol çevirisi"] --> VL["vLLM · yalnız loopback<br/>terfi etmiş coding modeli"]
+        OW["Open WebUI"] --> OL["Ollama<br/>deneme alanı · model zoo"]
         PR["Prometheus + Grafana"] -.-> GW
         PR -.-> VL
     end
