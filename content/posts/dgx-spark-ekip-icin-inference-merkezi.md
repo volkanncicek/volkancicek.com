@@ -30,8 +30,8 @@ Bir ekibin LLM ihtiyacı tek tip değil. Gördüğüm kadarıyla iki ayrı kulla
 Bu yüzden mimari iki bağımsız yoldan oluşuyor:
 
 ```text
-Chat:    Kullanıcı → Open WebUI → Ollama      (model çeşitliliği, pull-and-go)
-Coding:  IDE/CLI  → LiteLLM gateway → vLLM    (tek model, auth, izleme, throughput)
+Chat:    Kullanıcı → Open WebUI → Ollama
+Coding:  IDE/CLI → LiteLLM gateway → vLLM
 ```
 
 Ama bu ayrımın ikinci, daha az görünen bir boyutu var ve asıl felsefe orada: **Ollama deneme alanı; vLLM'e ise ancak terfiyle çıkılıyor.** Yeni bir model çıktığında ("X çıkmış, hadi bakalım neymiş") dakikalar içinde Ollama'dan çekip deniyorsunuz; kimseye sormadan, hiçbir config'e dokunmadan. vLLM'e ise model *seçilerek* girer: bu makineye sığan, bu makinenin mimarisine oturan ve denemelerde kendini kanıtlamış **tek bir model**, bütün tuning'iyle birlikte oraya kurulur ve orada sabit kalır. Benimsediğim yaklaşım bu: makineye en iyi oturan modeli vLLM'e koy, merakını Ollama'da gider.
@@ -65,17 +65,16 @@ Gateway'in getirdikleri:
 Mimarinin tamamı tek bakışta şöyle:
 
 ```mermaid
-flowchart LR
-    U["Ekip<br/>(tarayıcı)"]
-    IDE["IDE / CLI ajanları<br/>Claude Code · Continue · Copilot"]
+%%{init: {"theme": "base", "themeVariables": {"primaryColor": "#e8e8f8", "primaryTextColor": "#22223a", "primaryBorderColor": "#7a7a9d", "lineColor": "#8a8a9a", "textColor": "#8a8a9a", "titleColor": "#8a8a9a", "clusterBkg": "transparent", "clusterBorder": "#8a8a9a", "fontSize": "14px"}}}%%
+flowchart TB
+    U["Ekip (tarayıcı)"] --> OW
+    IDE["IDE / CLI ajanları<br/>Claude Code · Continue · Copilot"] --> GW
     subgraph spark["DGX Spark · 128 GB unified memory"]
         OW["Open WebUI"] --> OL["Ollama<br/>deneme alanı · model zoo"]
-        GW["LiteLLM Gateway<br/>auth · kişi bazlı takip · protokol çevirisi"] --> VL["vLLM (yalnız loopback)<br/>terfi etmiş coding modeli"]
+        GW["LiteLLM Gateway<br/>auth · kişi bazlı takip · protokol çevirisi"] --> VL["vLLM · yalnız loopback<br/>terfi etmiş coding modeli"]
         PR["Prometheus + Grafana"] -.-> GW
         PR -.-> VL
     end
-    U --> OW
-    IDE -->|"Anthropic / OpenAI API"| GW
 ```
 
 
