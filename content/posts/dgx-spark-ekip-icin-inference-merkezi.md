@@ -58,7 +58,7 @@ Buradaki en sevdiğim numara şu: **vLLM'i sadece loopback'e bind edin.** Dışa
 
 Gateway'in getirdikleri:
 
-- **Auth ve kişi bazlı takip**: Gateway her ekip üyesine ayrı bir sanal anahtar dağıtmanıza izin veriyor; kim, hangi IDE'den, ne kadar kullanıyor kayda geçiyor. Bunu ilk günden yapın: ortak bir anahtarla başlayıp sonradan kişi bazlı kırılıma geçmek, dağıttığınız onlarca anahtarı geri toplamak demek.
+- **Auth ve kişi bazlı takip**: Her ekip üyesine kendi sanal anahtarı. Kim, hangi IDE'den, ne kadar kullanıyor; hepsi kayıtlı. Bunu ilk günden yapın: ortak bir anahtarla başlayıp sonradan kişi bazlı kırılıma geçmek, dağıttığınız onlarca anahtarı geri toplamak demek.
 - **Protokol çevirisi**: vLLM OpenAI API konuşur, Claude Code ise Anthropic Messages API bekler. LiteLLM ikisini de aynı anda sunuyor; [aynı yerel modeli hem Claude Code'a hem Continue'ya bağlayabiliyorsunuz](https://dev.to/dcruver/running-claude-code-with-local-llms-via-vllm-and-litellm-599b). Claude Code'a `ANTHROPIC_BASE_URL` olarak gateway adresini verdiğinizde model, hiç buluta çıkmadan masadaki kutudan cevap veriyor.
 - **Psikolojik bir bonus**: Yerel model bedava ama gateway'de modele sembolik bir tarife tanımlarsanız herkes panelinde bir "harcama" görüyor. Kaynak bedava olunca kullanım görünmez oluyor; sahte bir fiyat etiketi bile kullanımı görünür kılıyor.
 
