@@ -58,7 +58,7 @@ Buradaki en sevdiğim numara şu: **vLLM'i sadece loopback'e bind edin.** Dışa
 
 Gateway'in getirdikleri:
 
-- **Auth ve kişi bazlı takip**: Her ekip üyesine kendi sanal anahtarı. Kim, hangi IDE'den, ne kadar kullanıyor; hepsi kayıtlı.
+- **Auth ve kişi bazlı takip**: Gateway her ekip üyesine ayrı bir sanal anahtar dağıtmanıza izin veriyor; kim, hangi IDE'den, ne kadar kullanıyor kayda geçiyor. Bunu ilk günden yapın: ortak bir anahtarla başlayıp sonradan kişi bazlı kırılıma geçmek, dağıttığınız onlarca anahtarı geri toplamak demek.
 - **Protokol çevirisi**: vLLM OpenAI API konuşur, Claude Code ise Anthropic Messages API bekler. LiteLLM ikisini de aynı anda sunuyor; [aynı yerel modeli hem Claude Code'a hem Continue'ya bağlayabiliyorsunuz](https://dev.to/dcruver/running-claude-code-with-local-llms-via-vllm-and-litellm-599b). Claude Code'a `ANTHROPIC_BASE_URL` olarak gateway adresini verdiğinizde model, hiç buluta çıkmadan masadaki kutudan cevap veriyor.
 - **Psikolojik bir bonus**: Yerel model bedava ama gateway'de modele sembolik bir tarife tanımlarsanız herkes panelinde bir "harcama" görüyor. Kaynak bedava olunca kullanım görünmez oluyor; sahte bir fiyat etiketi bile kullanımı görünür kılıyor.
 
@@ -84,15 +84,27 @@ flowchart TB
 Şimdi baştaki tuzağa dönelim. Unified memory'de vLLM'in `--gpu-memory-utilization` parametresi klasik anlamını yitiriyor: GPU'ya değil, *ortak havuza* ne kadar el koyacağını söylüyorsunuz. Çoğu rehber 0.85-0.90 önerir; tek başına vLLM koşturuyorsanız doğru. Ama aynı kutuda Ollama da yaşayacaksa hesap değişiyor:
 
 ```text
-128 GB toplam havuz
+~121 GB kullanılabilir havuz (128 GB'ın tamamı sizin değil)
 - ~48 GB  vLLM rezervi (0.40 utilization: ağırlıklar + KV cache)
-- ~50 GB  işletim sistemi, container'lar, dosya cache, pay
-= ~30 GB  Ollama'nın on-demand modeline kalan alan
+- ~43 GB  işletim sistemi, container'lar, dosya cache, pay
+= ~30 GB  Ollama'nın on-demand modeline kalan boşluk
 ```
 
-Bu sınırı aştığınızda olanlar, klasik GPU dünyasından alışık olduğunuz senaryo değil: ayrık GPU'da bellek biterse CUDA out-of-memory hatası alırsınız, süreç ölür, hayat devam eder. Unified memory'de ise havuz taşınca sistem **swap'a düşüyor** ve GPU'yla aynı belleği paylaşan her şey (sshd dahil) sürünmeye başlıyor. Makineye SSH bile atamıyorsunuz; tek çare güç düğmesi. "Bir 30 GB model daha yükleyeyim, ne olacak" dediğiniz an bütün ekibi altyapısız bırakabiliyorsunuz.
+Dikkat: **bu 30 GB bir *boşluk*, model tavanı değil.** Bir modelin diskteki ağırlık boyutu, çalışırken kaplayacağı yerin tamamı değil. Pratikte ~27 GB'ın üstünde bir modeli vLLM ile aynı anda ayakta tutmak riskli. "30 GB boşluğum var, 29 GB'lık model sığar" hesabı sizi tam da duvara götürür.
+
+Bu sınırı aştığınızda olanlar, klasik GPU dünyasından alışık olduğunuz senaryo değil: ayrık GPU'da bellek biterse CUDA out-of-memory hatası alırsınız, süreç ölür, hayat devam eder. Unified memory'de ise havuz taşınca sistem **swap'a düşüyor** ve GPU'yla aynı belleği paylaşan her şey (sshd dahil) sürünmeye başlıyor. Makineye SSH bile atamıyorsunuz.
+
+Güç düğmesi de tek başına yetmiyor: makine açılırken servisler geri gelip aynı belleği yeniden istiyor. Bizde reset sonrası, boot penceresi kapanmadan suçlu container'ı `docker rm -f` ile kaldırmak gerekti. Kurtarma planınızı kutuyu kaybetmeden önce yazın. "Bir 30 GB model daha yükleyeyim, ne olacak" dediğiniz an bütün ekibi altyapısız bırakabiliyorsunuz.
 
 Ders: unified memory'li bir kutuda bellek planlaması bir tuning detayı değil, *availability* meselesi. Sınırları config'e gömün, "dikkatli oluruz"a güvenmeyin.
+
+## Asıl Hız Kaldıracı Beklediğiniz Yerde Değil
+
+Yerel LLM konuşması bant genişliği ve token/saniye etrafında dönüyor. Ama bir coding ajanının gecikmesini belirleyen şey, prompt'un **toplam** uzunluğu değil: prefix cache'te bulunmayan, yani gerçekten yeniden hesaplanması gereken token sayısı. Claude Code gibi istemciler her istekte aynı devasa system prompt'u ve tool tanımlarını tekrar gönderir; bu önek cache'e oturduğu sürece maliyeti neredeyse sıfırdır, [vLLM bunu otomatik olarak yapar](https://docs.vllm.ai/en/latest/design/prefix_caching.html). Cache ıskalandığında ise o devasa prefix'in bedelini her seferinde yeniden ödersiniz.
+
+Bunun pratik bir sonucu var ve kurulum rehberlerinin hiçbirinde yazmıyor: **MCP konfigürasyonunuz aslında gecikme bütçenizdir.** Anthropic'in kendi mühendislik yazısı, bağlı araç sayısı arttıkça [bütün tool tanımlarını baştan yüklemenin "ajanları yavaşlattığını ve maliyeti artırdığını"](https://www.anthropic.com/engineering/code-execution-with-mcp) söylüyor. Ama mesele sadece bağlam penceresi değil: yeni bir MCP sunucusu eklemek system prompt'unuzun önekini değiştirir, cache'i ıskalatır ve o "bedava" prefix'in bedelini geri getirir. Çok turlu agentic işlerde cache'i bozmamanın kritikliği [üç büyük sağlayıcı ve üç ayrı caching stratejisi üzerinde akademik olarak da çalışılmış](https://arxiv.org/abs/2601.06007).
+
+Buradan çıkan kural "cache donanımı yener" değil. Daha basiti: **ölçmeniz gereken değişken prompt token sayısı değil, uncached token sayısı.** Yeni donanım almadan önce cache hit oranınıza bakın. Orada duran kazanç, çoğu zaman bir sonraki kartın vaat ettiğinden büyük.
 
 ## Hobi Kurulumu ile İşletilen Sistem Arasındaki Çizgi
 
@@ -114,7 +126,7 @@ Bunların hiçbiri roket bilimi değil. Ama kurulum rehberlerinin hiçbirinde ye
 
 Baştaki ikinci dipnota geldik. Ve ilginç olan şu: bu benim yorumum bile değil, üreticinin kendi ifadesi. NVIDIA'nın [ürün sayfası](https://www.nvidia.com/en-us/products/workstations/dgx-spark/) hedef kitleyi saklamıyor ("ideal for AI developer, researcher, and data scientist workloads") ve prototipleme iş yükünü aynen şöyle tarifliyor: modelini geliştir, test et, doğrula, sonra *"eventual migration to the NVIDIA DGX cloud or other NVIDIA-accelerated data centers"*. Inference başlığında bile seçilen fiiller "test" ve "validate". Bu kutuda geliştirdiğiniz işin eninde sonunda başka bir yere taşınacağını üretici baştan söylüyor. vLLM'in resmi DGX Spark yazısı da aynı çizgide: *["DGX Spark is better suited to small-batch inference than high-concurrency serving"](https://vllm.ai/blog/2026-06-01-vllm-dgx-spark)*; bu yüzden `--max-num-seqs` düşük tutulmalı diyorlar. Bunu bir eksiklik olarak değil, ürünün ne olduğunun dürüst tanımı olarak okumak gerekiyor: bu bir geliştirici kutusu, ekip sunucusu kılığına sokulabiliyor olması onu sunucu yapmıyor.
 
-Rakamlar da aynı şeyi söylüyor: [aynı sınıf bir MoE coding modeliyle GB10 üzerinde yayınlanmış benchmark'lar](https://rikkarth.com/blog/2026-04-23-benchmark-results-for-qwen-qwen3-6-35b-a3b-fp8-nvidia-dgx-spark-gb10-serving-via-vllm) tek kullanıcıda ~28-30 tok/s, 32 eşzamanlı istekte toplamda ~156 tok/s gösteriyor; rahat çalışma bölgesi 1-8 eşzamanlı istek, 16'nın üzerinde kullanıcı başına gecikme chat için hantallaşıyor. Agentic kullanım bu hesabı daha da sıkıştırıyor: tek bir Claude Code oturumu sürekli, bazen paralel istek üretir; yoğun çalışan tek bir kullanıcı birkaç slotu tek başına işgal edebilir. Yani bu kutu bir avuç ağır kullanıcıyı ve makul bir hafif kullanıcı kitlesini taşır; yüzlerce kişiye hizmet verecek gerçek bir inference merkezi başka sınıf donanım ister. 2026 itibarıyla o sınıfta fiyat/performans dengesinin en iyi olduğu yer, [96 GB VRAM'li RTX Pro 6000 Blackwell](https://www.thundercompute.com/blog/nvidia-rtx-pro-6000-pricing) gibi kartlarla kurulmuş bir vLLM sunucusu: 1.8 TB/s bellek bant genişliği (Spark'ın yaklaşık 7 katı) ve [tek kart yüklerinde H100 SXM'i throughput'ta geçip token maliyetini %28 düşüren ölçümler](https://www.cloudrift.ai/blog/benchmarking-rtx6000-vs-datacenter-gpus). Peki ikinci bir Spark almak? Cevap amaca göre değişiyor; merdivenin ilk basamağı tam olarak bu.
+Rakamlar da aynı şeyi söylüyor. Tek kullanıcı hızı için [aynı sınıf bir MoE coding modeliyle GB10 üzerinde yayınlanmış benchmark'lar](https://rikkarth.com/blog/2026-04-23-benchmark-results-for-qwen-qwen3-6-35b-a3b-fp8-nvidia-dgx-spark-gb10-serving-via-vllm) ~28-30 tok/s civarını gösteriyor. O ölçümün FP8 olduğunu not düşeyim; NVFP4'te tablo değişir. Eşzamanlılık tarafında ise motoru yazanların kendi ifadesinden iyi kaynak yok ve yukarıda alıntıladığım cümle net: bu kutu yüksek eşzamanlılıklı serving için değil, küçük batch'ler için. Pratikte rahat çalışma bölgesi bir avuç eşzamanlı istek; ötesinde kullanıcı başına gecikme chat için hantallaşıyor. Agentic kullanım bu hesabı daha da sıkıştırıyor: tek bir Claude Code oturumu sürekli, bazen paralel istek üretir; yoğun çalışan tek bir kullanıcı birkaç slotu tek başına işgal edebilir. Yani bu kutu bir avuç ağır kullanıcıyı ve makul bir hafif kullanıcı kitlesini taşır; yüzlerce kişiye hizmet verecek gerçek bir inference merkezi başka sınıf donanım ister. 2026 itibarıyla o sınıfta fiyat/performans dengesinin en iyi olduğu yer, [96 GB VRAM'li RTX Pro 6000 Blackwell](https://www.thundercompute.com/blog/nvidia-rtx-pro-6000-pricing) gibi kartlarla kurulmuş bir vLLM sunucusu: 1.8 TB/s bellek bant genişliği (Spark'ın yaklaşık 7 katı) ve [tek kart yüklerinde H100 SXM'i throughput'ta geçip token maliyetini %28 düşüren ölçümler](https://www.cloudrift.ai/blog/benchmarking-rtx6000-vs-datacenter-gpus). Peki ikinci bir Spark almak? Cevap amaca göre değişiyor; merdivenin ilk basamağı tam olarak bu.
 
 ### Sonrası İçin: Ölçek Merdiveni
 
@@ -136,7 +148,7 @@ Ve gateway mimarisinin uzun vadeli getirisi tam burada ortaya çıkıyor: gün g
 Elimdeki tabloya bakınca:
 
 - **Veri dışarı çıkmıyor.** Coding ajanına açtığınız her dosya sizin ağınızda kalıyor. Kaynak koduna hassasiyeti olan herhangi bir ortam için bu tek başına yeterli gerekçe olabilir.
-- **Maliyet öngörülebilir.** Cloud API'de yoğun coding-agent kullanımı faturayı hızla büyütüyor; [yoğun kullanımda birkaç ayda başabaş noktasına gelen hesaplar](https://fungies.io/nvidia-dgx-spark-local-llm-setup-guide-2026/) gerçekçi. Kutunun elektrik masrafı ise lafını etmeye değmez.
+- **Maliyet öngörülebilir *hale gelir*.** Cloud API'de yoğun coding-agent kullanımı faturayı hızla büyütüyor. Ama "kaç ayda başabaş" sorusunun tek dürüst cevabı sizin token hacminiz; yukarıdaki iki analizin ayrıştığı yer de tam olarak orası. Bu kutunun asıl işi zaten o hacmi ölçmek. Elektrik masrafı ise lafını etmeye değmez.
 - **Sınırlar net.** Frontier modellerin (Claude, GPT) muhakeme derinliğini yerelden beklemeyin; 35B sınıfı bir MoE coding modeli günlük işlerin büyük kısmını taşıyor ama en zor mimari kararlarda fark hissediliyor. Yüzlerce kişilik eşzamanlı yük de tek kutunun işi değil, ama bir üstteki bölümde anlattığım gibi zaten amaç o değil: amaç, o yükün gerçekte ne olduğunu öğrenmek.
 
 Benim için asıl kazanım şuydu: "yerel LLM" konuşması genelde donanım ve token/saniye etrafında dönüyor. Halbuki bir ekibin buna gerçekten güvenmesi için gereken şeyler başka yerde: doğru yol ayrımı, zorlanmış bir giriş kapısı, bellek disiplini, gözlemlenebilirlik ve sıkıcı ama vazgeçilmez operasyon pratikleri. Kutu bir hafta sonunda kurulur; *altyapı* haftalarca işletilerek olur.
