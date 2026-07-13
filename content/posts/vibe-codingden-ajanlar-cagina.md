@@ -77,11 +77,11 @@ Bu dönüşüm üç dalgada yaşandı:
 
 - **Birinci dalga:** AI, IDE'nin içinde bir eklenti olarak geldi: [GitHub Copilot](https://github.com/features/copilot). IDE hala merkezde, AI bir misafirdi.
 - **İkinci dalga:** AI terminale taşındı. [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex CLI](https://github.com/openai/codex) ve Gemini CLI editöre ihtiyaç duymadan çalışabiliyordu. IDE isteğe bağlı hale geldi.
-- **Üçüncü dalga:** Ajan altyapıları belirdi. [Anthropic'in Claude Managed Agents](https://docs.anthropic.com/en/docs/claude-code/overview)'ı (Nisan 2026, public beta) kendi döngünüzü ve sandbox ortamınızı sıfırdan kurmanıza gerek kalmadan Claude'u özerk ajan olarak çalıştırabildiğiniz yönetilen bir ortam sunuyor.
+- **Üçüncü dalga:** Ajan altyapıları belirdi. [Anthropic'in Claude Managed Agents](https://www.anthropic.com/engineering/managed-agents)'ı (Nisan 2026, public beta) kendi döngünüzü ve sandbox ortamınızı sıfırdan kurmanıza gerek kalmadan Claude'u özerk ajan olarak çalıştırabildiğiniz yönetilen bir ortam sunuyor.
 
 Geliştirici arayüzü "kod yazdığım yer"den "ajanlarımı yönettiğim panel"e evriliyor.
 
-IDE yok olmuyor. Ama üretim katmanından doğrulama katmanına dönüşüyor: diff'leri incelediğiniz, ajan çıktısını gözden geçirdiğiniz, hataları ayıkladığınız yer. Geleceğin IDE'si artık sadece bir metin editörü değil. [Cursor](https://www.cursor.com/)'ın agentic modunda ya da [Windsurf](https://windsurf.com/)'te gördüğümüz gibi, ajanlarınızı izlediğiniz bir kontrol kulesi haline geliyor.
+IDE yok olmuyor. Ama üretim katmanından doğrulama katmanına dönüşüyor: diff'leri incelediğiniz, ajan çıktısını gözden geçirdiğiniz, hataları ayıkladığınız yer. Geleceğin IDE'si artık sadece bir metin editörü değil. [Cursor](https://www.cursor.com/)'ın agentic modunda ya da Windsurf'te (Haziran 2026'da Cognition tarafından Devin Desktop adıyla yeniden konumlandırıldı) gördüğümüz gibi, ajanlarınızı izlediğiniz bir kontrol kulesi haline geliyor.
 
 ## Uzmanlık Paradoksu
 
