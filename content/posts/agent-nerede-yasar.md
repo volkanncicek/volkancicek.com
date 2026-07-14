@@ -4,7 +4,7 @@ Category: AI
 Tags: yapay-zeka, agent, harness, context-engineering, mcp, llm
 Slug: agent-nerede-yasar
 Series: Vibe Coding'den Agentic AI'a
-Summary: Agent'ın ne olduğunu konuştuk. Peki bu şey nerede duruyor? Terminalde mi, bulutta mı, kurumsal bir SaaS'ın içinde mi? Cevap sandığınızdan önemli, çünkü agent'ın adresi kontrolün kimde ve verinin nerede olduğunu belirliyor.
+Summary: Agent'ın ne olduğunu konuştuk. Peki bu şey nerede duruyor? Terminalde mi, bulutta mı, kurumsal bir SaaS'ın içinde mi? Cevap sandığınızdan önemli, çünkü agent'ın adresi kontrolün kimde ve verinin nereye gittiğini belirliyor.
 
 Bu yazıyı yazmaya başladığımda, beş ay önce yayımladığım bir yazıdaki linki düzeltmek zorunda kaldım.
 
@@ -53,7 +53,11 @@ graph LR
     A --> G[Tarayıcı]
 ```
 
-**Lokal terminal.** Agent sizin makinenizde, sizin kabuğunuzda, sizin dosyalarınızla çalışır. Claude Code, OpenAI Codex CLI, OpenCode, Aider, Cline bu kategoride. Kontrol tamamen sizde; veri makinenizden çıkmaz (modele gönderilen context hariç). Bedeli şudur: agent'ın yapabileceği hasarın sınırı, sizin kullanıcı hesabınızın yetkisidir.
+**Lokal terminal.** Agent sizin makinenizde, sizin kabuğunuzda, sizin dosyalarınızla çalışır. Claude Code, OpenAI Codex CLI, OpenCode, Aider, Cline bu kategoride. Döngü sizin, izin sınırlarını siz çiziyorsunuz.
+
+Ama burada yaygın bir yanılgıyı düzeltelim: "lokalde çalışıyor" demek "veri makinemden çıkmıyor" demek değildir. Agent kodunuzu okur ve modele context olarak yollar. Yani veri çıkar. Lokal olmanın gerçek kazancı verinin *kalması* değil, **nereye gideceğine sizin karar vermeniz**: Anthropic'in API'sine de yollayabilirsiniz, kendi sunucunuzdaki bir modele de. [Bir önceki yazıda anlattığım DGX Spark kurulumu](/blog/dgx-spark-ekip-icin-inference-merkezi) tam olarak bu yüzden vardı; modeli kendi kutunuza koyduğunuzda kod gerçekten dışarı çıkmıyor.
+
+Bedeli ise şu: agent'ın yapabileceği hasarın sınırı, sizin kullanıcı hesabınızın yetkisidir.
 
 Bu adresin etrafında son bir yılda yeni bir katman büyüdü. Onlarca açık kaynak proje, terminaldeki agent'ları paralel koşturmak, her birine ayrı bir çalışma kopyası vermek ve çıktılarını birbirine denetletmek için yazıldı. Birileri "coding agent'lar için htop" bile yazdı: canlı oturumlar, context penceresi doluluğu, anlık token maliyeti. Yanlarında ikinci bir küme belirdi: agent'ın hangi komutu çalıştırabileceğini varsayılan olarak reddeden sandbox'lar, geri alınamaz eylemlerin önüne onay geçidi koyan politika katmanları, her adımı imzalayıp denetim kaydına yazan araçlar. Kimse bunları eğlence olsun diye yazmıyor. Agent'ın adresi tek bir terminal olmaktan çıkıp izlenmesi gereken bir filoya dönüştüğü anda, harness'ın zorlayıcı kısmı bir ürüne dönüşüyor. Bu yazının sonunda konuşacağımız kırılma noktalarının pazar cevabı bunlar.
 
@@ -81,7 +85,7 @@ Bir geliştirici olarak agent'ınızın nerede yaşayacağını **siz seçersini
 
 Kurumsal bir kullanıcı olarak bu seçim size ait değildir. Agent, şirketin verisinin durduğu yerde yaşar. Copilot Studio'da kurduğunuz agent Microsoft 365 tenant'ınızın içindedir. Agentforce, Salesforce'un içindedir. Adres, veriyi takip eder.
 
-Teknik ve teknik olmayan kullanıcı arasındaki gerçek fark yetenek değil. **Kontrolün ve verinin nerede durduğu.** Bu cümle, listedeki bütün ürünler öldükten sonra da doğru kalacak.
+Teknik ve teknik olmayan kullanıcı arasındaki gerçek fark yetenek değil. **Döngüyü kimin yönettiği ve verinin nereye gittiği.** Bu cümle, listedeki bütün ürünler öldükten sonra da doğru kalacak.
 
 ## No-code Agent Gerçekten Agent mı?
 
@@ -197,7 +201,7 @@ Vibe coding tabanı yükseltir. Agentic engineering tavanı zorlar. Bu serinin a
 
 Ama aynı konuşmada modeller için kullandığı tanım daha kıymetli: **jagged, alien tools**: tırtıklı, yabancı araçlar. Doğru duruş ne toptan reddetmek ne körü körüne güvenmek. Doğru duruş *ampirik aşinalık*: kullanacaksın, sınırını göreceksin, nerede kırıldığını bileceksin.
 
-Geride kalmamak için bir araç öğrenmek zorunda değilsiniz. Windsurf öğrenenler bugün Devin Desktop öğreniyor. Öğrenmeniz gereken şey ilke: **agent'ın adresi kontrolün kimde ve verinin nerede olduğunu belirler.** Terminaldeki agent'ta ikisi de sizde. SaaS'taki agent'ta ikisi de vendor'da. Bulut sandbox'taki agent'ta beyin bir yerde, eller başka yerde.
+Geride kalmamak için bir araç öğrenmek zorunda değilsiniz. Windsurf öğrenenler bugün Devin Desktop öğreniyor. Öğrenmeniz gereken şey ilke: **agent'ın adresi, döngüyü kimin yönettiğini ve verinin nereye gittiğini belirler.** Terminaldeki agent'ta ikisini de siz seçersiniz. SaaS'taki agent'ta ikisini de vendor seçer. Bulut sandbox'takinde beyin bir yerde, eller başka yerde.
 
 Bunun en somut kanıtı Hermes'in kurulum sihirbazında duruyor. `hermes claw migrate` komutu, OpenClaw kullanıcısının persona dosyasını, hafızasını, kendi yazdığı skill'leri ve komut izin listesini alıp yeni agent'a taşıyor. Araç değişti; kavramlar taşındı. Çünkü taşınabilir olan şey ürün değil, ürünün altındaki yapıydı: bir persona dosyası, bir hafıza dizini, bir izin sınırı.
 
