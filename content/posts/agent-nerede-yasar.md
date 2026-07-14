@@ -3,7 +3,7 @@ Date: 2026-07-14 10:00
 Category: AI
 Tags: yapay-zeka, agent, harness, context-engineering, mcp, llm
 Slug: agent-nerede-yasar
-Image: images/agent-nerede-yasar/kart-v2.png
+Image: images/agent-nerede-yasar/agent-nerede-yasar-hero.png
 Series: Vibe Coding'den Agentic AI'a
 Summary: Agent'ın ne olduğunu konuştuk. Peki bu şey nerede duruyor? Terminalde mi, bulutta mı, kurumsal bir SaaS'ın içinde mi? Cevap sandığınızdan önemli, çünkü agent'ın adresi kontrolün kimde ve verinin nereye gittiğini belirliyor.
 
