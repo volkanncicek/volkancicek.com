@@ -4,7 +4,7 @@ Category: AI
 Tags: yapay-zeka, agent, harness, context-engineering, mcp, llm
 Slug: agent-nerede-yasar
 Series: Vibe Coding'den Agentic AI'a
-Summary: Agent'ın ne olduğunu konuştuk. Peki bu şey fiziksel olarak nerede duruyor? Terminalde mi, bulutta mı, kurumsal bir SaaS'ın içinde mi? Cevap sandığınızdan önemli, çünkü agent'ın adresi kontrolün kimde ve verinin nerede olduğunu belirliyor.
+Summary: Agent'ın ne olduğunu konuştuk. Peki bu şey nerede duruyor? Terminalde mi, bulutta mı, kurumsal bir SaaS'ın içinde mi? Cevap sandığınızdan önemli, çünkü agent'ın adresi kontrolün kimde ve verinin nerede olduğunu belirliyor.
 
 Bu yazıyı yazmaya başladığımda, beş ay önce yayımladığım bir yazıdaki linki düzeltmek zorunda kaldım.
 
@@ -14,7 +14,7 @@ Beş ay. Üç ürün. Yazdığım cümle hâlâ doğruydu, ama gösterdiğim adr
 
 Bu yeni de değil. Microsoft, Ekim 2025'te AutoGen ve Semantic Kernel'i Agent Framework çatısı altında birleştirip ikisini de bakım moduna almıştı; çatının 1.0 sürümü Nisan 2026'da çıktı. Araçlar ölmüyor sadece, birbirinin içine de göçüyor.
 
-Bu yüzden bu yazı bir araç listesi olmayacak. Araç listeleri ölüyor. Bunun yerine ölmeyen bir soruyu soracağım: **bir agent fiziksel olarak nerede yaşar ve bu adres neyi belirler?**
+Bu yüzden bu yazı bir araç listesi olmayacak. Araç listeleri ölüyor. Bunun yerine ölmeyen bir soruyu soracağım: **bir agent aslında nerede yaşar ve bu adres neyi belirler?**
 
 Serinin [ilk yazısında](/blog/vibe-codingden-ajanlar-cagina) paradigmanın nasıl kaydığını anlattım. [İkinci yazıda](/blog/chatbot-mu-agent-mi) "agent" kelimesinin altında gerçekte ne olduğunu ayıkladım. [Üçüncüsünde](/blog/vibe-coding-in-carptigi-duvar) bu araçların gerçek bir legacy codebase'de nereye çarptığını yazdım. Şimdi eksik kalan parça: LLM'e beden verdik dedik, peki bu beden nerede duruyor?
 
