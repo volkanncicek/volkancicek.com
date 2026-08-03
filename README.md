@@ -107,10 +107,13 @@ DNS records (Cloudflare → DNS → Records):
 | CNAME | `volkancicek.com` | `volkancicek.pages.dev` | Proxied | Apex → Cloudflare Pages origin |
 | CNAME | `www` | `volkancicek.com` | Proxied | Caught by Redirect Rule → apex (see below) |
 | TXT | `volkancicek.com` | `v=spf1 -all` | DNS only | SPF: no server is authorised to send mail from this domain |
-| TXT | `_dmarc` | `v=DMARC1; p=reject; rua=mailto:volkanciicek@gmail.com; ruf=mailto:...; fo=1` | DNS only | DMARC: reject spoofed mail, reports to owner |
+| TXT | `_dmarc` | `v=DMARC1; p=reject;` | DNS only | DMARC: reject mail that claims to be from this domain |
+| MX | `volkancicek.com` | `.` (priority `0`) | DNS only | Null MX per [RFC 7505](https://www.rfc-editor.org/rfc/rfc7505): this domain accepts no mail |
 | TXT | `volkancicek.com` | `google-site-verification=...` | DNS only | Auto-added by Search Console via Cloudflare integration; **do not delete** |
 
-No MX record (intentional — this domain does not receive email; owner uses `volkanciicek@gmail.com`).
+This domain neither sends nor receives email; the owner uses `volkanciicek@gmail.com`. The three records above say that in the three ways a receiving server checks: SPF authorises no sender, DMARC rejects anything claiming to be from here, and the null MX declares that no host accepts mail. The null MX matters because a domain with *no* MX record at all makes some senders fall back to the A record, which here is a Cloudflare proxy IP.
+
+The DMARC record deliberately carries no `rua`/`ruf` reporting addresses. It used to point at a `gmail.com` address, but [RFC 7489](https://www.rfc-editor.org/rfc/rfc7489#section-7.1) requires the receiving domain to publish a record authorising reports for a third-party domain, and Google does not, so those reports were never being delivered. If aggregate reports are wanted later, enable Cloudflare's DMARC Management instead, which collects them in-zone and avoids the authorisation problem.
 
 ### Hosting — Cloudflare Pages
 
