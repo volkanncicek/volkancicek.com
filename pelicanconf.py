@@ -38,18 +38,18 @@ EXTRA_PATH_METADATA = {
     "extra/og-image.png": {"path": "og-image.png"},
 }
 
-# Projects - Projelerinizi buraya ekleyin
+# Projects page. Entry schema, status vocabulary and ordering rule: see STANDARDS.md.
 PROJECTS = (
-    {
-        "name": "PyData Archive",
-        "description": "An archive of PyData conference talks and tutorials. PyData is an educational program of NumFOCUS that provides a forum for the international community of users and developers of data analysis tools.",
-        "url": "https://pydataarchive.com",
-        "status": "active",
-    },
     {
         "name": "Voice Dub Studio",
         "description": "AI-powered voice dubbing and translation platform for video content.",
         "url": "https://voicedubstudio.com",
+        "status": "active",
+    },
+    {
+        "name": "git-relay",
+        "description": "Two-way git sync for a server that cannot reach your git remote, relayed through your workstation. Plain git over SSH, with no rsync and no agent to install.",
+        "url": "https://github.com/volkanncicek/git-relay",
         "status": "active",
     },
     {
@@ -59,10 +59,16 @@ PROJECTS = (
         "status": "active",
     },
     {
+        "name": "LiteLLM Supply Chain Audit",
+        "description": "Standalone CLI that audits a machine for traces of the March 2026 LiteLLM PyPI compromise: the known-bad releases, the injected .pth file, and the attacker's callback host.",
+        "url": "https://github.com/volkanncicek/litellm-supply-chain-audit",
+        "status": "completed",
+    },
+    {
         "name": "Input Lock",
         "description": "A desktop app that temporarily locks your keyboard and mouse input. Perfect for cleaning breaks or preventing accidental input.",
         "url": "https://github.com/volkanncicek/input-lock",
-        "status": "active",
+        "status": "completed",
     },
 )
 
