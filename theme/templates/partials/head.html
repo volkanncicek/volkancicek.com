@@ -67,8 +67,10 @@
 {% endif %}
 <meta property="og:site_name" content="{{ SITENAME }}">
 <meta property="og:locale" content="{{ OG_LOCALE|default('en_US') }}">
+{# article.image carries no SITEURL prefix: image_process rewrites this tag to the
+   processed derivative and resolves the URL itself (see IMAGE_PROCESS_METADATA). #}
 {% if article and article.image %}
-<meta property="og:image" content="{{ SITEURL }}/{{ article.image }}">
+<meta property="og:image" content="{{ article.image }}">
 {% elif SITELOGO %}
 <meta property="og:image" content="{{ SITEURL }}/{{ SITELOGO }}">
 {% else %}
@@ -95,7 +97,7 @@
 <meta name="twitter:url" content="{{ SITEURL }}/">
 {% endif %}
 {% if article and article.image %}
-<meta name="twitter:image" content="{{ SITEURL }}/{{ article.image }}">
+<meta name="twitter:image" content="{{ article.image }}">
 {% elif SITELOGO %}
 <meta name="twitter:image" content="{{ SITEURL }}/{{ SITELOGO }}">
 {% else %}

@@ -6,7 +6,7 @@ Slug: dgx-spark-ekip-icin-inference-merkezi
 Image: images/dgx-spark/dgx-spark-hero.jpeg
 Summary: "Elimizde böyle bir cihaz var, neler yapabiliriz?" diye başlayan bir deneme: tek NVIDIA DGX Spark üzerinde chat için Ollama, coding için vLLM + LiteLLM gateway, üstüne monitoring. Ve asıl mesaj: bu kutu nihai inference merkezi değil, o merkezi doğru boyutlandırmak için talebi ölçen pilot platform.
 
-![Masamdaki NVIDIA DGX Spark]({static}/images/dgx-spark/dgx-spark-hero.jpeg)
+![Masamdaki NVIDIA DGX Spark]({static}/images/dgx-spark/dgx-spark-hero.jpeg){: .image-process-article width=2551 height=1913}
 
 Son aylarda masamda duran bu küçük altın renkli kutuyla uğraşıyorum: [NVIDIA DGX Spark](https://www.nvidia.com/en-us/products/workstations/dgx-spark/). Hikâye bir satın alma analiziyle değil, basit bir merakla başladı. Elimizde böyle bir cihaz vardı ve sorulacak soru belliydi: *bununla neler yapabiliriz?* İnternette hakkında bolca yazı var; çoğu ya "kutudan çıkardım, Ollama kurdum, çalıştı" seviyesinde ya da tek geliştiricinin kendi masası için yaptığı denemeler. Kurcaladıkça soru büyüdü: **bu kutu tek bir kişinin oyuncağı olmaktan çıkıp bir ekibin gerçekten kullandığı, izlenen, ayakta tutulan bir inference altyapısına dönüşebilir mi?**
 

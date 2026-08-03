@@ -19,5 +19,8 @@ pelican-neighbors>=1.2.0
 # Group related articles into series (per-article prev/next within series)
 pelican-series>=3.0.1
 
+# Responsive image variants and og:image derivatives
+pelican-image-process>=3.4.0
+
 # LLMs.txt plugin - converts HTML to markdown
 markdownify>=0.11.0

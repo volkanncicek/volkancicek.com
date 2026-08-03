@@ -145,7 +145,44 @@ RELATIVE_URLS = True
 
 # Plugins
 PLUGIN_PATHS = ["plugins"]
-PLUGINS = ["sitemap", "neighbors", "series", "plugins.llms", "plugins.merlican"]
+PLUGINS = [
+    "sitemap",
+    "neighbors",
+    "series",
+    "image_process",
+    "plugins.llms",
+    "plugins.merlican",
+]
+
+# Image derivatives. Source images stay untouched in content/images/<slug>/; the
+# variants below are generated into output/images/<slug>/derivatives/<transform>/.
+# See STANDARDS.md for which transform to put on which image.
+#
+# "article" feeds the body of a post. The prose column is 672px wide, so 672w
+# covers 1x and 1344w covers 2x displays; WebP because every browser that matters
+# reads it. "og" feeds the social preview, and deliberately stays JPEG: several
+# social scrapers still do not decode WebP.
+IMAGE_PROCESS = {
+    "article": {
+        "type": "responsive-image",
+        "output-format": "webp",
+        "sizes": "(min-width: 720px) 672px, 100vw",
+        "srcset": [
+            ("672w", ["scale_in 672 672 False"]),
+            ("1344w", ["scale_in 1344 1344 False"]),
+        ],
+        "default": "672w",
+    },
+    "og": {
+        "type": "image",
+        "output-format": "jpeg",
+        "ops": ["scale_in 1200 1200 False"],
+    },
+}
+
+# Rewrite the `Image:` frontmatter field to its processed derivative, so the
+# og:image and twitter:image tags in head.html point at the smaller file.
+IMAGE_PROCESS_METADATA = {"image": "og"}
 
 MARKDOWN = {
     "extension_configs": {
