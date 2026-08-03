@@ -1,24 +1,50 @@
 import logging
+
 from pelican import signals
 
 log = logging.getLogger(__name__)
 
-MERMAID_SCRIPT = (
-    '<script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>\n'
-    '<script>mermaid.initialize({startOnLoad:true});</script>'
-)
+# Pinned so a compromised or breaking upstream release cannot reach readers, and
+# guarded with a subresource integrity hash so the CDN cannot serve anything else.
+# To upgrade: bump the version, fetch the file, and recompute the hash with
+#   openssl dgst -sha384 -binary mermaid.min.js | openssl base64 -A
+MERMAID_VERSION = "11.16.0"
+MERMAID_SRI = "sha384-T/0lMUdJpd2S1ZHtRiofG3htU3xPCrFVeAQ1UUE2TJwlEJSV5NUwn30kP28n238E"
+
+MARKER = '<pre class="mermaid">'
+CLOSING_BODY = "</body>"
 
 
 def register():
     signals.content_written.connect(add_mermaid_script)
 
 
+def _script_tags(siteurl):
+    return (
+        f'<script src="https://cdn.jsdelivr.net/npm/mermaid@{MERMAID_VERSION}/dist/mermaid.min.js"'
+        f' integrity="{MERMAID_SRI}" crossorigin="anonymous" defer></script>\n'
+        f'<script src="{siteurl}/theme/js/mermaid-init.js" defer></script>\n'
+    )
+
+
 def add_mermaid_script(path, context):
     try:
-        with open(path, "r+", encoding="utf-8") as f:
+        with open(path, encoding="utf-8") as f:
             content = f.read()
-            if '<pre class="mermaid">' in content and "mermaid.min.js" not in content:
-                f.seek(0, 2)
-                f.write("\n" + MERMAID_SCRIPT)
+
+        if MARKER not in content or "mermaid.min.js" in content:
+            return
+
+        tags = _script_tags(context.get("SITEURL", ""))
+        if CLOSING_BODY in content:
+            content = content.replace(CLOSING_BODY, tags + CLOSING_BODY, 1)
+        else:
+            # No body element to anchor to (unexpected for this theme); append rather
+            # than silently dropping the diagrams.
+            content += "\n" + tags
+            log.warning("[Merlican] No %s in %s, appended instead", CLOSING_BODY, path)
+
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(content)
     except Exception as e:
         log.warning("[Merlican] Error injecting Mermaid script into %s: %s", path, e)
