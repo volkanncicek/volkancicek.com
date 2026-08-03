@@ -5,11 +5,31 @@ Generates a llms.txt file that provides an AI-readable summary of site content.
 This helps LLMs and AI agents better understand and index your website.
 """
 
+import html
+import re
 from datetime import datetime
 from pathlib import Path
 
+from markdownify import ATX
 from markdownify import markdownify as md
 from pelican import contents, signals
+
+_HTML_TAG = re.compile(r"<[^>]+>")
+_TRAILING_SPACE = re.compile(r"[ \t]+\n")
+_BLANK_RUN = re.compile(r"\n{3,}")
+_LEADING_HEADING = re.compile(r"\A#\s+.*?\n+")
+_HEADING_LINE = re.compile(r"^#{1,5}(?= )", re.MULTILINE)
+
+
+def _plain_text(value) -> str:
+    """Reduce a rendered title to plain text.
+
+    Titles reach this plugin after TYPOGRIFY has run, so they carry markup the rest
+    of the site wants but this file does not: `<span class="caps">NVIDIA</span>`,
+    `&nbsp;`, `&#8217;`. llms.txt exists to hand crawlers clean text, so strip the
+    tags and decode the entities.
+    """
+    return html.unescape(_HTML_TAG.sub("", str(value))).strip()
 
 
 class LLMSGenerator:
@@ -39,11 +59,13 @@ class LLMSGenerator:
             lines.append(about_content)
             lines.append("")
 
-        if pages:
+        # About is rendered in full above, so it is not repeated here. Filter first:
+        # testing `pages` instead left an empty "## Pages" heading behind.
+        other_pages = [p for p in pages if p.slug != "about"]
+        if other_pages:
             lines.append("## Pages")
-            for page in pages:
-                if page.slug != "about":  # About is already included above
-                    lines.append(self._format_entry(page))
+            for page in other_pages:
+                lines.append(self._format_entry(page))
             lines.append("")
 
         if articles:
@@ -69,10 +91,23 @@ class LLMSGenerator:
         if not about_page:
             return ""
 
-        content = md(about_page.content)
-        # Clean up the content - remove excessive newlines
-        content = " ".join(content.strip().split())
-        return content
+        # ATX headings (`## X`) rather than markdownify's underlined default, which
+        # renders as a bare `========` line once the surrounding structure is gone.
+        content = md(about_page.content, heading_style=ATX).strip()
+
+        # Collapse only what is genuinely excess. Joining on whitespace, as this used
+        # to, flattened the whole page into a single unreadable line.
+        content = _TRAILING_SPACE.sub("\n", content)
+        content = _BLANK_RUN.sub("\n\n", content)
+
+        # The page opens with its own "About Me" H1, which would sit under the "##
+        # About" heading this plugin already wrote.
+        content = _LEADING_HEADING.sub("", content).strip()
+
+        # Demote what is left by one level. The page's own H2s would otherwise rank
+        # equal to this file's "## About" and "## Blog Posts", reading as site
+        # sections rather than parts of the about page.
+        return _HEADING_LINE.sub(r"#\g<0>", content)
 
     def _format_entry(self, item: contents.Content) -> str:
         """Format a page or article entry for the llms.txt file."""
@@ -86,12 +121,15 @@ class LLMSGenerator:
 
         # Strip HTML tags and convert to plain text
         description = md(description).strip().replace("\n", " ")
+        description = _BLANK_RUN.sub(" ", description)
+
+        title = _plain_text(item.title)
 
         # Handle external URLs (e.g., starting with http)
         if url.startswith("http"):
-            link = f"- [{item.title}]({url})"
+            link = f"- [{title}]({url})"
         else:
-            link = f"- [{item.title}]({self.siteurl}/{url})"
+            link = f"- [{title}]({self.siteurl}/{url})"
 
         if description:
             return f"{link}: {description}"
