@@ -2,12 +2,15 @@
 # STATIC_PATHS/EXTRA_PATH_METADATA in pelicanconf.py.
 #
 # script-src carries no hashes because the theme ships no inline scripts; see the
-# theme layer rules in STANDARDS.md. The two off-site origins are GoatCounter
-# (analytics) and jsDelivr (the pinned mermaid bundle from plugins/merlican).
+# theme layer rules in STANDARDS.md. The off-site origins are GoatCounter
+# (analytics), jsDelivr (the pinned mermaid bundle from plugins/merlican) and
+# Cloudflare Insights. That last one is not in the build output: Cloudflare
+# injects the Web Analytics beacon at the edge, so it only appears on the
+# deployed site and a local build cannot reveal it.
 # style-src needs 'unsafe-inline' because mermaid injects styles as it renders.
 
 /*
-  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' https://gc.zgo.at https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://volkancicek.goatcounter.com; font-src 'self'; connect-src 'self' https://volkancicek.goatcounter.com; upgrade-insecure-requests
+  Content-Security-Policy: default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; form-action 'none'; script-src 'self' https://gc.zgo.at https://cdn.jsdelivr.net https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://volkancicek.goatcounter.com; font-src 'self'; connect-src 'self' https://volkancicek.goatcounter.com https://cloudflareinsights.com; upgrade-insecure-requests
   Strict-Transport-Security: max-age=31536000; includeSubDomains
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
