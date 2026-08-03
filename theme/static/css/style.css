@@ -287,16 +287,19 @@ a {
   margin-bottom: 0.5rem;
 }
 
+/* Body-copy links stay underlined: colour alone is not a distinguishable cue
+   (WCAG 2.2 SC 1.4.1). The hover state deepens the underline rather than adding it. */
 .prose a {
   color: var(--link-color);
-  text-decoration: none;
-}
-
-.prose a:hover {
   text-decoration: underline;
   text-decoration-color: var(--link-underline);
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
+}
+
+.prose a:hover {
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 2px;
 }
 
 .prose img {
