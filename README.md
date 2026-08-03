@@ -44,14 +44,16 @@ uv run pelican content -s publishconf.py
 ```
 volkancicek.com/
 ├── content/
-│   ├── extra/          # Static files (robots.txt, cv.pdf, favicon.ico)
-│   ├── images/         # Blog images
+│   ├── extra/          # Copied verbatim to site root (robots.txt, cv.pdf, favicons, _headers)
+│   ├── images/         # Source images, full resolution; variants are generated at build
 │   ├── pages/          # Static pages (about.md)
 │   └── posts/          # Blog posts (*.md)
 ├── plugins/
-│   └── llms/           # LLMs.txt generator plugin
+│   ├── llms/           # LLMs.txt generator plugin
+│   └── merlican/       # Mermaid diagram rendering
 ├── theme/
 │   ├── static/css/     # Stylesheets (with dark mode support)
+│   ├── static/js/      # Behaviour; the theme ships no inline scripts
 │   └── templates/
 │       ├── partials/   # Reusable template parts (head, nav, footer)
 │       └── *.html      # Page templates
@@ -142,6 +144,22 @@ No MX record (intentional — this domain does not receive email; owner uses `vo
 - **Optional config hooks** in `pelicanconf.py` (currently empty, available if Domain verification ever needs a fallback meta tag):
   - `GOOGLE_SITE_VERIFICATION`
   - `BING_SITE_VERIFICATION`
+
+### Security headers
+
+Response headers are declared in `content/extra/_headers`, which Pelican copies to the site root and Cloudflare Pages applies at the edge. That file is the single source of truth for them, so read it there rather than restating values here. It sets a Content-Security-Policy, HSTS, `X-Frame-Options`, `Permissions-Policy` and `Cross-Origin-Opener-Policy`.
+
+Two things about the CSP are easy to trip over:
+
+- **`script-src` is `'self'` plus a short allowlist, with no `'unsafe-inline'`.** The theme therefore ships no inline scripts; behaviour lives in `theme/static/js/`. Adding an inline script produces no build error, only a blocked script in the reader's browser.
+- **Cloudflare injects its Web Analytics beacon at the edge,** so `static.cloudflareinsights.com` appears only on the deployed site and never in a local build. A clean local console does not prove a clean production one. After any CSP change, load the deployed URL and check the console.
+
+### Third-party front-end assets
+
+Off-site scripts are pinned to an exact version and guarded with a subresource integrity hash, so a compromised or simply changed upstream release cannot execute here.
+
+- **Mermaid** is pinned in `plugins/merlican/merlican.py` (`MERMAID_VERSION` / `MERMAID_SRI`), loaded from jsDelivr and injected only into pages that actually contain a diagram. Upgrading means bumping the version **and** recomputing the hash; the command to do that is in the comment above those constants. A version bump without a matching hash silently stops the diagrams from rendering.
+- **GoatCounter** (`gc.zgo.at`) is loaded from an explicit `https://` URL. It was protocol-relative once, which the CSP blocked on first deploy.
 
 ### Local development → production flow
 
