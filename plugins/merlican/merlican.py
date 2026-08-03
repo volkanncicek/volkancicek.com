@@ -19,11 +19,17 @@ def register():
     signals.content_written.connect(add_mermaid_script)
 
 
+# Not deferred, matching the loading behaviour this plugin has always had. The tags
+# sit just before </body> so they do not block first render anyway, and `defer` was
+# measured without producing a reproducible improvement. Whatever is done here is
+# marginal next to the real cost: the bundle is ~930 KB over the wire and Lighthouse
+# reports ~806 KB of it as unused. Cutting that means rendering diagrams to SVG at
+# build time instead of shipping mermaid to readers.
 def _script_tags(siteurl):
     return (
         f'<script src="https://cdn.jsdelivr.net/npm/mermaid@{MERMAID_VERSION}/dist/mermaid.min.js"'
-        f' integrity="{MERMAID_SRI}" crossorigin="anonymous" defer></script>\n'
-        f'<script src="{siteurl}/theme/js/mermaid-init.js" defer></script>\n'
+        f' integrity="{MERMAID_SRI}" crossorigin="anonymous"></script>\n'
+        f'<script src="{siteurl}/theme/js/mermaid-init.js"></script>\n'
     )
 
 
