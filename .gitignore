@@ -229,4 +229,6 @@ archive/
 # Local working notes (Claude Code, agent context, todo)
 AGENTS.md
 CLAUDE.md
+STANDARDS.md
 TODO.md
+.claude/
