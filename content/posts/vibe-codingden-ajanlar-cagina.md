@@ -76,7 +76,7 @@ Eski Sourcegraph geliştiricisi Steve Yegge, [Ocak 2026'da yazdığı makalede](
 Bu dönüşüm üç dalgada yaşandı:
 
 - **Birinci dalga:** AI, IDE'nin içinde bir eklenti olarak geldi: [GitHub Copilot](https://github.com/features/copilot). IDE hala merkezde, AI bir misafirdi.
-- **İkinci dalga:** AI terminale taşındı. [Claude Code](https://docs.anthropic.com/en/docs/claude-code), [OpenAI Codex CLI](https://github.com/openai/codex) ve Gemini CLI editöre ihtiyaç duymadan çalışabiliyordu. IDE isteğe bağlı hale geldi.
+- **İkinci dalga:** AI terminale taşındı. [Claude Code](https://code.claude.com/docs), [OpenAI Codex CLI](https://github.com/openai/codex) ve Gemini CLI editöre ihtiyaç duymadan çalışabiliyordu. IDE isteğe bağlı hale geldi.
 - **Üçüncü dalga:** Ajan altyapıları belirdi. [Anthropic'in Claude Managed Agents](https://www.anthropic.com/engineering/managed-agents)'ı (Nisan 2026, public beta) kendi döngünüzü ve sandbox ortamınızı sıfırdan kurmanıza gerek kalmadan Claude'u özerk ajan olarak çalıştırabildiğiniz yönetilen bir ortam sunuyor.
 
 Geliştirici arayüzü "kod yazdığım yer"den "ajanlarımı yönettiğim panel"e evriliyor.

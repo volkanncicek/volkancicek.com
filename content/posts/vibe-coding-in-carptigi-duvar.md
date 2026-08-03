@@ -8,7 +8,7 @@ Summary: Claude Code, Cursor ve GitHub Copilot'u aynı anda açık bırakıp pro
 
 Bir noktada merak ettim: AI araçları gerçekten işe yarıyor mu, yoksa ben sadece temiz projelerde mi kullanıyorum?
 
-Bu soruyu kafama taktıktan sonra bir deney yaptım. [Claude Code](https://docs.anthropic.com/en/docs/claude-code)'u, [Cursor](https://www.cursor.com/)'ı ve [GitHub Copilot](https://github.com/features/copilot)'u aynı anda açık bırakıp production'da çalışan eski bir codebase'e girdim. Üç araç, tek sistem, karşılaştırmalı test.
+Bu soruyu kafama taktıktan sonra bir deney yaptım. [Claude Code](https://code.claude.com/docs)'u, [Cursor](https://www.cursor.com/)'ı ve [GitHub Copilot](https://github.com/features/copilot)'u aynı anda açık bırakıp production'da çalışan eski bir codebase'e girdim. Üç araç, tek sistem, karşılaştırmalı test.
 
 Sonuçlar beklediğimden çok farklıydı. Ama asıl sürpriz araçların başarısız olması değildi. *Neden* başarısız oldukları.
 

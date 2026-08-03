@@ -106,11 +106,11 @@ Ama şunu net söyleyeyim: **workflow olmak kusur değil.** Deterministik bir i�
 
 Kendi pratiğimden gideyim: Claude Code'un üstünde agent tanımlıyorum. Bunun nasıl yapıldığı, "agent nerede yaşar" sorusunun en somut cevabı, çünkü agent'ın her parçası bir dosyaya karşılık geliyor.
 
-[Subagent'lar](https://docs.claude.com/en/docs/claude-code/sub-agents) `.claude/agents/` altında birer markdown dosyası olarak yaşar. Her birinin kendi sistem promptu, kendi araç listesi, kendi izin modu vardır. En önemlisi kendi context penceresi vardır: subagent on binlerce token harcayıp ana agent'a sadece damıtılmış bir özet döndürür.
+[Subagent'lar](https://code.claude.com/docs/en/sub-agents) `.claude/agents/` altında birer markdown dosyası olarak yaşar. Her birinin kendi sistem promptu, kendi araç listesi, kendi izin modu vardır. En önemlisi kendi context penceresi vardır: subagent on binlerce token harcayıp ana agent'a sadece damıtılmış bir özet döndürür.
 
 `CLAUDE.md` projenin kökünde durur ve agent'a kalıcı bağlam verir. **Skills** ihtiyaç anında yüklenen yetenek paketleridir; kullanılana kadar bağlamda yalnızca adı ve tek satırlık açıklaması durur, gövdesi ancak tetiklendiğinde yüklenir. **MCP sunucuları** agent'ı dış araçlara ve veri kaynaklarına bağlar. **Hook'lar** yaşam döngüsü olaylarında kabuk komutu çalıştırır.
 
-Burada insanlara anlatırken en çok kafa karıştıran ayrım şu: `CLAUDE.md` **bir ricadır, [hook](https://docs.claude.com/en/docs/claude-code/hooks) bir kuraldır.** "Şu klasöre yazma" diye talimat yazarsanız model çoğu zaman uyar, bazen unutur. Aynı şeyi `PreToolUse` hook'uyla yazarsanız, model ne isterse istesin işlem gerçekleşmez. Model ikna edilir; harness zorlar.
+Burada insanlara anlatırken en çok kafa karıştıran ayrım şu: `CLAUDE.md` **bir ricadır, [hook](https://code.claude.com/docs/en/hooks) bir kuraldır.** "Şu klasöre yazma" diye talimat yazarsanız model çoğu zaman uyar, bazen unutur. Aynı şeyi `PreToolUse` hook'uyla yazarsanız, model ne isterse istesin işlem gerçekleşmez. Model ikna edilir; harness zorlar.
 
 Bu ayrım tesadüfi değil. HumanLayer'ın [12-Factor Agents](https://github.com/humanlayer/12-factor-agents) derlemesinin çekirdek mesajı da tam olarak budur: kontrolü framework'e teslim etme. Kendi promptuna, kendi context penceresine, kendi kontrol akışına sahip çık.
 
@@ -140,7 +140,7 @@ Anthropic'in [context engineering yazısı](https://www.anthropic.com/engineerin
 
 Yazının önerdiği ilke şu: *"Find the smallest set of high-signal tokens that maximize the likelihood of your desired outcome."* İstediğiniz sonucu en olası kılan, en küçük yüksek-sinyalli token kümesini bulun.
 
-Sonuç olarak agent'ın uzun süreli hafızası context'te değil, **dosya sisteminde** yaşar. Agent not tutar, notu okur, konuşma özetlenip sıfırlandığında not yerinde durur. Anthropic'in [ölçümüne göre](https://www.anthropic.com/news/context-management) memory tool ile context editing birlikte kullanıldığında ajanlı arama değerlendirmesinde %39 iyileşme sağlanıyor; context editing tek başına ise yüz turluk bir web arama testinde token kullanımını %84 azaltıyor.
+Sonuç olarak agent'ın uzun süreli hafızası context'te değil, **dosya sisteminde** yaşar. Agent not tutar, notu okur, konuşma özetlenip sıfırlandığında not yerinde durur. Anthropic'in [ölçümüne göre](https://claude.com/blog/context-management) memory tool ile context editing birlikte kullanıldığında ajanlı arama değerlendirmesinde %39 iyileşme sağlanıyor; context editing tek başına ise yüz turluk bir web arama testinde token kullanımını %84 azaltıyor.
 
 Aynı deseni farklı ürünlerde görüyorsunuz. Claude Code'da skill'ler `.claude/skills/` altında dosya olarak durur. Hermes, karmaşık bir görevi bitirdikten sonra kendi kendine bir skill dosyası üretip `~/.hermes/skills/` altına yazar ve sonraki kullanımlarda onu iyileştirir. Agent'ın öğrendiği şey model ağırlıklarına değil, diske yazılıyor.
 
@@ -184,9 +184,9 @@ Yine de raporun asıl bulgusu rakamdan daha ilginç, çünkü buraya kadar anlat
 
 Sıfırdan giriyorsanız, sırayla: Simon Willison'ın [agent tanımı](https://simonwillison.net/2025/Sep/18/agents/), Anthropic'in [Building Effective Agents](https://www.anthropic.com/engineering/building-effective-agents)'ı ve Lilian Weng'in alanın ortak dilini kuran [LLM Powered Autonomous Agents](https://lilianweng.github.io/posts/2023-06-23-agent/) yazısı.
 
-Kurmaya başladıysanız: Anthropic'in [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) ve [agent'lar için araç yazma](https://www.anthropic.com/engineering/writing-tools-for-agents) yazıları, Harrison Chase'in [aynı disiplini anlatan](https://blog.langchain.com/the-rise-of-context-engineering/) yazısı, [12-Factor Agents](https://github.com/humanlayer/12-factor-agents). Kurmadan önce de mutlaka [lethal trifecta](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/).
+Kurmaya başladıysanız: Anthropic'in [context engineering](https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents) ve [agent'lar için araç yazma](https://www.anthropic.com/engineering/writing-tools-for-agents) yazıları, Harrison Chase'in [aynı disiplini anlatan](https://www.langchain.com/blog/the-rise-of-context-engineering) yazısı, [12-Factor Agents](https://github.com/humanlayer/12-factor-agents). Kurmadan önce de mutlaka [lethal trifecta](https://simonwillison.net/2025/Jun/16/the-lethal-trifecta/).
 
-Çok-agent düşünüyorsanız, üçünü birlikte okuyun: Anthropic'in [multi-agent araştırma sistemi](https://www.anthropic.com/engineering/multi-agent-research-system), Cognition'ın karşı çıkan [Don't Build Multi-Agents](https://cognition.ai/blog/dont-build-multi-agents)'ı ve Cognition'ın Nisan 2026'da pozisyonunu keskinleştirdiği [devam yazısı](https://cognition.com/blog/multi-agents-working). Aynı olguya iki zıt değer atfını görmek, tek bir yazıdan daha çok şey öğretiyor.
+Çok-agent düşünüyorsanız, üçünü birlikte okuyun: Anthropic'in [multi-agent araştırma sistemi](https://www.anthropic.com/engineering/multi-agent-research-system), Cognition'ın karşı çıkan [Don't Build Multi-Agents](https://cognition.com/blog/dont-build-multi-agents)'ı ve Cognition'ın Nisan 2026'da pozisyonunu keskinleştirdiği [devam yazısı](https://cognition.com/blog/multi-agents-working). Aynı olguya iki zıt değer atfını görmek, tek bir yazıdan daha çok şey öğretiyor.
 
 Derine inecekseniz Anthropic'in [Managed Agents](https://www.anthropic.com/engineering/managed-agents) yazısı ve [MAST makalesi](https://arxiv.org/abs/2503.13657).
 
