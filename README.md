@@ -98,7 +98,7 @@ Your content here...
 
 - **Domain:** `volkancicek.com` (apex). All traffic canonicalised to apex.
 - **DNS provider:** Cloudflare (zone uses Cloudflare nameservers `cameron.ns.cloudflare.com`, `teagan.ns.cloudflare.com`).
-- **Registrar:** Cloudflare Registrar (transferred from IHS Telekom in August 2026). Transfer lock is on. The in-zone apex NS records `*.dnsenable.com` are vestigial leftovers from a previous setup; Cloudflare does not serve them, so an external `NS` query returns only the two Cloudflare nameservers.
+- **Registrar:** Cloudflare Registrar (transferred from IHS Telekom in August 2026). Transfer lock is on. Cloudflare Registrar requires the domain to stay on Cloudflare nameservers.
 - **DNSSEC:** enabled. Cloudflare Registrar publishes the DS record to the registry itself by reading the zone's `CDS`/`CDNSKEY` records, so the DS is never entered by hand.
 
   > **Turn DNSSEC off before changing nameservers or transferring the domain away.** If the DS record at the registry stops matching the zone's keys, the domain becomes unresolvable for every validating resolver. On `.com` the registry fixes the DS record's TTL at 24 hours, so that mistake is slow to undo.
