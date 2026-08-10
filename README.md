@@ -98,7 +98,14 @@ Your content here...
 
 - **Domain:** `volkancicek.com` (apex). All traffic canonicalised to apex.
 - **DNS provider:** Cloudflare (zone uses Cloudflare nameservers `cameron.ns.cloudflare.com`, `teagan.ns.cloudflare.com`).
-- **Registrar:** external (in-zone NS records `*.dnsenable.com` are vestigial leftovers from previous setup, ignored externally since registrar points to Cloudflare NS).
+- **Registrar:** Cloudflare Registrar (transferred from IHS Telekom in August 2026). Transfer lock is on. The in-zone apex NS records `*.dnsenable.com` are vestigial leftovers from a previous setup; Cloudflare does not serve them, so an external `NS` query returns only the two Cloudflare nameservers.
+- **DNSSEC:** enabled. Cloudflare Registrar publishes the DS record to the registry itself by reading the zone's `CDS`/`CDNSKEY` records, so the DS is never entered by hand.
+
+  > **Turn DNSSEC off before changing nameservers or transferring the domain away.** If the DS record at the registry stops matching the zone's keys, the domain becomes unresolvable for every validating resolver. On `.com` the registry fixes the DS record's TTL at 24 hours, so that mistake is slow to undo.
+
+- **CAA:** the zone permits only the certificate authorities Cloudflare uses. Cloudflare injects its own CAA records on top of whatever the zone declares, and those injected records are invisible in the dashboard.
+
+  > Querying CAA needs care: the answer exceeds 512 bytes, so a plain UDP query without EDNS comes back truncated and looks like "no records". Windows `nslookup` and `Resolve-DnsName` do not support the CAA type at all. Use `dnspython` with `payload=4096` or over TCP.
 
 DNS records (Cloudflare → DNS → Records):
 
@@ -127,6 +134,17 @@ The DMARC record deliberately carries no `rua`/`ruf` reporting addresses. It use
 | Build command | `pelican content -s publishconf.py` |
 | Build output directory | `output` |
 | Root directory | `/` |
+
+### Zone settings that matter
+
+Most of the zone runs on defaults. These are the ones that were changed deliberately or that must not drift:
+
+| Setting | Value | Why |
+|---|---|---|
+| SSL/TLS mode | `Full (strict)` | Validates the origin certificate rather than merely encrypting to it |
+| Minimum TLS version | `1.2` | The default is 1.0; TLS 1.0 and 1.1 are deprecated |
+| **Rocket Loader** | **Off** | Leave it off. It rewrites page scripts and injects an inline one, which `script-src 'self'` blocks — a silent breakage with no build error |
+| HSTS (zone level) | Off | Deliberate: HSTS is issued by `content/extra/_headers`, which stays the single source for response headers |
 
 ### Edge rules (Cloudflare)
 
