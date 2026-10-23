@@ -6,7 +6,7 @@ Personal website and blog built with [Pelican](https://getpelican.com/).
 
 ### Prerequisites
 
-- Python 3.10+
+- Python at the version in `.python-version`, which uv and the Cloudflare Pages build both read, so local and production builds run the same interpreter
 - [uv](https://docs.astral.sh/uv/) package manager
 
 ### Setup
@@ -131,9 +131,12 @@ The DMARC record deliberately carries no `rua`/`ruf` reporting addresses. It use
 
 | Setting | Value |
 |---------|-------|
-| Build command | `pelican content -s publishconf.py` |
+| Build system version | `3` |
+| Build command | `pip install pelican[markdown] && pelican content -s publishconf.py` |
 | Build output directory | `output` |
 | Root directory | `/` |
+
+Before the build command runs, Pages installs `requirements.txt` itself, with the Python version taken from `.python-version`; no `PYTHON_VERSION` variable is set on the project. The `pip install` at the front of the build command is therefore a no-op. A failed build is not deployed, so every push to `main` is build-checked without a separate CI workflow.
 
 ### Zone settings that matter
 
@@ -187,7 +190,7 @@ Off-site scripts are pinned to an exact version and guarded with a subresource i
 1. Edit content / templates locally.
 2. `uv run pelican --listen --autoreload` for live preview at `http://localhost:8000`.
 3. Commit + push to `main`.
-4. Cloudflare Pages auto-builds with `pelican content -s publishconf.py` and deploys.
+4. Cloudflare Pages auto-builds with the build command above and deploys.
 5. Cache propagates globally in ~30–90 seconds.
 
 ## Analytics
