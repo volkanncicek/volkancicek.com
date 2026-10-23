@@ -71,12 +71,6 @@ PROJECTS = (
         "status": "active",
     },
     {
-        "name": "Alcatel Modem API",
-        "description": "Generic Python library and CLI tool for Alcatel LTE modems. Supports multiple Alcatel models with SMS management, network monitoring, and API access.",
-        "url": "https://github.com/volkanncicek/alcatel-modem-api",
-        "status": "active",
-    },
-    {
         "name": "Input Lock",
         "description": "A desktop app that temporarily locks your keyboard and mouse input. Perfect for cleaning breaks or preventing accidental input.",
         "url": "https://github.com/volkanncicek/input-lock",
