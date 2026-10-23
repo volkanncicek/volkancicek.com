@@ -5,7 +5,7 @@ Tags: welcome, about
 Slug: welcome
 Summary: Why I'm writing here, what you can expect — a short opening note.
 
-I'm Volkan. Istanbul-based, mathematics background, Senior Data Scientist & AI Engineer. By day I work on Generative AI, MLOps and large-scale AIOps problems at [Logo Yazılım](https://www.logo.com.tr/). In the evenings I try to put what I learn — what I try, what I get stuck on, what catches my attention — into writing.
+I'm Volkan. Istanbul-based, mathematics background, Senior AI Engineer & Data Scientist. By day I work on Generative AI, MLOps and large-scale AIOps problems at [Logo Yazılım](https://www.logo.com.tr/). In the evenings I try to put what I learn — what I try, what I get stuck on, what catches my attention — into writing.
 
 That's what this blog is for.
 

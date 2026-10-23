@@ -4,7 +4,7 @@ AUTHOR = "Volkan Çiçek"
 SITENAME = "Volkan Çiçek"
 SITEURL = ""
 SITE_DESCRIPTION = (
-    "Senior Data Scientist & AI Engineer specializing in Generative AI, LLMs, and MLOps"
+    "Senior AI Engineer & Data Scientist specializing in Generative AI, LLMs, and MLOps"
 )
 
 PATH = "content"
@@ -23,7 +23,7 @@ CURRENT_YEAR = datetime.now().year
 EMAIL = "volkanciicek@gmail.com"
 
 # Intro text for homepage
-INTRO_TEXT = "Senior Data Scientist & AI Engineer with a Mathematics background. I work at the intersection of Generative AI, LLMs, RAG systems, and MLOps — turning complex AI ideas into production-ready solutions."
+INTRO_TEXT = "Senior AI Engineer & Data Scientist with a Mathematics background. I work at the intersection of Generative AI, LLMs, RAG systems, and MLOps — turning complex AI ideas into production-ready solutions."
 
 # Static files (CV, etc.)
 STATIC_PATHS = ["images", "extra"]
@@ -47,15 +47,15 @@ PROJECTS = (
         "status": "active",
     },
     {
-        "name": "git-relay",
-        "description": "Two-way git sync for a server that cannot reach your git remote, relayed through your workstation. Plain git over SSH, with no rsync and no agent to install.",
-        "url": "https://github.com/volkanncicek/git-relay",
+        "name": "claude-code-workspaces",
+        "description": "Save, restore and manage Claude Code sessions as named workspaces. Windows Terminal native.",
+        "url": "https://github.com/volkanncicek/claude-code-workspaces",
         "status": "active",
     },
     {
-        "name": "Alcatel Modem API",
-        "description": "Generic Python library and CLI tool for Alcatel LTE modems. Supports multiple Alcatel models with SMS management, network monitoring, and API access.",
-        "url": "https://github.com/volkanncicek/alcatel-modem-api",
+        "name": "git-relay",
+        "description": "Two-way git sync for a server that cannot reach your git remote, relayed through your workstation. Plain git over SSH, with no rsync and no agent to install.",
+        "url": "https://github.com/volkanncicek/git-relay",
         "status": "active",
     },
     {
@@ -63,6 +63,18 @@ PROJECTS = (
         "description": "Standalone CLI that audits a machine for traces of the March 2026 LiteLLM PyPI compromise: the known-bad releases, the injected .pth file, and the attacker's callback host.",
         "url": "https://github.com/volkanncicek/litellm-supply-chain-audit",
         "status": "completed",
+    },
+    {
+        "name": "xiaomi-lightbar",
+        "description": "ESPHome light component for the Xiaomi monitor light bar (MJGJD01YL) over an nRF24 radio.",
+        "url": "https://github.com/volkanncicek/xiaomi-lightbar",
+        "status": "active",
+    },
+    {
+        "name": "Alcatel Modem API",
+        "description": "Generic Python library and CLI tool for Alcatel LTE modems. Supports multiple Alcatel models with SMS management, network monitoring, and API access.",
+        "url": "https://github.com/volkanncicek/alcatel-modem-api",
+        "status": "active",
     },
     {
         "name": "Input Lock",
@@ -121,7 +133,7 @@ AUTHOR_FEED_RSS = None
 SOCIAL = (
     ("GitHub", "https://github.com/volkanncicek"),
     ("LinkedIn", "https://linkedin.com/in/volkanncicek"),
-    ("Twitter", "https://twitter.com/volkanncicek"),
+    ("X", "https://x.com/volkanncicek"),
 )
 
 # Twitter username for meta tags (without @)
