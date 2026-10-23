@@ -28,6 +28,6 @@ Short-to-medium, personal, experience-driven posts. Not "AI 101" style overviews
 
 Some posts will be in Turkish, some in English — depends on the audience I'm writing for. The 3-part series on vibe coding and agents is in Turkish; this kind of opening note feels more natural in English.
 
-If something here resonates, feel free to reach out on [LinkedIn](https://linkedin.com/in/volkanncicek) or [Twitter](https://twitter.com/volkanncicek).
+If something here resonates, feel free to reach out on [LinkedIn](https://linkedin.com/in/volkanncicek) or [X](https://x.com/volkanncicek).
 
 Happy reading.
